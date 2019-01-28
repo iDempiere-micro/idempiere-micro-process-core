@@ -4,8 +4,6 @@ import org.compiere.util.SystemIDs
 import org.idempiere.common.exceptions.AdempiereException
 import org.idempiere.common.util.CLogger
 import org.idempiere.icommon.model.IBasePO
-
-import java.io.File
 import java.math.BigDecimal
 
 interface DocAction<T> : IBasePO {
@@ -143,12 +141,6 @@ interface DocAction<T> : IBasePO {
      * @return true if success
      */
     fun reActivateIt(): Boolean
-
-    /**
-     * Create PDF
-     * @return file
-     */
-    fun createPDF(): File
 
     /**
      * Save Document

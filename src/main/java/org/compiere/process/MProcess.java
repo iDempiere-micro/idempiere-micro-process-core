@@ -44,28 +44,7 @@ public class MProcess extends X_AD_Process {
     return retValue;
   } //	get
 
-  /**
-   * Get MProcess from Menu
-   *
-   * @param ctx context
-   * @param AD_Menu_ID id
-   * @return MProcess or null
-   */
-  public static MProcess getFromMenu(Properties ctx, int AD_Menu_ID) {
-    final String whereClause =
-        "EXISTS (SELECT 1 FROM AD_Menu m"
-            + " WHERE m.AD_Process_ID=AD_Process.AD_Process_ID AND m.AD_Menu_ID=?)";
-    MProcess p =
-        new Query(ctx, I_AD_Process.Table_Name, whereClause, null)
-            .setParameters(AD_Menu_ID)
-            .firstOnly();
-    if (p != null) {
-      s_cache.put(p.getId(), p);
-    }
-    return p;
-  } //	getFromMenu
-
-  /** Cache */
+    /** Cache */
   private static CCache<Integer, MProcess> s_cache =
       new CCache<Integer, MProcess>(I_AD_Process.Table_Name, 20);
 
@@ -121,21 +100,7 @@ public class MProcess extends X_AD_Process {
     return m_parameters;
   } //	getParameters
 
-  /**
-   * Get Parameter with ColumnName
-   *
-   * @param name column name
-   * @return parameter or null
-   */
-  public MProcessPara getParameter(String name) {
-    getParameters();
-    for (int i = 0; i < m_parameters.length; i++) {
-      if (m_parameters[i].getColumnName().equals(name)) return m_parameters[i];
-    }
-    return null;
-  } //	getParameter
-
-  /**
+    /**
    * String Representation
    *
    * @return info
@@ -146,59 +111,7 @@ public class MProcess extends X_AD_Process {
     return sb.toString();
   } //	toString
 
-  /**
-   * ************************************************************************ Process w/o parameter
-   *
-   * @param Record_ID record
-   * @param trx transaction
-   * @return Process Instance
-   */
-  public MPInstance processIt(int Record_ID) {
-    return processIt(Record_ID, true);
-  }
-
-  /**
-   * ************************************************************************ Process w/o parameter
-   *
-   * @param Record_ID record
-   * @param trx transaction
-   * @return Process Instance
-   */
-  public MPInstance processIt(int Record_ID, boolean managedTrx) {
-    MPInstance pInstance = new MPInstance(this, Record_ID);
-    //	Lock
-    pInstance.setIsProcessing(true);
-    pInstance.saveEx();
-
-    boolean ok = true;
-
-    ProcessInfo processInfo = new ProcessInfo("", this.getAD_Process_ID());
-    processInfo.setAD_PInstance_ID(pInstance.getAD_PInstance_ID());
-    processInfo.setRecord_ID(Record_ID); // @Trifon - pass Record_Id to ProcessInfo class
-    ok = processIt(processInfo, managedTrx);
-
-    //	Unlock
-    pInstance.setResult(ok ? MPInstance.RESULT_OK : MPInstance.RESULT_ERROR);
-    pInstance.setErrorMsg(processInfo.getSummary());
-    pInstance.setIsProcessing(false);
-    pInstance.saveEx();
-    //
-    pInstance.log();
-    return pInstance;
-  } //	process
-
-  /**
-   * Process It (sync)
-   *
-   * @param pi Process Info
-   * @param trx transaction
-   * @return true if OK
-   */
-  public boolean processIt(ProcessInfo pi) {
-    return processIt(pi, true);
-  }
-
-  /**
+    /**
    * Process It (sync)
    *
    * @param pi Process Info
@@ -233,17 +146,7 @@ public class MProcess extends X_AD_Process {
     return ok;
   } //	process
 
-  /**
-   * Is this a Java Process
-   *
-   * @return true if java process
-   */
-  public boolean isJavaProcess() {
-    String Classname = getClassname();
-    return (Classname != null && Classname.length() > 0);
-  } //	is JavaProcess
-
-  /**
+    /**
    * Start Java Class (sync). instanciate the class implementing the interface ProcessCall. The
    * class can be a Server/Client class (when in Package org adempiere.process or
    * org.compiere.model) or a client only class (e.g. in org.compiere.report)
@@ -264,16 +167,7 @@ public class MProcess extends X_AD_Process {
     }
   } //  startClass
 
-  /**
-   * Is it a Workflow
-   *
-   * @return true if Workflow
-   */
-  public boolean isWorkflow() {
-    return getAD_Workflow_ID() > 0;
-  } //	isWorkflow
-
-  /**
+    /**
    * Update Statistics
    *
    * @param seconds sec
@@ -305,20 +199,7 @@ public class MProcess extends X_AD_Process {
     return success;
   } //	afterSave
 
-  /**
-   * Grant independence to GenerateModel from AD_Process_ID
-   *
-   * @param value
-   * @param trxName
-   * @return
-   */
-  public static int getProcess_ID(String value, String trxName) {
-    int retValue =
-        getSQLValueEx(trxName, "SELECT AD_Process_ID FROM AD_Process WHERE Value=?", value);
-    return retValue;
-  }
-
-  /**
+    /**
    * Copy settings from another process overwrites existing data (including translations) and saves.
    * Not overwritten: name, value, entitytype
    *

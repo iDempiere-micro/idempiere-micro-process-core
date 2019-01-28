@@ -10,7 +10,6 @@ import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
-import org.idempiere.orm.POInfo;
 
 /**
  * Generated Model for AD_PInstance_Para
@@ -75,25 +74,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
     return ii;
   }
 
-  /**
-   * Set AD_PInstance_Para_UU.
-   *
-   * @param AD_PInstance_Para_UU AD_PInstance_Para_UU
-   */
-  public void setAD_PInstance_Para_UU(String AD_PInstance_Para_UU) {
-    set_Value(COLUMNNAME_AD_PInstance_Para_UU, AD_PInstance_Para_UU);
-  }
-
-  /**
-   * Get AD_PInstance_Para_UU.
-   *
-   * @return AD_PInstance_Para_UU
-   */
-  public String getAD_PInstance_Para_UU() {
-    return (String) get_Value(COLUMNNAME_AD_PInstance_Para_UU);
-  }
-
-  /**
+    /**
    * Set Info.
    *
    * @param Info Information
@@ -111,16 +92,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
     return (String) get_Value(COLUMNNAME_Info);
   }
 
-  /**
-   * Set Info To.
-   *
-   * @param Info_To Info To
-   */
-  public void setInfo_To(String Info_To) {
-    set_Value(COLUMNNAME_Info_To, Info_To);
-  }
-
-  /**
+    /**
    * Get Info To.
    *
    * @return Info To
@@ -147,16 +119,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
     return (String) get_Value(COLUMNNAME_ParameterName);
   }
 
-  /**
-   * Get Record ID/ColumnName
-   *
-   * @return ID/ColumnName pair
-   */
-  public KeyNamePair getKeyNamePair() {
-    return new KeyNamePair(getId(), getParameterName());
-  }
-
-  /**
+    /**
    * Set Process Date.
    *
    * @param P_Date Process Parameter
@@ -277,18 +240,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
     set_ValueNoCheck(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
   }
 
-  /**
-   * Get Sequence.
-   *
-   * @return Method of ordering records; lowest number comes first
-   */
-  public int getSeqNo() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_SeqNo);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-  @Override
+    @Override
   public int getTableId() {
     return I_AD_PInstance_Para.Table_ID;
   }

@@ -24,68 +24,7 @@ public class ProcessInfoUtil {
   /** Logger */
   private static CLogger s_log = CLogger.getCLogger(ProcessInfoUtil.class);
 
-  /**
-   * ************************************************************************ Query PInstance for
-   * result. Fill Summary and success in ProcessInfo
-   *
-   * @param pi process info
-   */
-  public static void setSummaryFromDB(IProcessInfo pi) {
-    //	s_log.fine("setSummaryFromDB - AD_PInstance_ID=" + pi.getAD_PInstance_ID());
-    //
-    int sleepTime = 2000; // 	2 secomds
-    int noRetry = 5; //  10 seconds total
-    //
-    String sql =
-        "SELECT Result, ErrorMsg FROM AD_PInstance "
-            + "WHERE AD_PInstance_ID=?"
-            + " AND Result IS NOT NULL";
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-    try {
-      pstmt =
-          prepareStatement(sql, null);
-      for (int noTry = 0; noTry < noRetry; noTry++) {
-        pstmt.setInt(1, pi.getAD_PInstance_ID());
-        rs = pstmt.executeQuery();
-        if (rs.next()) {
-          //	we have a result
-          int i = rs.getInt(1);
-          if (i == 1) {
-            pi.setSummary(Msg.getMsg(Env.getCtx(), "Success"));
-          } else {
-            pi.setSummary(Msg.getMsg(Env.getCtx(), "Failure"), true);
-          }
-          String Message = rs.getString(2);
-          //
-          if (Message != null)
-            pi.addSummary("  (" + Msg.parseTranslation(Env.getCtx(), Message) + ")");
-          //	s_log.fine("setSummaryFromDB - " + Message);
-          return;
-        }
-        close(rs);
-        rs = null;
-        //	sleep
-        try {
-          s_log.fine("sleeping");
-          Thread.sleep(sleepTime);
-        } catch (InterruptedException ie) {
-          s_log.log(Level.SEVERE, "Sleep Thread", ie);
-        }
-      }
-    } catch (SQLException e) {
-      s_log.log(Level.SEVERE, sql, e);
-      pi.setSummary(e.getLocalizedMessage(), true);
-      return;
-    } finally {
-      close(rs, pstmt);
-      rs = null;
-      pstmt = null;
-    }
-    pi.setSummary(Msg.getMsg(Env.getCtx(), "Timeout"), true);
-  } //	setSummaryFromDB
-
-  /**
+    /**
    * Set Log of Process.
    *
    * @param pi process info

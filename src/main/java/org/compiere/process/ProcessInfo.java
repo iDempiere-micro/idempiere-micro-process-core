@@ -130,31 +130,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
 
   private int languageID = 0;
 
-  public int getLanguageID() {
-    return languageID;
-  }
-
-  public void setLanguageID(int languageID) {
-    this.languageID = languageID;
-  }
-
-  public String getReportType() {
-    return reportType;
-  }
-
-  public void setReportType(String reportType) {
-    this.reportType = reportType;
-  }
-
-  public void setIsSummary(boolean isSummary) {
-    this.isSummary = isSummary;
-  }
-
-  public boolean isSummary() {
-    return this.isSummary;
-  }
-
-  /**
+    /**
    * String representation
    *
    * @return String representation
@@ -240,16 +216,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     m_batch = batch;
   } //	setTimeout
 
-  /**
-   * Batch - i.e. UI not blocked
-   *
-   * @return boolean
-   */
-  public boolean isBatch() {
-    return m_batch;
-  } //	isBatch
-
-  /**
+    /**
    * Timeout
    *
    * @param timeout true still running
@@ -258,16 +225,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     m_timeout = timeout;
   } //	setTimeout
 
-  /**
-   * Timeout - i.e process did not complete
-   *
-   * @return boolean
-   */
-  public boolean isTimeout() {
-    return m_timeout;
-  } //	isTimeout
-
-  /**
+    /**
    * Set Log of Process.
    *
    * <pre>
@@ -341,16 +299,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     m_AD_PInstance_ID = AD_PInstance_ID;
   }
 
-  /** @return int */
-  public int getAD_InfoWindow_ID() {
-    return m_InfoWindowID;
-  }
-  /** @param AD_PInstance_ID int */
-  public void setAD_InfoWindow_ID(int infoWindowID) {
-    m_InfoWindowID = infoWindowID;
-  }
-
-  /**
+    /**
    * Method getAD_Process_ID
    *
    * @return int
@@ -386,49 +335,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     if (m_ClassName != null && m_ClassName.length() == 0) m_ClassName = null;
   } //	setClassName
 
-  /**
-   * Method getTransientObject
-   *
-   * @return Object
-   */
-  public Object getTransientObject() {
-    return m_TransientObject;
-  }
-  /**
-   * Method setTransientObject
-   *
-   * @param TransientObject Object
-   */
-  public void setTransientObject(Object TransientObject) {
-    m_TransientObject = TransientObject;
-  }
-
-  /**
-   * Method getSerializableObject
-   *
-   * @return Serializable
-   */
-  public Serializable getSerializableObject() {
-    return m_SerializableObject;
-  }
-  /**
-   * Method setSerializableObject
-   *
-   * @param SerializableObject Serializable
-   */
-  public void setSerializableObject(Serializable SerializableObject) {
-    m_SerializableObject = SerializableObject;
-  }
-
-  /**
-   * Method getEstSeconds
-   *
-   * @return int
-   */
-  public int getEstSeconds() {
-    return m_EstSeconds;
-  }
-  /**
+    /**
    * Method setEstSeconds
    *
    * @param EstSeconds int
@@ -556,20 +463,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     addLog(new ProcessInfoLog(P_ID, P_Date, P_Number, P_Msg, tableId, recordId));
   }
 
-  /**
-   * ************************************************************************ Add to Log
-   *
-   * @param Log_ID Log ID
-   * @param P_ID Process ID
-   * @param P_Date Process Date
-   * @param P_Number Process Number
-   * @param P_Msg Process Message
-   */
-  public void addLog(int Log_ID, int P_ID, Timestamp P_Date, BigDecimal P_Number, String P_Msg) {
-    addLog(new ProcessInfoLog(Log_ID, P_ID, P_Date, P_Number, P_Msg));
-  } //	addLog
-
-  /**
+    /**
    * Add to Log
    *
    * @param P_ID Process ID
@@ -604,31 +498,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     return logs;
   } //	getLogs
 
-  /**
-   * Method getIDs
-   *
-   * @return int[]
-   */
-  public int[] getIDs() {
-    if (m_logs == null) return null;
-    ArrayList<Integer> idsarray = new ArrayList<Integer>();
-    for (int i = 0; i < m_logs.size(); i++) {
-      if (m_logs.get(i).getP_ID() > 0) idsarray.add(m_logs.get(i).getP_ID());
-    }
-    int[] ids = new int[idsarray.size()];
-    for (int i = 0; i < idsarray.size(); i++) ids[i] = idsarray.get(i);
-    return ids;
-  } //	getIDs
-
-  /**
-   * Method getLogList
-   *
-   * @return ArrayList
-   */
-  public ArrayList<IProcessInfoLog> getLogList() {
-    return m_logs;
-  }
-  /**
+    /**
    * Method setLogList
    *
    * @param logs ArrayList
@@ -664,25 +534,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     m_printPreview = b;
   }
 
-  /**
-   * Is print preview instead of direct print ? Only relevant if this is a reporting process
-   *
-   * @return boolean
-   */
-  public boolean isPrintPreview() {
-    return m_printPreview;
-  }
-
-  /**
-   * Is this a reporting process ?
-   *
-   * @return boolean
-   */
-  public boolean isReportingProcess() {
-    return m_reportingProcess;
-  }
-
-  /**
+    /**
    * Set is this a reporting process
    *
    * @param f
@@ -692,16 +544,8 @@ public class ProcessInfo implements Serializable, IProcessInfo {
   }
 
   // FR 1906632
-  /**
-   * Set PDF file generate to Jasper Report
-   *
-   * @param PDF File
-   */
-  public void setPDFReport(File f) {
-    m_pdf_report = f;
-  }
 
-  /**
+    /**
    * Get PDF file generate to Jasper Report
    *
    * @param f
@@ -719,34 +563,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     return m_export;
   }
 
-  /**
-   * Set Export
-   *
-   * @param export
-   */
-  public void setExport(boolean export) {
-    this.m_export = export;
-  }
-
-  /**
-   * Get Export File Extension
-   *
-   * @param
-   */
-  public String getExportFileExtension() {
-    return m_exportFileExtension;
-  }
-
-  /**
-   * Set Export File Extension
-   *
-   * @param exportFileOfType
-   */
-  public void setExportFileExtension(String exportFileExtension) {
-    m_exportFileExtension = exportFileExtension;
-  }
-
-  /**
+    /**
    * Get Export File
    *
    * @return
@@ -755,32 +572,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     return m_exportFile;
   }
 
-  /**
-   * Set Export File
-   *
-   * @param exportFile
-   */
-  public void setExportFile(File exportFile) {
-    m_exportFile = exportFile;
-  }
-
-  public int[] getRecord_IDs() {
-    return m_Record_IDs;
-  }
-
-  public void setRecord_IDs(int[] Record_IDs) {
-    m_Record_IDs = Record_IDs;
-  }
-
-  public void setRowCount(int rowCount) {
-    m_rowCount = rowCount;
-  }
-
-  public int getRowCount() {
-    return m_rowCount;
-  }
-
-  public void setPO(PO po) {
+    public void setPO(PO po) {
     m_po = po;
   }
 
@@ -791,11 +583,4 @@ public class ProcessInfo implements Serializable, IProcessInfo {
   /** FileName to be used */
   private String m_PDFfileName;
 
-  public String getPDFFileName() {
-    return m_PDFfileName;
-  }
-
-  public void setPDFFileName(String fileName) {
-    this.m_PDFfileName = fileName;
-  }
 } //  ProcessInfo

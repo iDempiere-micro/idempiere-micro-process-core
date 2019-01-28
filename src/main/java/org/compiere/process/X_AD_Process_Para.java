@@ -3,12 +3,9 @@ package org.compiere.process;
 import java.sql.ResultSet;
 import java.util.Properties;
 
-import org.compiere.model.I_AD_Process;
 import org.compiere.model.I_AD_Process_Para;
 import org.compiere.orm.BasePOName;
-import org.compiere.orm.MTable;
 import org.idempiere.orm.I_Persistent;
-import org.idempiere.orm.POInfo;
 
 /**
  * Generated Model for AD_Process_Para
@@ -53,13 +50,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para, 
     return sb.toString();
   }
 
-  public org.compiere.model.I_AD_Element getAD_Element() throws RuntimeException {
-    return (org.compiere.model.I_AD_Element)
-        MTable.get(getCtx(), org.compiere.model.I_AD_Element.Table_Name)
-            .getPO(getAD_Element_ID(), null);
-  }
-
-  /**
+    /**
    * Set System Element.
    *
    * @param AD_Element_ID System Element enables the central maintenance of column description and
@@ -81,13 +72,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para, 
     return ii;
   }
 
-  public org.compiere.model.I_AD_Process getAD_Process() throws RuntimeException {
-    return (org.compiere.model.I_AD_Process)
-        MTable.get(getCtx(), org.compiere.model.I_AD_Process.Table_Name)
-            .getPO(getAD_Process_ID(), null);
-  }
-
-  /**
+    /**
    * Set Process.
    *
    * @param AD_Process_ID Process or Report
@@ -108,17 +93,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para, 
     return ii;
   }
 
-  /**
-   * Set Process Parameter.
-   *
-   * @param AD_Process_Para_ID Process Parameter
-   */
-  public void setAD_Process_Para_ID(int AD_Process_Para_ID) {
-    if (AD_Process_Para_ID < 1) set_ValueNoCheck(COLUMNNAME_AD_Process_Para_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_AD_Process_Para_ID, Integer.valueOf(AD_Process_Para_ID));
-  }
-
-  /**
+    /**
    * Get Process Parameter.
    *
    * @return Process Parameter
@@ -129,31 +104,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para, 
     return ii;
   }
 
-  /**
-   * Set AD_Process_Para_UU.
-   *
-   * @param AD_Process_Para_UU AD_Process_Para_UU
-   */
-  public void setAD_Process_Para_UU(String AD_Process_Para_UU) {
-    set_Value(COLUMNNAME_AD_Process_Para_UU, AD_Process_Para_UU);
-  }
-
-  /**
-   * Get AD_Process_Para_UU.
-   *
-   * @return AD_Process_Para_UU
-   */
-  public String getAD_Process_Para_UU() {
-    return (String) get_Value(COLUMNNAME_AD_Process_Para_UU);
-  }
-
-  public org.compiere.model.I_AD_Reference getAD_Reference() throws RuntimeException {
-    return (org.compiere.model.I_AD_Reference)
-        MTable.get(getCtx(), org.compiere.model.I_AD_Reference.Table_Name)
-            .getPO(getReferenceId(), null);
-  }
-
-  /**
+    /**
    * Set Reference.
    *
    * @param AD_Reference_ID System Reference and Validation
@@ -174,13 +125,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para, 
     return ii;
   }
 
-  public org.compiere.model.I_AD_Reference getAD_Reference_Value() throws RuntimeException {
-    return (org.compiere.model.I_AD_Reference)
-        MTable.get(getCtx(), org.compiere.model.I_AD_Reference.Table_Name)
-            .getPO(getAD_Reference_Value_ID(), null);
-  }
-
-  /**
+    /**
    * Set Reference Key.
    *
    * @param AD_Reference_Value_ID Required to specify, if data type is Table or List
@@ -201,13 +146,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para, 
     return ii;
   }
 
-  public org.compiere.model.I_AD_Val_Rule getValRule() throws RuntimeException {
-    return (org.compiere.model.I_AD_Val_Rule)
-        MTable.get(getCtx(), org.compiere.model.I_AD_Val_Rule.Table_Name)
-            .getPO(getValRule_ID(), null);
-  }
-
-  /**
+    /**
    * Set Dynamic Validation.
    *
    * @param AD_Val_Rule_ID Dynamic Validation Rule
@@ -319,9 +258,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para, 
     return (String) get_Value(COLUMNNAME_DisplayLogic);
   }
 
-  /** EntityType AD_Reference_ID=389 */
-  public static final int ENTITYTYPE_AD_Reference_ID = 389;
-  /**
+    /**
    * Set Entity Type.
    *
    * @param EntityType Dictionary Entity Type; Determines ownership and synchronization
@@ -331,16 +268,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para, 
     set_Value(COLUMNNAME_EntityType, EntityType);
   }
 
-  /**
-   * Get Entity Type.
-   *
-   * @return Dictionary Entity Type; Determines ownership and synchronization
-   */
-  public String getEntityType() {
-    return (String) get_Value(COLUMNNAME_EntityType);
-  }
-
-  /**
+    /**
    * Set Length.
    *
    * @param FieldLength Length of the column in the database
@@ -401,30 +329,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para, 
     return false;
   }
 
-  /**
-   * Set Encrypted.
-   *
-   * @param IsEncrypted Display or Storage is encrypted
-   */
-  public void setIsEncrypted(boolean IsEncrypted) {
-    set_Value(COLUMNNAME_IsEncrypted, Boolean.valueOf(IsEncrypted));
-  }
-
-  /**
-   * Get Encrypted.
-   *
-   * @return Display or Storage is encrypted
-   */
-  public boolean isEncrypted() {
-    Object oo = get_Value(COLUMNNAME_IsEncrypted);
-    if (oo != null) {
-      if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
-      return "Y".equals(oo);
-    }
-    return false;
-  }
-
-  /**
+    /**
    * Set Mandatory.
    *
    * @param IsMandatory Data entry is required in this column
@@ -470,25 +375,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para, 
     return false;
   }
 
-  /**
-   * Set Mandatory Logic.
-   *
-   * @param MandatoryLogic Mandatory Logic
-   */
-  public void setMandatoryLogic(String MandatoryLogic) {
-    set_Value(COLUMNNAME_MandatoryLogic, MandatoryLogic);
-  }
-
-  /**
-   * Get Mandatory Logic.
-   *
-   * @return Mandatory Logic
-   */
-  public String getMandatoryLogic() {
-    return (String) get_Value(COLUMNNAME_MandatoryLogic);
-  }
-
-  /**
+    /**
    * Set Read Only Logic.
    *
    * @param ReadOnlyLogic Logic to determine if field is read only (applies only when field is

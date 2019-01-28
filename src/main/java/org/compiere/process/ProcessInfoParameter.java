@@ -73,25 +73,7 @@ public class ProcessInfoParameter implements Serializable, IProcessInfoParameter
         + ")";
   } //	toString
 
-  /**
-   * Method getInfo
-   *
-   * @return String
-   */
-  public String getInfo() {
-    return m_Info;
-  }
-
-  /**
-   * Method getInfo_To
-   *
-   * @return String
-   */
-  public String getInfo_To() {
-    return m_Info_To;
-  }
-
-  /**
+    /**
    * Method getParameter
    *
    * @return Object
@@ -138,41 +120,7 @@ public class ProcessInfoParameter implements Serializable, IProcessInfoParameter
     return m_Parameter_To;
   }
 
-  /**
-   * Method getParameter as Int
-   *
-   * @return Object
-   */
-  public int getParameter_ToAsInt() {
-    if (m_Parameter_To == null) return 0;
-    if (m_Parameter_To instanceof Number) return ((Number) m_Parameter_To).intValue();
-    BigDecimal bd = new BigDecimal(m_Parameter_To.toString());
-    return bd.intValue();
-  } //	getParameter_ToAsInt
-
-  /**
-   * Method getParameter as Boolean
-   *
-   * @return boolean
-   */
-  public boolean getParameter_ToAsBoolean() {
-    if (m_Parameter_To == null) return false;
-    if (m_Parameter_To instanceof Boolean) return ((Boolean) m_Parameter_To).booleanValue();
-    return "Y".equals(m_Parameter_To);
-  }
-
-  /**
-   * Method getParameter_To as Timestamp
-   *
-   * @return Timestamp
-   */
-  public Timestamp getParameter_ToAsTimestamp() {
-    if (m_Parameter_To == null) return null;
-    if (m_Parameter_To instanceof Timestamp) return (Timestamp) m_Parameter_To;
-    return null;
-  } // getParameter_ToAsTimestamp
-
-  /**
+    /**
    * Method getParameter as Timestamp
    *
    * @return Object

@@ -191,15 +191,4 @@ public final class ProcessUtil {
     return success;
   }
 
-  /**
-   * Start a java process without closing the given transaction. Is used from the workflow engine.
-   *
-   * @param ctx
-   * @param pi
-   * @param trx
-   * @return
-   */
-  public static boolean startJavaProcessWithoutTrxClose(Properties ctx, ProcessInfo pi) {
-    return startJavaProcess(ctx, pi, false);
-  }
 }

@@ -7,7 +7,6 @@ import org.compiere.util.Msg;
 import org.idempiere.common.util.CLogger;
 import org.idempiere.common.util.Env;
 
-import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -79,8 +78,6 @@ public abstract class SvrProcess implements ProcessCall {
 
   /** Common Error Message */
   protected static String MSG_SaveErrorRowNotFound = "@SaveErrorRowNotFound@";
-
-  protected static String MSG_InvalidArguments = "@InvalidArguments@";
 
   /**
    * Start the process. Calls the abstract methods <code>process</code>. It should only return
@@ -203,47 +200,6 @@ public abstract class SvrProcess implements ProcessCall {
    */
   protected void postProcess(boolean success) {}
 
-
-  /**
-   * ************************************************************************ Lock Object. Needs to
-   * be explicitly called. Unlock is automatic.
-   *
-   * @param po object
-   * @return true if locked
-   */
-  protected boolean lockObject(PO po) {
-    //	Unlock existing
-    if (m_locked || m_lockedObject != null) unlockObject();
-    //	Nothing to lock
-    if (po == null) return false;
-    m_lockedObject = po;
-    m_locked = m_lockedObject.lock();
-    return m_locked;
-  } //	lockObject
-
-  /**
-   * Is an object Locked?
-   *
-   * @return true if object locked
-   */
-  protected boolean isLocked() {
-    return m_locked;
-  } //	isLocked
-
-  /**
-   * Unlock Object. Is automatically called at the end of process.
-   *
-   * @return true if unlocked or if there was nothing to unlock
-   */
-  protected boolean unlockObject() {
-    boolean success = true;
-    if (m_locked || m_lockedObject != null) {
-      success = m_lockedObject.unlock(null);
-    }
-    m_locked = false;
-    m_lockedObject = null;
-    return success;
-  } //	unlock
 
   /**
    * ************************************************************************ Get Process Info
@@ -414,29 +370,6 @@ public abstract class SvrProcess implements ProcessCall {
                 + entryLog.getRecord_ID());
     }
   }
-
-  /**
-   * ************************************************************************ Execute function
-   *
-   * @param className class
-   * @param methodName method
-   * @param args arguments
-   * @return result
-   */
-  public Object doIt(String className, String methodName, Object args[]) {
-    try {
-      Class<?> clazz = Class.forName(className);
-      Object object = clazz.newInstance();
-      Method[] methods = clazz.getMethods();
-      for (int i = 0; i < methods.length; i++) {
-        if (methods[i].getName().equals(methodName)) return methods[i].invoke(object, args);
-      }
-    } catch (Exception ex) {
-      log.log(Level.SEVERE, "doIt", ex);
-      throw new RuntimeException(ex);
-    }
-    return null;
-  } //	doIt
 
   /**
    * ************************************************************************ Lock Process Instance

@@ -6,5 +6,4 @@ package org.compiere.process;
  */
 public interface Callback<T> {
 
-  public void onCallback(T result);
 }

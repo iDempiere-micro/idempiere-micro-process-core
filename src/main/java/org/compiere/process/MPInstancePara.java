@@ -1,8 +1,5 @@
 package org.compiere.process;
 
-import org.compiere.model.I_AD_PInstance_Para;
-import org.compiere.orm.Query;
-
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
@@ -93,45 +90,7 @@ public class MPInstancePara extends X_AD_PInstance_Para {
     return sb.toString();
   } //	toString
 
-  /**
-   * Set P_Number
-   *
-   * @param P_Number no
-   */
-  public void setP_Number(int P_Number) {
-    setP_Number(new BigDecimal(P_Number));
-  } //	setP_Number
-
-  /**
-   * Set P_Number
-   *
-   * @param P_Number no
-   */
-  public void setP_Number(Integer P_Number) {
-    if (P_Number == null) setP_Number(0);
-    else setP_Number(((Integer) P_Number).intValue());
-  } //	setP_Number
-
-  /**
-   * Set P_Number To
-   *
-   * @param P_Number_To no to
-   */
-  public void setP_Number_To(int P_Number_To) {
-    setP_Number_To(new BigDecimal(P_Number_To));
-  } //	setP_Number_To
-
-  /**
-   * Set P_Number To
-   *
-   * @param P_Number_To no to
-   */
-  public void setP_Number_To(Integer P_Number_To) {
-    if (P_Number_To == null) setP_Number_To(0);
-    else setP_Number_To(((Integer) P_Number_To).intValue());
-  } //	setP_Number_To
-
-  /**
+    /**
    * Set String Parameter
    *
    * @param parameterName name
@@ -186,30 +145,4 @@ public class MPInstancePara extends X_AD_PInstance_Para {
     setP_String(boolParameter ? "Y" : "N");
   } //	setParameter
 
-  /** @return Display type */
-  public int getDisplayType() {
-    MProcess process = (MProcess) getAD_PInstance().getAD_Process();
-    MProcessPara[] params = process.getParameters();
-    for (MProcessPara param : params) {
-      if (param.getColumnName().equals(getParameterName())) {
-        return param.getReferenceId();
-      }
-    }
-    return -1;
-  }
-
-  /**
-   * Get existing AD_PInstance_Para record or create a new one if not found
-   *
-   * @param ctx
-   * @param AD_PInstance_ID
-   * @param SeqNo
-   */
-  public static MPInstancePara getOrCreate(Properties ctx, int AD_PInstance_ID, int SeqNo) {
-    Query query =
-        new Query(ctx, I_AD_PInstance_Para.Table_Name, "AD_PInstance_ID=? AND SeqNo=?", null);
-    MPInstancePara para = query.setParameters(AD_PInstance_ID, SeqNo).first();
-    if (para == null) para = new MPInstancePara(ctx, AD_PInstance_ID, SeqNo);
-    return para;
-  }
 } //	MPInstance_Para

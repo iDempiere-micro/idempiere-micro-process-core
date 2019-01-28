@@ -15,9 +15,7 @@ import org.idempiere.common.util.CLogger;
  */
 public class Core {
 
-  private static final CLogger s_log = CLogger.getCLogger(Core.class);
-
-  /**
+    /**
    * @param processId Java class name or equinox extension id
    * @return ProcessCall instance or null if processId not found
    */

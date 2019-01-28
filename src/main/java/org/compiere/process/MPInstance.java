@@ -1,21 +1,14 @@
 package org.compiere.process;
 
-import org.compiere.model.I_AD_PInstance;
 import org.compiere.model.I_AD_PInstance_Para;
 import org.compiere.orm.MRole;
-import org.compiere.orm.MSysConfig;
 import org.compiere.orm.Query;
 import org.compiere.util.Msg;
-import org.idempiere.common.util.CLogger;
 import org.idempiere.common.util.Env;
 import org.idempiere.common.util.Language;
-import org.idempiere.orm.EventManager;
-import org.idempiere.orm.IEvent;
 
-import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.util.*;
 import java.util.logging.Level;
 
@@ -34,11 +27,7 @@ public class MPInstance extends X_AD_PInstance {
   /** */
   private static final long serialVersionUID = 558778359873793799L;
 
-  public static final String ON_RUNNING_JOB_CHANGED_TOPIC = "onRunningJobChanged";
-
-  private static CLogger s_log = CLogger.getCLogger(MPInstance.class);
-
-  /**
+    /**
    * Standard Constructor
    *
    * @param ctx context
@@ -165,21 +154,7 @@ public class MPInstance extends X_AD_PInstance {
     return retValue;
   } //	getLog
 
-  /**
-   * @param P_Date date
-   * @param P_ID id
-   * @param P_Number number
-   * @param P_Msg msg
-   */
-  public void addLog(Timestamp P_Date, int P_ID, BigDecimal P_Number, String P_Msg) {
-    MPInstanceLog logEntry =
-        new MPInstanceLog(getAD_PInstance_ID(), m_log.size() + 1, P_Date, P_ID, P_Number, P_Msg);
-    m_log.add(logEntry);
-    //	save it to DB ?
-    //	log.saveEx();
-  } //	addLog
-
-  /**
+    /**
    * Set AD_Process_ID. Check Role if process can be performed
    *
    * @param AD_Process_ID process
@@ -294,139 +269,4 @@ public class MPInstance extends X_AD_PInstance {
     return success;
   } //	afterSave
 
-  /**
-   * Create Process Instance Parameter and save to database
-   *
-   * @param seqNo parameter sequence#
-   * @param parameterName parameter name
-   * @param value parameter value
-   * @return
-   */
-  public MPInstancePara createParameter(int seqNo, String parameterName, Object value) {
-    MPInstancePara ip = new MPInstancePara(this, seqNo);
-    if (value == null) {
-      ip.setParameter(parameterName, (String) null);
-    } else if (value instanceof BigDecimal) {
-      ip.setParameter(parameterName, (BigDecimal) value);
-    } else if (value instanceof Integer) {
-      ip.setParameter(parameterName, (Integer) value);
-    } else if (value instanceof Timestamp) {
-      ip.setParameter(parameterName, (Timestamp) value);
-    } else if (value instanceof Boolean) {
-      ip.setParameter(parameterName, (Boolean) value);
-    } else {
-      ip.setParameter(parameterName, value.toString());
-    }
-    //
-    ip.saveEx();
-    return ip;
-  }
-
-  public static void postOnChangedEvent(int AD_User_ID) {
-    Map<String, Integer> properties = new HashMap<String, Integer>();
-    properties.put("AD_User_ID", AD_User_ID);
-    IEvent event =
-        EventManager.getInstance().createNewEvent(ON_RUNNING_JOB_CHANGED_TOPIC, properties);
-    EventManager.getInstance().postEvent(event);
-  }
-
-  public static List<MPInstance> get(Properties ctx, int AD_Process_ID, int AD_User_ID) {
-    List<MPInstance> list = new ArrayList<MPInstance>();
-    List<String> paramsStrAdded = new ArrayList<String>();
-
-    List<MPInstance> namedInstances =
-        new Query(
-                ctx,
-                I_AD_PInstance.Table_Name,
-                "AD_Process_ID=? AND AD_User_ID=? AND Name IS NOT NULL",
-                null)
-            .setClient_ID()
-            .setOnlyActiveRecords(true)
-            .setParameters(AD_Process_ID, AD_User_ID)
-            .setOrderBy("Name")
-            .list();
-    for (MPInstance namedInstance : namedInstances) {
-      list.add(namedInstance);
-      paramsStrAdded.add(namedInstance.getParamsStr());
-    }
-
-    // unnamed instances
-    int lastRunCount =
-        MSysConfig.getIntValue(MSysConfig.LASTRUN_RECORD_COUNT, 5, Env.getClientId(ctx));
-    if (lastRunCount > 0) {
-      // using JDBC instead of Query for performance reasons, AD_PInstance can be huge
-      String sql =
-          "SELECT * FROM AD_PInstance "
-              + " WHERE AD_Process_ID=? AND AD_User_ID=? AND IsActive='Y' AND AD_Client_ID=? AND Name IS NULL"
-              + " ORDER BY Created DESC";
-      PreparedStatement pstmt = null;
-      ResultSet rs = null;
-      int cnt = 0;
-      try {
-        pstmt = prepareStatement(sql, null);
-        pstmt.setFetchSize(lastRunCount);
-        pstmt.setInt(1, AD_Process_ID);
-        pstmt.setInt(2, AD_User_ID);
-        pstmt.setInt(3, Env.getClientId(ctx));
-        rs = pstmt.executeQuery();
-        while (rs.next()) {
-          MPInstance unnamedInstance = new MPInstance(ctx, rs, null);
-          String paramsStr = unnamedInstance.getParamsStr();
-          if (!paramsStrAdded.contains(paramsStr)) {
-            unnamedInstance.setName(
-                Msg.getMsg(ctx, "LastRun") + " " + unnamedInstance.getCreated());
-            list.add(unnamedInstance);
-            paramsStrAdded.add(paramsStr);
-            cnt++;
-            if (cnt == lastRunCount) break;
-          }
-        }
-      } catch (Exception e) {
-        s_log.log(Level.SEVERE, "Error while Fetching last run records", e);
-      } finally {
-        close(rs, pstmt);
-        rs = null;
-        pstmt = null;
-      }
-    }
-
-    return list;
-  }
-
-  private String getParamsStr() {
-    StringBuilder cksum = new StringBuilder();
-    for (MPInstancePara ip : getParameters()) {
-      cksum
-          .append("(")
-          .append(ip.getParameterName())
-          .append("|")
-          .append(ip.getP_String())
-          .append("|")
-          .append(ip.getP_String_To())
-          .append("|")
-          .append(ip.getP_Number())
-          .append("|")
-          .append(ip.getP_Number_To())
-          .append("|")
-          .append(ip.getP_Date())
-          .append("|")
-          .append(ip.getP_Date_To())
-          .append("|")
-          .append(ip.getInfo())
-          .append("|")
-          .append(ip.getInfo_To())
-          .append("|")
-          .append(")");
-    }
-    if (getAD_Process().isReport()) {
-      cksum
-          .append(this.getAD_Language_ID())
-          .append("|")
-          .append(this.getAD_PrintFormat_ID())
-          .append(this.getAD_Language_ID())
-          .append(this.getReportType())
-          .append(this.isSummary());
-    }
-    return cksum.toString();
-  }
 } //	MPInstance

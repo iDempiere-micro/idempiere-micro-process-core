@@ -62,20 +62,7 @@ public class ProcessInfoLog implements Serializable, IProcessInfoLog {
     this(s_Log_ID++, P_ID, P_Date, P_Number, P_Msg, 0, 0);
   } //	ProcessInfoLog
 
-  /**
-   * Create Process Info Log.
-   *
-   * @param Log_ID Log ID
-   * @param P_ID Process ID
-   * @param P_Date Process Date
-   * @param P_Number Process Number
-   * @param P_Msg Process Messagre
-   */
-  public ProcessInfoLog(int Log_ID, int P_ID, Timestamp P_Date, BigDecimal P_Number, String P_Msg) {
-    this(Log_ID, P_ID, P_Date, P_Number, P_Msg, 0, 0);
-  } //	ProcessInfoLog
-
-  private static int s_Log_ID = 0;
+    private static int s_Log_ID = 0;
 
   private int m_Log_ID;
   private int m_P_ID;

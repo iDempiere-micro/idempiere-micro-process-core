@@ -5,7 +5,6 @@ import java.util.Properties;
 
 import org.compiere.model.*;
 import org.compiere.orm.BasePONameValue;
-import org.compiere.orm.MTable;
 import org.idempiere.orm.I_Persistent;
 
 /**
@@ -48,21 +47,10 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process, I_Per
     return sb.toString();
   }
 
-  /** AccessLevel AD_Reference_ID=5 */
-  public static final int ACCESSLEVEL_AD_Reference_ID = 5;
-  /** Organization = 1 */
-  public static final String ACCESSLEVEL_Organization = "1";
-  /** Client+Organization = 3 */
-  public static final String ACCESSLEVEL_ClientPlusOrganization = "3";
-  /** System only = 4 */
-  public static final String ACCESSLEVEL_SystemOnly = "4";
-  /** All = 7 */
+    /** All = 7 */
   public static final String ACCESSLEVEL_All = "7";
-  /** System+Client = 6 */
-  public static final String ACCESSLEVEL_SystemPlusClient = "6";
-  /** Client only = 2 */
-  public static final String ACCESSLEVEL_ClientOnly = "2";
-  /**
+
+    /**
    * Set Data Access Level.
    *
    * @param AccessLevel Access Level required
@@ -81,23 +69,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process, I_Per
     return (String) get_Value(COLUMNNAME_AccessLevel);
   }
 
-  public I_AD_CtxHelp getAD_CtxHelp() throws RuntimeException {
-    return (I_AD_CtxHelp)
-        MTable.get(getCtx(), I_AD_CtxHelp.Table_Name)
-            .getPO(getAD_CtxHelp_ID(), null);
-  }
-
-  /**
-   * Set Context Help.
-   *
-   * @param AD_CtxHelp_ID Context Help
-   */
-  public void setAD_CtxHelp_ID(int AD_CtxHelp_ID) {
-    if (AD_CtxHelp_ID < 1) set_Value(COLUMNNAME_AD_CtxHelp_ID, null);
-    else set_Value(COLUMNNAME_AD_CtxHelp_ID, Integer.valueOf(AD_CtxHelp_ID));
-  }
-
-  /**
+    /**
    * Get Context Help.
    *
    * @return Context Help
@@ -108,13 +80,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process, I_Per
     return ii;
   }
 
-  public I_AD_Form getAD_Form() throws RuntimeException {
-    return (I_AD_Form)
-        MTable.get(getCtx(), I_AD_Form.Table_Name)
-            .getPO(getAD_Form_ID(), null);
-  }
-
-  /**
+    /**
    * Set Special Form.
    *
    * @param AD_Form_ID Special Form
@@ -135,13 +101,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process, I_Per
     return ii;
   }
 
-  public I_AD_PrintFormat getAD_PrintFormat() throws RuntimeException {
-    return (I_AD_PrintFormat)
-        MTable.get(getCtx(), I_AD_PrintFormat.Table_Name)
-            .getPO(getAD_PrintFormat_ID(), null);
-  }
-
-  /**
+    /**
    * Set Print Format.
    *
    * @param AD_PrintFormat_ID Data Print Format
@@ -162,17 +122,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process, I_Per
     return ii;
   }
 
-  /**
-   * Set Process.
-   *
-   * @param AD_Process_ID Process or Report
-   */
-  public void setAD_Process_ID(int AD_Process_ID) {
-    if (AD_Process_ID < 1) set_ValueNoCheck(COLUMNNAME_AD_Process_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_AD_Process_ID, Integer.valueOf(AD_Process_ID));
-  }
-
-  /**
+    /**
    * Get Process.
    *
    * @return Process or Report
@@ -183,31 +133,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process, I_Per
     return ii;
   }
 
-  /**
-   * Set AD_Process_UU.
-   *
-   * @param AD_Process_UU AD_Process_UU
-   */
-  public void setAD_Process_UU(String AD_Process_UU) {
-    set_Value(COLUMNNAME_AD_Process_UU, AD_Process_UU);
-  }
-
-  /**
-   * Get AD_Process_UU.
-   *
-   * @return AD_Process_UU
-   */
-  public String getAD_Process_UU() {
-    return (String) get_Value(COLUMNNAME_AD_Process_UU);
-  }
-
-  public I_AD_ReportView getAD_ReportView() throws RuntimeException {
-    return (I_AD_ReportView)
-        MTable.get(getCtx(), I_AD_ReportView.Table_Name)
-            .getPO(getAD_ReportView_ID(), null);
-  }
-
-  /**
+    /**
    * Set Report View.
    *
    * @param AD_ReportView_ID View used to generate this report
@@ -228,13 +154,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process, I_Per
     return ii;
   }
 
-  public I_AD_Workflow getAD_Workflow() throws RuntimeException {
-    return (I_AD_Workflow)
-        MTable.get(getCtx(), I_AD_Workflow.Table_Name)
-            .getPO(getAD_Workflow_ID(), null);
-  }
-
-  /**
+    /**
    * Set Workflow.
    *
    * @param AD_Workflow_ID Workflow or combination of tasks
@@ -273,25 +193,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process, I_Per
     return (String) get_Value(COLUMNNAME_Classname);
   }
 
-  /**
-   * Set Copy From Report and Process.
-   *
-   * @param CopyFromProcess Copy settings from one report and process to another.
-   */
-  public void setCopyFromProcess(String CopyFromProcess) {
-    set_Value(COLUMNNAME_CopyFromProcess, CopyFromProcess);
-  }
-
-  /**
-   * Get Copy From Report and Process.
-   *
-   * @return Copy settings from one report and process to another.
-   */
-  public String getCopyFromProcess() {
-    return (String) get_Value(COLUMNNAME_CopyFromProcess);
-  }
-
-  /**
+    /**
    * Set Description.
    *
    * @param Description Optional short description of the record
@@ -309,9 +211,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process, I_Per
     return (String) get_Value(COLUMNNAME_Description);
   }
 
-  /** EntityType AD_Reference_ID=389 */
-  public static final int ENTITYTYPE_AD_Reference_ID = 389;
-  /**
+    /**
    * Set Entity Type.
    *
    * @param EntityType Dictionary Entity Type; Determines ownership and synchronization
@@ -476,17 +376,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process, I_Per
     return (String) get_Value(COLUMNNAME_ProcedureName);
   }
 
-  /** ShowHelp AD_Reference_ID=50007 */
-  public static final int SHOWHELP_AD_Reference_ID = 50007;
-  /** Ask user (for future use) = A */
-  public static final String SHOWHELP_AskUserForFutureUse = "A";
-  /** Don't show help = N */
-  public static final String SHOWHELP_DonTShowHelp = "N";
-  /** Show Help = Y */
-  public static final String SHOWHELP_ShowHelp = "Y";
-  /** Run silently - Take Defaults = S */
-  public static final String SHOWHELP_RunSilently_TakeDefaults = "S";
-  /**
+    /**
    * Set Show Help.
    *
    * @param ShowHelp Show Help
@@ -545,25 +435,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process, I_Per
     return ii;
   }
 
-  /**
-   * Set Workflow Key.
-   *
-   * @param WorkflowValue Key of the Workflow to start
-   */
-  public void setWorkflowValue(String WorkflowValue) {
-    set_Value(COLUMNNAME_WorkflowValue, WorkflowValue);
-  }
-
-  /**
-   * Get Workflow Key.
-   *
-   * @return Key of the Workflow to start
-   */
-  public String getWorkflowValue() {
-    return (String) get_Value(COLUMNNAME_WorkflowValue);
-  }
-
-  @Override
+    @Override
   public int getTableId() {
     return I_AD_Process.Table_ID;
   }

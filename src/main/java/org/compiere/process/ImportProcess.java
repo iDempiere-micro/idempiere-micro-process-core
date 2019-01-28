@@ -19,18 +19,4 @@ public interface ImportProcess {
   /** @return SQL WHERE clause to filter records that are candidates for import */
   public String getWhereClause();
 
-  /**
-   * Get Process Context
-   *
-   * @return context
-   */
-  public Properties getCtx();
-
-  /**
-   * Get Process Info
-   *
-   * @return Process Info
-   * @see org.compiere.process.SvrProcess#getProcessInfo()
-   */
-  public IProcessInfo getProcessInfo();
 }

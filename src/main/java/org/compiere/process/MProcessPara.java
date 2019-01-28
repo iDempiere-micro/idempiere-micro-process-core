@@ -93,31 +93,7 @@ public class MProcessPara extends X_AD_Process_Para {
     setEntityType(parent.getEntityType());
   }
 
-  /** Virtual Window No - 999 */
-  public static int WINDOW_NO = 999;
-  /** Virtual Tab No - 0 */
-  public static int TAB_NO = 0;
-
-  /** The Lookup */
-  protected Lookup m_lookup = null;
-
-  /**
-   * Is this field a Lookup?.
-   *
-   * @return true if lookup field
-   */
-  public boolean isLookup() {
-    boolean retValue = false;
-    int displayType = getReferenceId();
-    if (DisplayType.isLookup(displayType)) retValue = true;
-    else if (displayType == DisplayType.Location
-        || displayType == DisplayType.Locator
-        || displayType == DisplayType.Account
-        || displayType == DisplayType.PAttribute) retValue = true;
-    return retValue;
-  } //  isLookup
-
-  /**
+    /**
    * String Representation
    *
    * @return info
@@ -205,22 +181,4 @@ public class MProcessPara extends X_AD_Process_Para {
     return true;
   } //	beforeSave
 
-  public String getReferenceTableName() {
-    String foreignTable = null;
-    if (DisplayType.TableDir == getReferenceId()
-        || (DisplayType.Search == getReferenceId() && getAD_Reference_Value_ID() == 0)) {
-      foreignTable = getColumnName().substring(0, getColumnName().length() - 3);
-    } else if (DisplayType.Table == getReferenceId()
-        || DisplayType.Search == getReferenceId()) {
-      X_AD_Reference ref = new X_AD_Reference(getCtx(), getAD_Reference_Value_ID(), null);
-      if (X_AD_Reference.VALIDATIONTYPE_TableValidation.equals(ref.getValidationType())) {
-        MRefTable rt = new MRefTable(getCtx(), getAD_Reference_Value_ID(), null);
-        if (rt != null) foreignTable = rt.getAD_Table().getTableName();
-      }
-    } else if (DisplayType.List == getReferenceId()) {
-      foreignTable = "AD_Ref_List";
-    }
-
-    return foreignTable;
-  }
 } //	MProcessPara
