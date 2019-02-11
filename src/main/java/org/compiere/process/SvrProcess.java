@@ -266,7 +266,7 @@ public abstract class SvrProcess implements ProcessCall {
       PreparedStatement pstmt = null;
       ResultSet rs = null;
       try {
-        pstmt = prepareStatement(sql, "");
+        pstmt = prepareStatement(sql);
         pstmt.setInt(1, m_pi.getAD_PInstance_ID());
         rs = pstmt.executeQuery();
         if (rs.next()) {
@@ -276,13 +276,12 @@ public abstract class SvrProcess implements ProcessCall {
       } catch (SQLException e) {
         log.log(Level.SEVERE, sql, e);
       } finally {
-        close(rs, pstmt);
         rs = null;
         pstmt = null;
       }
     }
     if (m_pi.getAD_User_ID() == null) return -1;
-    return m_pi.getAD_User_ID().intValue();
+    return m_pi.getAD_User_ID();
   } //  getAD_User_ID
 
   /**
@@ -295,7 +294,7 @@ public abstract class SvrProcess implements ProcessCall {
       getAD_User_ID(); //	sets also Client
       if (m_pi.getClientId() == null) return 0;
     }
-    return m_pi.getClientId().intValue();
+    return m_pi.getClientId();
   } //	getClientId
 
   /**
@@ -379,8 +378,8 @@ public abstract class SvrProcess implements ProcessCall {
     try {
       executeUpdate(
           "UPDATE AD_PInstance SET IsProcessing='Y' WHERE AD_PInstance_ID="
-              + m_pi.getAD_PInstance_ID(),
-          null); //	outside trx
+              + m_pi.getAD_PInstance_ID()
+      ); //	outside trx
     } catch (Exception e) {
       log.severe("lock() - " + e.getLocalizedMessage());
     }

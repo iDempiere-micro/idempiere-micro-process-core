@@ -2,9 +2,7 @@ package org.compiere.process;
 
 import org.compiere.model.IProcessInfo;
 import org.compiere.model.IProcessInfoLog;
-import org.compiere.util.Msg;
 import org.idempiere.common.util.CLogger;
-import org.idempiere.common.util.Env;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,7 +37,7 @@ public class ProcessInfoUtil {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, null);
+      pstmt = prepareStatement(sql);
       pstmt.setInt(1, pi.getAD_PInstance_ID());
       rs = pstmt.executeQuery();
       while (rs.next()) {
@@ -57,7 +55,6 @@ public class ProcessInfoUtil {
     } catch (SQLException e) {
       s_log.log(Level.SEVERE, "setLogFromDB", e);
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }
@@ -98,7 +95,7 @@ public class ProcessInfoUtil {
       if (logs[i].getRecord_ID() == 0) sql.append("NULL)");
       else sql.append(logs[i].getRecord_ID()).append(")");
       //
-      executeUpdate(sql.toString(), null);
+      executeUpdate(sql.toString());
     }
     pi.setLogList(null); // 	otherwise log entries are twice
   } //  saveLogToDB
@@ -122,7 +119,7 @@ public class ProcessInfoUtil {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, null);
+      pstmt = prepareStatement(sql);
       pstmt.setInt(1, pi.getAD_PInstance_ID());
       rs = pstmt.executeQuery();
       while (rs.next()) {
@@ -152,7 +149,6 @@ public class ProcessInfoUtil {
     } catch (SQLException e) {
       s_log.log(Level.SEVERE, sql, e);
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }

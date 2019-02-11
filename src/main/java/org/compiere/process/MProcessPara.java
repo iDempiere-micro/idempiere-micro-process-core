@@ -138,7 +138,7 @@ public class MProcessPara extends X_AD_Process_Para {
 
     // delete new translations and copy translations from source
     String sql = "DELETE FROM AD_Process_Para_Trl WHERE AD_Process_Para_ID = ?";
-    int count = executeUpdateEx(sql, new Object[] {getAD_Process_Para_ID()}, null);
+    int count = executeUpdateEx(sql, new Object[] {getAD_Process_Para_ID()});
     if (log.isLoggable(Level.FINE)) log.log(Level.FINE, "AD_Process_Para_Trl deleted: " + count);
 
     sql =
@@ -151,8 +151,8 @@ public class MProcessPara extends X_AD_Process_Para {
     count =
         executeUpdateEx(
             sql,
-            new Object[] {getAD_Process_Para_ID(), source.getAD_Process_Para_ID()},
-            null);
+            new Object[] {getAD_Process_Para_ID(), source.getAD_Process_Para_ID()}
+        );
     if (log.isLoggable(Level.FINE)) log.log(Level.FINE, "AD_Process_Para_Trl inserted: " + count);
   }
 

@@ -136,7 +136,7 @@ public class MPInstance extends X_AD_PInstance {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, null);
+      pstmt = prepareStatement(sql);
       pstmt.setInt(1, getAD_PInstance_ID());
       rs = pstmt.executeQuery();
       while (rs.next()) {
@@ -145,7 +145,6 @@ public class MPInstance extends X_AD_PInstance {
     } catch (Exception e) {
       log.log(Level.SEVERE, sql, e);
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }
@@ -258,7 +257,7 @@ public class MPInstance extends X_AD_PInstance {
           "UPDATE AD_Process SET Statistic_Count=Statistic_Count+1, Statistic_Seconds=Statistic_Seconds+? WHERE AD_Process_ID=?";
       int no =
           executeUpdate(
-              updsql, new Object[] {seconds, getAD_Process_ID()}, true, null); // out of trx
+              updsql, new Object[] {seconds, getAD_Process_ID()}); // out of trx
       if (no == 1) {
         if (log.isLoggable(Level.FINE))
           log.fine("afterSave - Process Statistics updated Sec=" + seconds);
