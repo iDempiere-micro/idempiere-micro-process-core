@@ -35,7 +35,7 @@ public class MPInstance extends X_AD_PInstance {
    * @param ignored no transaction support
    */
   public MPInstance(Properties ctx, int AD_PInstance_ID, String ignored) {
-    super(ctx, AD_PInstance_ID, null);
+    super(ctx, AD_PInstance_ID);
     //	New Process
     if (AD_PInstance_ID == 0) {
       //	setAD_Process_ID (0);	//	parent
@@ -52,7 +52,7 @@ public class MPInstance extends X_AD_PInstance {
    * @param ignored no transaction support
    */
   public MPInstance(Properties ctx, ResultSet rs, String ignored) {
-    super(ctx, rs, null);
+    super(ctx, rs);
   } //	MPInstance
 
   /**
@@ -109,8 +109,8 @@ public class MPInstance extends X_AD_PInstance {
         new Query(
                 getCtx(),
                 I_AD_PInstance_Para.Table_Name,
-                whereClause,
-                null) // @TODO: Review implications of using transaction
+                whereClause
+        ) // @TODO: Review implications of using transaction
             .setParameters(getAD_PInstance_ID())
             .setOrderBy("SeqNo, ParameterName")
             .list();

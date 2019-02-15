@@ -23,8 +23,8 @@ public class MPInstancePara extends X_AD_PInstance_Para {
    * @param ignored ignored
    * @param trxName transaction
    */
-  public MPInstancePara(Properties ctx, int ignored, String trxName) {
-    super(ctx, 0, trxName);
+  public MPInstancePara(Properties ctx, int ignored) {
+    super(ctx, 0);
     if (ignored != 0) throw new IllegalArgumentException("Multi-Key");
   } //	MPInstance_Para
 
@@ -36,7 +36,7 @@ public class MPInstancePara extends X_AD_PInstance_Para {
    * @param SeqNo sequence
    */
   public MPInstancePara(Properties ctx, int AD_PInstance_ID, int SeqNo) {
-    super(ctx, 0, null);
+    super(ctx, 0);
     setAD_PInstance_ID(AD_PInstance_ID);
     setSeqNo(SeqNo);
   } //	MPInstance_Para
@@ -48,7 +48,7 @@ public class MPInstancePara extends X_AD_PInstance_Para {
    * @param SeqNo sequence
    */
   public MPInstancePara(MPInstance instance, int SeqNo) {
-    super(instance.getCtx(), 0, null);
+    super(instance.getCtx(), 0);
     setAD_PInstance_ID(instance.getAD_PInstance_ID());
     setSeqNo(SeqNo);
   } //	MPInstance_Para
@@ -60,8 +60,8 @@ public class MPInstancePara extends X_AD_PInstance_Para {
    * @param rs result set
    * @param trxName transaction
    */
-  public MPInstancePara(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MPInstancePara(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MPInstance_Para
 
   /**

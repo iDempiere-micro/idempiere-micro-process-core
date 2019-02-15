@@ -44,10 +44,10 @@ public class MRule extends X_AD_Rule {
    * @return MRule
    */
   public static MRule get(Properties ctx, int AD_Rule_ID) {
-    Integer key = new Integer(AD_Rule_ID);
+    Integer key = AD_Rule_ID;
     MRule retValue = (MRule) s_cache.get(key);
     if (retValue != null) return retValue;
-    retValue = new MRule(ctx, AD_Rule_ID, null);
+    retValue = new MRule(ctx, AD_Rule_ID);
     if (retValue.getId() != 0) s_cache.put(key, retValue);
     return retValue;
   } //	get
@@ -69,7 +69,7 @@ public class MRule extends X_AD_Rule {
     //
     final String whereClause = "Value=?";
     MRule retValue =
-        new Query(ctx, I_AD_Rule.Table_Name, whereClause, null)
+        new Query(ctx, I_AD_Rule.Table_Name, whereClause)
             .setParameters(ruleValue)
             .setOnlyActiveRecords(true)
             .first();
@@ -90,7 +90,7 @@ public class MRule extends X_AD_Rule {
   public static List<MRule> getModelValidatorLoginRules(Properties ctx) {
     final String whereClause = "EventType=?";
     List<MRule> rules =
-        new Query(ctx, I_AD_Rule.Table_Name, whereClause, null)
+        new Query(ctx, I_AD_Rule.Table_Name, whereClause)
             .setParameters(X_AD_Rule.EVENTTYPE_ModelValidatorLoginEvent)
             .setOnlyActiveRecords(true)
             .list();
@@ -116,8 +116,8 @@ public class MRule extends X_AD_Rule {
    * @param AD_Rule_ID id
    * @param trxName transaction
    */
-  public MRule(Properties ctx, int AD_Rule_ID, String trxName) {
-    super(ctx, AD_Rule_ID, trxName);
+  public MRule(Properties ctx, int AD_Rule_ID) {
+    super(ctx, AD_Rule_ID);
   } //	MRule
 
   /**
@@ -127,8 +127,8 @@ public class MRule extends X_AD_Rule {
    * @param rs result set
    * @param trxName transaction
    */
-  public MRule(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MRule(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MRule
 
   /**

@@ -39,7 +39,7 @@ public class MProcess extends X_AD_Process {
     Integer key = new Integer(AD_Process_ID);
     MProcess retValue = (MProcess) s_cache.get(key);
     if (retValue != null) return retValue;
-    retValue = new MProcess(ctx, AD_Process_ID, null);
+    retValue = new MProcess(ctx, AD_Process_ID);
     if (retValue.getId() != 0) s_cache.put(key, retValue);
     return retValue;
   } //	get
@@ -55,8 +55,8 @@ public class MProcess extends X_AD_Process {
    * @param AD_Process_ID process
    * @param trxName transaction name
    */
-  public MProcess(Properties ctx, int AD_Process_ID, String trxName) {
-    super(ctx, AD_Process_ID, trxName);
+  public MProcess(Properties ctx, int AD_Process_ID) {
+    super(ctx, AD_Process_ID);
     if (AD_Process_ID == 0) {
       setIsReport(false);
       setIsServerProcess(false);
@@ -73,8 +73,8 @@ public class MProcess extends X_AD_Process {
    * @param rs result set
    * @param trxName transaction name
    */
-  public MProcess(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MProcess(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MProcess
 
   /** Parameters */
@@ -90,7 +90,7 @@ public class MProcess extends X_AD_Process {
     //
     final String whereClause = MProcessPara.COLUMNNAME_AD_Process_ID + "=?";
     List<MProcessPara> list =
-        new Query(getCtx(), I_AD_Process_Para.Table_Name, whereClause, null)
+        new Query(getCtx(), I_AD_Process_Para.Table_Name, whereClause)
             .setParameters(getId())
             .setOrderBy(MProcessPara.COLUMNNAME_SeqNo)
             .list();

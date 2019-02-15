@@ -19,8 +19,8 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Pers
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_AD_PInstance(Properties ctx, int AD_PInstance_ID, String trxName) {
-    super(ctx, AD_PInstance_ID, trxName);
+  public X_AD_PInstance(Properties ctx, int AD_PInstance_ID) {
+    super(ctx, AD_PInstance_ID);
     /**
      * if (AD_PInstance_ID == 0) { setAD_PInstance_ID (0); setAD_Process_ID (0); setIsProcessing
      * (false); setIsRunAsJob (false); // N setRecord_ID (0); }
@@ -28,8 +28,8 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Pers
   }
 
   /** Load Constructor */
-  public X_AD_PInstance(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_AD_PInstance(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**
@@ -82,7 +82,7 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Pers
   public org.compiere.model.I_AD_Process getAD_Process() throws RuntimeException {
     return (org.compiere.model.I_AD_Process)
         MTable.get(getCtx(), org.compiere.model.I_AD_Process.Table_Name)
-            .getPO(getAD_Process_ID(), null);
+            .getPO(getAD_Process_ID());
   }
 
   /**
@@ -92,7 +92,7 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Pers
    */
   public void setAD_Process_ID(int AD_Process_ID) {
     if (AD_Process_ID < 1) set_Value(COLUMNNAME_AD_Process_ID, null);
-    else set_Value(COLUMNNAME_AD_Process_ID, Integer.valueOf(AD_Process_ID));
+    else set_Value(COLUMNNAME_AD_Process_ID, AD_Process_ID);
   }
 
   /**
@@ -113,7 +113,7 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Pers
    */
   public void setAD_User_ID(int AD_User_ID) {
     if (AD_User_ID < 1) set_Value(COLUMNNAME_AD_User_ID, null);
-    else set_Value(COLUMNNAME_AD_User_ID, Integer.valueOf(AD_User_ID));
+    else set_Value(COLUMNNAME_AD_User_ID, AD_User_ID);
   }
 
   /**

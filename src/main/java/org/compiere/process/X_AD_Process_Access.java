@@ -18,8 +18,8 @@ public class X_AD_Process_Access extends PO implements I_AD_Process_Access, I_Pe
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_AD_Process_Access(Properties ctx, int AD_Process_Access_ID, String trxName) {
-    super(ctx, AD_Process_Access_ID, trxName);
+  public X_AD_Process_Access(Properties ctx, int AD_Process_Access_ID) {
+    super(ctx, AD_Process_Access_ID);
     /**
      * if (AD_Process_Access_ID == 0) { setAD_Process_ID (0); setAD_Role_ID (0); setIsReadWrite
      * (false); }
@@ -27,8 +27,8 @@ public class X_AD_Process_Access extends PO implements I_AD_Process_Access, I_Pe
   }
 
   /** Load Constructor */
-  public X_AD_Process_Access(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_AD_Process_Access(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

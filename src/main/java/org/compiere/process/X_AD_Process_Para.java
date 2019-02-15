@@ -19,8 +19,8 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para, 
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_AD_Process_Para(Properties ctx, int AD_Process_Para_ID, String trxName) {
-    super(ctx, AD_Process_Para_ID, trxName);
+  public X_AD_Process_Para(Properties ctx, int AD_Process_Para_ID) {
+    super(ctx, AD_Process_Para_ID);
     /**
      * if (AD_Process_Para_ID == 0) { setAD_Process_ID (0); setAD_Process_Para_ID (0);
      * setAD_Reference_ID (0); setColumnName (null); setEntityType (null); // @SQL=select
@@ -32,8 +32,8 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para, 
   }
 
   /** Load Constructor */
-  public X_AD_Process_Para(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_AD_Process_Para(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

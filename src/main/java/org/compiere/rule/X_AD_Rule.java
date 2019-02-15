@@ -19,8 +19,8 @@ public class X_AD_Rule extends BasePONameValue implements I_AD_Rule, I_Persisten
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_AD_Rule(Properties ctx, int AD_Rule_ID, String trxName) {
-    super(ctx, AD_Rule_ID, trxName);
+  public X_AD_Rule(Properties ctx, int AD_Rule_ID) {
+    super(ctx, AD_Rule_ID);
     /**
      * if (AD_Rule_ID == 0) { setAD_Rule_ID (0); setEntityType (null); // @SQL=select
      * get_sysconfig('DEFAULT_ENTITYTYPE','U',0,0) from dual setEventType (null); setName (null);
@@ -29,8 +29,8 @@ public class X_AD_Rule extends BasePONameValue implements I_AD_Rule, I_Persisten
   }
 
   /** Load Constructor */
-  public X_AD_Rule(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_AD_Rule(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

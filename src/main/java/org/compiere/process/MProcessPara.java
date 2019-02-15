@@ -36,7 +36,7 @@ public class MProcessPara extends X_AD_Process_Para {
     Integer key = new Integer(AD_Process_Para_ID);
     MProcessPara retValue = (MProcessPara) s_cache.get(key);
     if (retValue != null) return retValue;
-    retValue = new MProcessPara(ctx, AD_Process_Para_ID, null);
+    retValue = new MProcessPara(ctx, AD_Process_Para_ID);
     if (retValue.getId() != 0) s_cache.put(key, retValue);
     return retValue;
   } //	get
@@ -52,8 +52,8 @@ public class MProcessPara extends X_AD_Process_Para {
    * @param AD_Process_Para_ID id
    * @param trxName transaction
    */
-  public MProcessPara(Properties ctx, int AD_Process_Para_ID, String trxName) {
-    super(ctx, AD_Process_Para_ID, trxName);
+  public MProcessPara(Properties ctx, int AD_Process_Para_ID) {
+    super(ctx, AD_Process_Para_ID);
     if (AD_Process_Para_ID == 0) {
       //	setAD_Process_ID (0);	Parent
       //	setName (null);
@@ -76,8 +76,8 @@ public class MProcessPara extends X_AD_Process_Para {
    * @param rs result set
    * @param trxName transaction
    */
-  public MProcessPara(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MProcessPara(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MProcessPara
 
   /**
@@ -87,7 +87,7 @@ public class MProcessPara extends X_AD_Process_Para {
    */
   public MProcessPara(MProcess parent) {
 
-    this(parent.getCtx(), 0, null);
+    this(parent.getCtx(), 0);
     setClientOrg(parent);
     setAD_Process_ID(parent.getAD_Process_ID());
     setEntityType(parent.getEntityType());
@@ -171,7 +171,7 @@ public class MProcessPara extends X_AD_Process_Para {
     if ((newRecord || is_ValueChanged("AD_Element_ID"))
         && getAD_Element_ID() != 0
         && isCentrallyMaintained()) {
-      M_Element element = new M_Element(getCtx(), getAD_Element_ID(), null);
+      M_Element element = new M_Element(getCtx(), getAD_Element_ID());
       setColumnName(element.getColumnName());
       setName(element.getName());
       setDescription(element.getDescription());

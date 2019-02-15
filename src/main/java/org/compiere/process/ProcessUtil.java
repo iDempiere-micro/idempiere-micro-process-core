@@ -59,7 +59,7 @@ public final class ProcessUtil {
       Properties ctx, IProcessInfo pi, boolean managedTrx, IProcessUI processMonitor) {
     String className = pi.getClassName();
     if (className == null) {
-      MProcess proc = new MProcess(ctx, pi.getAD_Process_ID(), "");
+      MProcess proc = new MProcess(ctx, pi.getAD_Process_ID());
       if (proc.getJasperReport() != null) className = JASPER_STARTER_CLASS;
     }
 

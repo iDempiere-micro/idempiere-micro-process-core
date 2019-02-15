@@ -8,7 +8,6 @@ import org.compiere.model.I_AD_PInstance_Para;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
-import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
 
 /**
@@ -23,14 +22,14 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_AD_PInstance_Para(Properties ctx, int AD_PInstance_Para_ID, String trxName) {
-    super(ctx, AD_PInstance_Para_ID, trxName);
+  public X_AD_PInstance_Para(Properties ctx, int AD_PInstance_Para_ID) {
+    super(ctx, AD_PInstance_Para_ID);
     /** if (AD_PInstance_Para_ID == 0) { setAD_PInstance_ID (0); setSeqNo (0); } */
   }
 
   /** Load Constructor */
-  public X_AD_PInstance_Para(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_AD_PInstance_Para(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**
@@ -50,7 +49,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
   public org.compiere.model.I_AD_PInstance getAD_PInstance() throws RuntimeException {
     return (org.compiere.model.I_AD_PInstance)
         MTable.get(getCtx(), org.compiere.model.I_AD_PInstance.Table_Name)
-            .getPO(getAD_PInstance_ID(), null);
+            .getPO(getAD_PInstance_ID());
   }
 
   /**
@@ -60,7 +59,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
    */
   public void setAD_PInstance_ID(int AD_PInstance_ID) {
     if (AD_PInstance_ID < 1) set_ValueNoCheck(COLUMNNAME_AD_PInstance_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_AD_PInstance_ID, Integer.valueOf(AD_PInstance_ID));
+    else set_ValueNoCheck(COLUMNNAME_AD_PInstance_ID, AD_PInstance_ID);
   }
 
   /**

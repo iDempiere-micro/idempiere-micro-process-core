@@ -23,8 +23,8 @@ public class MProcessAccess extends X_AD_Process_Access {
    * @param ignored ignored
    * @param trxName transaction
    */
-  public MProcessAccess(Properties ctx, int ignored, String trxName) {
-    super(ctx, 0, trxName);
+  public MProcessAccess(Properties ctx, int ignored) {
+    super(ctx, 0);
     if (ignored != 0) throw new IllegalArgumentException("Multi-Key");
     else {
       //	setAD_Process_ID (0);
@@ -40,8 +40,8 @@ public class MProcessAccess extends X_AD_Process_Access {
    * @param rs result set
    * @param trxName transaction
    */
-  public MProcessAccess(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MProcessAccess(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MProcessAccess
 
   /**
@@ -51,7 +51,7 @@ public class MProcessAccess extends X_AD_Process_Access {
    * @param AD_Role_ID role id
    */
   public MProcessAccess(MProcess parent, int AD_Role_ID) {
-    super(parent.getCtx(), 0, null);
+    super(parent.getCtx(), 0);
     MRole role = MRole.get(parent.getCtx(), AD_Role_ID);
     setClientOrg(role);
     setAD_Process_ID(parent.getAD_Process_ID());
