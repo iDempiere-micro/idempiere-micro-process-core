@@ -1,9 +1,7 @@
-/** */
+/**
+ *
+ */
 package org.compiere.process;
-
-import org.compiere.model.IProcessInfo;
-
-import java.util.Properties;
 
 /**
  * All processes that are importing data should implement this interface.
@@ -13,10 +11,10 @@ import java.util.Properties;
  *         https://sourceforge.net/tracker/?func=detail&aid=2788276&group_id=176962&atid=879335
  */
 public interface ImportProcess {
-  /** @return The Name of Import Table (e.g. I_BPartner) */
-  public String getImportTableName();
+    /** @return The Name of Import Table (e.g. I_BPartner) */
+    public String getImportTableName();
 
-  /** @return SQL WHERE clause to filter records that are candidates for import */
-  public String getWhereClause();
+    /** @return SQL WHERE clause to filter records that are candidates for import */
+    public String getWhereClause();
 
 }

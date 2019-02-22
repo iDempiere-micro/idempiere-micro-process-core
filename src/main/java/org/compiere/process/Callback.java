@@ -1,8 +1,8 @@
 package org.compiere.process;
 
 /**
- * @author hengsin
  * @param <T>
+ * @author hengsin
  */
 public interface Callback<T> {
 

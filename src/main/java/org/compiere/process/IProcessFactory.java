@@ -1,13 +1,15 @@
 package org.compiere.process;
 
-/** @author hengsin */
+/**
+ * @author hengsin
+ */
 public interface IProcessFactory {
 
-  /**
-   * Create new process instance
-   *
-   * @param className
-   * @return new process instance
-   */
-  public ProcessCall newProcessInstance(String className);
+    /**
+     * Create new process instance
+     *
+     * @param className
+     * @return new process instance
+     */
+    public ProcessCall newProcessInstance(String className);
 }
