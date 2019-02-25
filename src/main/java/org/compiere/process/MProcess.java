@@ -176,8 +176,8 @@ public class MProcess extends X_AD_Process {
      * @deprecated - use UPDATE instead
      */
     public void addStatistics(int seconds) {
-        setStatistic_Count(getStatistic_Count() + 1);
-        setStatistic_Seconds(getStatistic_Seconds() + seconds);
+        setStatisticCount(getStatisticCount() + 1);
+        setStatisticSeconds(getStatisticSeconds() + seconds);
     } //	addStatistics
 
     /**
@@ -194,7 +194,7 @@ public class MProcess extends X_AD_Process {
             MRole[] roles = MRole.getOf(getCtx(), "IsManual='N'");
             for (int i = 0; i < roles.length; i++) {
 
-                MProcessAccess pa = new MProcessAccess(this, roles[i].getAD_Role_ID());
+                MProcessAccess pa = new MProcessAccess(this, roles[i].getRoleId());
                 pa.saveEx();
             }
         }
@@ -211,10 +211,10 @@ public class MProcess extends X_AD_Process {
 
         if (log.isLoggable(Level.FINE)) log.log(Level.FINE, "Copying from:" + source + ", to: " + this);
         setProcessAccessLevel(source.getProcessAccessLevel());
-        setAD_Form_ID(source.getAD_Form_ID());
-        setAD_PrintFormat_ID(source.getAD_PrintFormat_ID());
-        setAD_ReportView_ID(source.getAD_ReportView_ID());
-        setAD_Workflow_ID(source.getAD_Workflow_ID());
+        setFormId(source.getFormId());
+        setPrintFormatId(source.getPrintFormatId());
+        setReportViewId(source.getReportViewId());
+        setWorkflowId(source.getWorkflowId());
         setClassname(source.getClassname());
         setDescription(source.getDescription());
         setHelp(source.getHelp());

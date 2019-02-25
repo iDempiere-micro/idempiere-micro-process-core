@@ -63,7 +63,6 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      * Process Instance ID
      */
     private int m_AD_PInstance_ID = 0;
-    private int m_InfoWindowID = 0;
 
     //  -- Optional --
     /**
@@ -79,18 +78,6 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     /*	General Data Object			*/
     private transient Object m_TransientObject = null;
     /**
-     * Estimated Runtime
-     */
-    private int m_EstSeconds = 5;
-    /**
-     * Batch
-     */
-    private boolean m_batch = false;
-    /**
-     * Process timed out
-     */
-    private boolean m_timeout = false;
-    /**
      * Log Info
      */
     private ArrayList<IProcessInfoLog> m_logs = null;
@@ -98,42 +85,17 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      * Log Info
      */
     private IProcessInfoParameter[] m_parameter = null;
-    /**
-     * Transaction Name
-     */
-    private String m_transactionName = null;
-    private boolean m_printPreview = false;
-    private boolean m_reportingProcess = false;
     // FR 1906632
     private File m_pdf_report = null;
-    /**
-     * Record IDs
-     */
-    private int[] m_Record_IDs;
     /**
      * Export
      */
     private boolean m_export = false;
     /**
-     * Export File Extension
-     */
-    private String m_exportFileExtension = null;
-    /**
      * Export File
      */
     private File m_exportFile = null;
-    /**
-     * Row count
-     */
-    private int m_rowCount;
     private transient PO m_po = null;
-    private String reportType = null;
-    private boolean isSummary = false;
-    private int languageID = 0;
-    /**
-     * FileName to be used
-     */
-    private String m_PDFfileName;
 
     /**
      * Constructor
@@ -148,7 +110,6 @@ public class ProcessInfo implements Serializable, IProcessInfo {
         setAD_Process_ID(AD_Process_ID);
         setTable_ID(Table_ID);
         setRecord_ID(Record_ID);
-        m_printPreview = true;
     } //  ProcessInfo
 
     /**
@@ -215,15 +176,6 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     } //	setSummary
 
     /**
-     * Method addSummary
-     *
-     * @param additionalSummary String
-     */
-    public void addSummary(String additionalSummary) {
-        m_Summary += additionalSummary;
-    } //	addSummary
-
-    /**
      * Method isError
      *
      * @return boolean
@@ -247,16 +199,6 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      * @param batch true if batch processing
      */
     public void setIsBatch(boolean batch) {
-        m_batch = batch;
-    } //	setTimeout
-
-    /**
-     * Timeout
-     *
-     * @param timeout true still running
-     */
-    public void setIsTimeout(boolean timeout) {
-        m_timeout = timeout;
     } //	setTimeout
 
     /**
@@ -335,7 +277,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     }
 
     /**
-     * Method getAD_Process_ID
+     * Method getProcessId
      *
      * @return int
      */
@@ -377,7 +319,6 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      * @param EstSeconds int
      */
     public void setEstSeconds(int EstSeconds) {
-        m_EstSeconds = EstSeconds;
     }
 
     /**
@@ -399,7 +340,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     }
 
     /**
-     * Method getRecord_ID
+     * Method getRecordId
      *
      * @return int
      */
@@ -408,7 +349,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     }
 
     /**
-     * Method setRecord_ID
+     * Method setRecordId
      *
      * @param Record_ID int
      */
@@ -453,7 +394,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     }
 
     /**
-     * Method getAD_User_ID
+     * Method getUserId
      *
      * @return Integer
      */
@@ -462,7 +403,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     }
 
     /**
-     * Method setAD_User_ID
+     * Method setUserId
      *
      * @param AD_User_ID int
      */
@@ -549,21 +490,11 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     }
 
     /**
-     * Get transaction name for this process
-     *
-     * @return String
-     */
-    public String getTransactionName() {
-        return m_transactionName;
-    }
-
-    /**
      * Set transaction name from this process
      *
      * @param trxName
      */
     public void setTransactionName(String trxName) {
-        m_transactionName = trxName;
     }
 
     /**
@@ -572,7 +503,6 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      * @param b
      */
     public void setPrintPreview(boolean b) {
-        m_printPreview = b;
     }
 
     // FR 1906632
@@ -583,7 +513,6 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      * @param f
      */
     public void setReportingProcess(boolean f) {
-        m_reportingProcess = f;
     }
 
     /**

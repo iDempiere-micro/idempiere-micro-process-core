@@ -28,7 +28,7 @@ import static software.hsharp.core.util.DBKt.prepareStatement;
  * <li>FR [ 1646891 ] SvrProcess - post process support
  * <li>BF [ 1877935 ] SvrProcess.process should catch all throwables
  * <li>FR [ 1877937 ] SvrProcess: added commitEx method
- * <li>BF [ 1878743 ] SvrProcess.getAD_User_ID
+ * <li>BF [ 1878743 ] SvrProcess.getUserId
  * <li>BF [ 1935093 ] SvrProcess.unlock() is setting invalid result
  * <li>FR [ 2788006 ] SvrProcess: change access to some methods
  * https://sourceforge.net/tracker/?func=detail&aid=2788006&group_id=176962&atid=879335
@@ -49,14 +49,6 @@ public abstract class SvrProcess implements ProcessCall {
     private List<ProcessInfoLog> listEntryLog;
     private Properties m_ctx;
     private IProcessInfo m_pi;
-    /**
-     * Is the Object locked
-     */
-    private boolean m_locked = false;
-    /**
-     * Loacked Object
-     */
-    private PO m_lockedObject = null;
 
     /**
      * Server Process. Note that the class is initiated by startProcess.
@@ -107,12 +99,10 @@ public abstract class SvrProcess implements ProcessCall {
             }
             lock();
 
-            boolean success = false;
-
             try {
                 m_ctx.put(PROCESS_INFO_CTX_KEY, m_pi);
                 if (processUI != null) m_ctx.put(PROCESS_UI_CTX_KEY, processUI);
-                success = process();
+                process();
             } finally {
                 m_ctx.remove(PROCESS_INFO_CTX_KEY);
                 m_ctx.remove(PROCESS_UI_CTX_KEY);
@@ -250,7 +240,7 @@ public abstract class SvrProcess implements ProcessCall {
      */
     protected int getTable_ID() {
         return m_pi.getTable_ID();
-    } //  getRecord_ID
+    } //  getRecordId
 
     /**
      * Get Record_ID
@@ -259,7 +249,7 @@ public abstract class SvrProcess implements ProcessCall {
      */
     protected int getRecord_ID() {
         return m_pi.getRecord_ID();
-    } //  getRecord_ID
+    } //  getRecordId
 
     /**
      * Get AD_User_ID
@@ -288,7 +278,7 @@ public abstract class SvrProcess implements ProcessCall {
         }
         if (m_pi.getAD_User_ID() == null) return -1;
         return m_pi.getAD_User_ID();
-    } //  getAD_User_ID
+    } //  getUserId
 
     /**
      * Get AD_User_ID

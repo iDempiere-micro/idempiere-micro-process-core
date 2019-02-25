@@ -11,7 +11,6 @@ import javax.script.ScriptEngine;
 import java.sql.ResultSet;
 import java.util.Enumeration;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Properties;
 
 /**
@@ -99,7 +98,7 @@ public class MRule extends X_AD_Rule {
         Iterator<MRule> it = s_cache.values().iterator();
         while (it.hasNext()) {
             MRule retValue = (MRule) it.next();
-            if (ruleValue.equals(retValue.getValue())) return retValue;
+            if (ruleValue.equals(retValue.getSearchKey())) return retValue;
         }
         //
         final String whereClause = "Value=?";
@@ -110,28 +109,11 @@ public class MRule extends X_AD_Rule {
                         .first();
 
         if (retValue != null) {
-            Integer key = new Integer(retValue.getAD_Rule_ID());
+            Integer key = new Integer(retValue.getRuleId());
             s_cache.put(key, retValue);
         }
         return retValue;
     } //	get
-
-    /**
-     * Get Model Validation Login Rules
-     *
-     * @param ctx context
-     * @return Rule
-     */
-    public static List<MRule> getModelValidatorLoginRules(Properties ctx) {
-        final String whereClause = "EventType=?";
-        List<MRule> rules =
-                new Query(ctx, I_AD_Rule.Table_Name, whereClause)
-                        .setParameters(X_AD_Rule.EVENTTYPE_ModelValidatorLoginEvent)
-                        .setOnlyActiveRecords(true)
-                        .list();
-        if (rules != null && rules.size() > 0) return rules;
-        else return null;
-    } //	getModelValidatorLoginRules
 
     /**
      * ************************************************************************ Set Context ctx to the
@@ -218,7 +200,7 @@ public class MRule extends X_AD_Rule {
      */
     public String toString() {
         StringBuilder sb = new StringBuilder("MRule[");
-        sb.append(getId()).append("-").append(getValue()).append("]");
+        sb.append(getId()).append("-").append(getSearchKey()).append("]");
         return sb.toString();
     } //	toString
 
@@ -231,14 +213,14 @@ public class MRule extends X_AD_Rule {
 
         String engineName = getEngineName();
 
-        if (engineName != null) engine = ScriptEngineWrapper.getScriptEngine(engineName);
+        if (engineName != null) engine = ScriptEngineWrapper.getScriptEngine();
 
         return engine;
     }
 
     public String getEngineName() {
-        int colonPosition = getValue().indexOf(":");
+        int colonPosition = getSearchKey().indexOf(":");
         if (colonPosition < 0) return null;
-        return getValue().substring(0, colonPosition);
+        return getSearchKey().substring(0, colonPosition);
     }
 } //	MRule

@@ -2,7 +2,6 @@ package org.compiere.rule;
 
 import org.compiere.model.I_AD_Rule;
 import org.compiere.orm.BasePONameValue;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.util.Properties;
@@ -13,16 +12,12 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_AD_Rule extends BasePONameValue implements I_AD_Rule, I_Persistent {
+public class X_AD_Rule extends BasePONameValue implements I_AD_Rule {
 
     /**
      * Process = P
      */
     public static final String EVENTTYPE_Process = "P";
-    /**
-     * Model Validator Table Event = T
-     */
-    public static final String EVENTTYPE_ModelValidatorTableEvent = "T";
     /**
      * Model Validator Document Event = D
      */
@@ -80,8 +75,8 @@ public class X_AD_Rule extends BasePONameValue implements I_AD_Rule, I_Persisten
      *
      * @return Rule
      */
-    public int getAD_Rule_ID() {
-        Integer ii = (Integer) get_Value(I_AD_Rule.COLUMNNAME_AD_Rule_ID);
+    public int getRuleId() {
+        Integer ii = (Integer) getValue(I_AD_Rule.COLUMNNAME_AD_Rule_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -92,7 +87,7 @@ public class X_AD_Rule extends BasePONameValue implements I_AD_Rule, I_Persisten
      * @return Type of Event
      */
     public String getEventType() {
-        return (String) get_Value(I_AD_Rule.COLUMNNAME_EventType);
+        return (String) getValue(I_AD_Rule.COLUMNNAME_EventType);
     }
 
     /**
@@ -101,7 +96,7 @@ public class X_AD_Rule extends BasePONameValue implements I_AD_Rule, I_Persisten
      * @return Rule Type
      */
     public String getRuleType() {
-        return (String) get_Value(I_AD_Rule.COLUMNNAME_RuleType);
+        return (String) getValue(I_AD_Rule.COLUMNNAME_RuleType);
     }
 
     /**
@@ -110,7 +105,7 @@ public class X_AD_Rule extends BasePONameValue implements I_AD_Rule, I_Persisten
      * @return Dynamic Java Language Script to calculate result
      */
     public String getScript() {
-        return (String) get_Value(I_AD_Rule.COLUMNNAME_Script);
+        return (String) getValue(I_AD_Rule.COLUMNNAME_Script);
     }
 
     @Override

@@ -1,10 +1,8 @@
 package org.compiere.process;
 
 import org.compiere.model.I_AD_PInstance_Para;
-import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
-import org.idempiere.orm.I_Persistent;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -17,7 +15,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Persistent {
+public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
 
     /**
      *
@@ -53,19 +51,13 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
         return sb.toString();
     }
 
-    public org.compiere.model.I_AD_PInstance getAD_PInstance() throws RuntimeException {
-        return (org.compiere.model.I_AD_PInstance)
-                MTable.get(getCtx(), org.compiere.model.I_AD_PInstance.Table_Name)
-                        .getPO(getAD_PInstance_ID());
-    }
-
     /**
      * Get Process Instance.
      *
      * @return Instance of the process
      */
-    public int getAD_PInstance_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_AD_PInstance_ID);
+    public int getPInstanceId() {
+        Integer ii = (Integer) getValue(COLUMNNAME_AD_PInstance_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -75,18 +67,9 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
      *
      * @param AD_PInstance_ID Instance of the process
      */
-    public void setAD_PInstance_ID(int AD_PInstance_ID) {
+    public void setPInstanceId(int AD_PInstance_ID) {
         if (AD_PInstance_ID < 1) set_ValueNoCheck(COLUMNNAME_AD_PInstance_ID, null);
         else set_ValueNoCheck(COLUMNNAME_AD_PInstance_ID, AD_PInstance_ID);
-    }
-
-    /**
-     * Get Info.
-     *
-     * @return Information
-     */
-    public String getInfo() {
-        return (String) get_Value(COLUMNNAME_Info);
     }
 
     /**
@@ -99,21 +82,12 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
     }
 
     /**
-     * Get Info To.
-     *
-     * @return Info To
-     */
-    public String getInfo_To() {
-        return (String) get_Value(COLUMNNAME_Info_To);
-    }
-
-    /**
      * Get Parameter Name.
      *
      * @return Parameter Name
      */
     public String getParameterName() {
-        return (String) get_Value(COLUMNNAME_ParameterName);
+        return (String) getValue(COLUMNNAME_ParameterName);
     }
 
     /**
@@ -130,8 +104,8 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
      *
      * @return Process Parameter
      */
-    public Timestamp getP_Date() {
-        return (Timestamp) get_Value(COLUMNNAME_P_Date);
+    public Timestamp getProcessDate() {
+        return (Timestamp) getValue(COLUMNNAME_P_Date);
     }
 
     /**
@@ -139,7 +113,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
      *
      * @param P_Date Process Parameter
      */
-    public void setP_Date(Timestamp P_Date) {
+    public void setProcessDate(Timestamp P_Date) {
         set_Value(COLUMNNAME_P_Date, P_Date);
     }
 
@@ -148,8 +122,8 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
      *
      * @return Process Parameter
      */
-    public Timestamp getP_Date_To() {
-        return (Timestamp) get_Value(COLUMNNAME_P_Date_To);
+    public Timestamp getProcessDateTo() {
+        return (Timestamp) getValue(COLUMNNAME_P_Date_To);
     }
 
     /**
@@ -157,7 +131,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
      *
      * @param P_Date_To Process Parameter
      */
-    public void setP_Date_To(Timestamp P_Date_To) {
+    public void setProcessDateTo(Timestamp P_Date_To) {
         set_Value(COLUMNNAME_P_Date_To, P_Date_To);
     }
 
@@ -166,8 +140,8 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
      *
      * @return Process Parameter
      */
-    public BigDecimal getP_Number() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_P_Number);
+    public BigDecimal getProcessNumber() {
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_P_Number);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -177,7 +151,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
      *
      * @param P_Number Process Parameter
      */
-    public void setP_Number(BigDecimal P_Number) {
+    public void setProcessNumber(BigDecimal P_Number) {
         set_Value(COLUMNNAME_P_Number, P_Number);
     }
 
@@ -186,8 +160,8 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
      *
      * @return Process Parameter
      */
-    public BigDecimal getP_Number_To() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_P_Number_To);
+    public BigDecimal getProcessNumberTo() {
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_P_Number_To);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -197,7 +171,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
      *
      * @param P_Number_To Process Parameter
      */
-    public void setP_Number_To(BigDecimal P_Number_To) {
+    public void setProcessNumberTo(BigDecimal P_Number_To) {
         set_Value(COLUMNNAME_P_Number_To, P_Number_To);
     }
 
@@ -206,8 +180,8 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
      *
      * @return Process Parameter
      */
-    public String getP_String() {
-        return (String) get_Value(COLUMNNAME_P_String);
+    public String getProcessString() {
+        return (String) getValue(COLUMNNAME_P_String);
     }
 
     /**
@@ -215,7 +189,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
      *
      * @param P_String Process Parameter
      */
-    public void setP_String(String P_String) {
+    public void setProcessString(String P_String) {
         set_Value(COLUMNNAME_P_String, P_String);
     }
 
@@ -224,8 +198,8 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
      *
      * @return Process Parameter
      */
-    public String getP_String_To() {
-        return (String) get_Value(COLUMNNAME_P_String_To);
+    public String getProcessStringTo() {
+        return (String) getValue(COLUMNNAME_P_String_To);
     }
 
     /**
@@ -233,7 +207,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para, I_Pe
      *
      * @param P_String_To Process Parameter
      */
-    public void setP_String_To(String P_String_To) {
+    public void setProcessStringTo(String P_String_To) {
         set_Value(COLUMNNAME_P_String_To, P_String_To);
     }
 

@@ -12,7 +12,6 @@ import java.sql.Timestamp;
  * @version $Id: MPInstanceLog.java,v 1.3 2006/07/30 00:58:18 jjanke Exp $
  */
 public class MPInstanceLog {
-    private int m_AD_PInstance_ID;
     private int m_Log_ID;
     private Timestamp m_P_Date;
     private int m_P_ID;
@@ -79,7 +78,6 @@ public class MPInstanceLog {
      * @param AD_PInstance_ID instance id
      */
     public void setAD_PInstance_ID(int AD_PInstance_ID) {
-        m_AD_PInstance_ID = AD_PInstance_ID;
     }
 
     /**

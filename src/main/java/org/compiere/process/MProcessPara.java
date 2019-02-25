@@ -72,7 +72,7 @@ public class MProcessPara extends X_AD_Process_Para {
 
         this(parent.getCtx(), 0);
         setClientOrg(parent);
-        setAD_Process_ID(parent.getAD_Process_ID());
+        setProcessId(parent.getProcessId());
         setEntityType(parent.getEntityType());
     }
 
@@ -111,10 +111,10 @@ public class MProcessPara extends X_AD_Process_Para {
     public void copyFrom(MProcessPara source) {
 
         if (log.isLoggable(Level.FINE)) log.log(Level.FINE, "Copying from:" + source + ", to: " + this);
-        setAD_Element_ID(source.getAD_Element_ID());
-        setAD_Reference_ID(source.getReferenceId());
-        setAD_Reference_Value_ID(source.getAD_Reference_Value_ID());
-        setAD_Val_Rule_ID(source.getValRule_ID());
+        setElementId(source.getElementId());
+        setReferenceId(source.getReferenceId());
+        setReferenceValueId(source.getReferenceValueId());
+        setAdValRuleId(source.getValRuleId());
         setColumnName(source.getColumnName());
         setDefaultValue(source.getDefaultValue());
         setDefaultValue2(source.getDefaultValue2());
@@ -137,7 +137,7 @@ public class MProcessPara extends X_AD_Process_Para {
 
         // delete new translations and copy translations from source
         String sql = "DELETE FROM AD_Process_Para_Trl WHERE AD_Process_Para_ID = ?";
-        int count = executeUpdateEx(sql, new Object[]{getAD_Process_Para_ID()});
+        int count = executeUpdateEx(sql, new Object[]{getProcessParameterId()});
         if (log.isLoggable(Level.FINE)) log.log(Level.FINE, "AD_Process_Para_Trl deleted: " + count);
 
         sql =
@@ -150,7 +150,7 @@ public class MProcessPara extends X_AD_Process_Para {
         count =
                 executeUpdateEx(
                         sql,
-                        new Object[]{getAD_Process_Para_ID(), source.getAD_Process_Para_ID()}
+                        new Object[]{getProcessParameterId(), source.getProcessParameterId()}
                 );
         if (log.isLoggable(Level.FINE)) log.log(Level.FINE, "AD_Process_Para_Trl inserted: " + count);
     }
@@ -162,15 +162,15 @@ public class MProcessPara extends X_AD_Process_Para {
      * @return save
      */
     protected boolean beforeSave(boolean newRecord) {
-        if (isCentrallyMaintained() && getAD_Element_ID() == 0)
+        if (isCentrallyMaintained() && getElementId() == 0)
             setIsCentrallyMaintained(
                     false); // IDEMPIERE 109 - param without element can't be centrally maintained
 
         //	Sync Terminology
         if ((newRecord || is_ValueChanged("AD_Element_ID"))
-                && getAD_Element_ID() != 0
+                && getElementId() != 0
                 && isCentrallyMaintained()) {
-            M_Element element = new M_Element(getCtx(), getAD_Element_ID());
+            M_Element element = new M_Element(getCtx(), getElementId());
             setColumnName(element.getColumnName());
             setName(element.getName());
             setDescription(element.getDescription());

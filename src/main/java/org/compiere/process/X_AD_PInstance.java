@@ -2,8 +2,6 @@ package org.compiere.process;
 
 import org.compiere.model.I_AD_PInstance;
 import org.compiere.orm.BasePOName;
-import org.compiere.orm.MTable;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.util.Properties;
@@ -14,7 +12,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Persistent {
+public class X_AD_PInstance extends BasePOName implements I_AD_PInstance {
 
     /**
      *
@@ -28,7 +26,7 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Pers
         super(ctx, AD_PInstance_ID);
         /**
          * if (AD_PInstance_ID == 0) { setAD_PInstance_ID (0); setAD_Process_ID (0); setIsProcessing
-         * (false); setIsRunAsJob (false); // N setRecord_ID (0); }
+         * (false); setIsRunAsJob (false); // N setRecordId (0); }
          */
     }
 
@@ -54,42 +52,14 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Pers
     }
 
     /**
-     * Get Language ID.
-     *
-     * @return Language ID
-     */
-    public int getAD_Language_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_AD_Language_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
      * Get Process Instance.
      *
      * @return Instance of the process
      */
-    public int getAD_PInstance_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_AD_PInstance_ID);
+    public int getPInstanceId() {
+        Integer ii = (Integer) getValue(COLUMNNAME_AD_PInstance_ID);
         if (ii == null) return 0;
         return ii;
-    }
-
-    /**
-     * Get Print Format.
-     *
-     * @return Data Print Format
-     */
-    public int getAD_PrintFormat_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_AD_PrintFormat_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    public org.compiere.model.I_AD_Process getAD_Process() throws RuntimeException {
-        return (org.compiere.model.I_AD_Process)
-                MTable.get(getCtx(), org.compiere.model.I_AD_Process.Table_Name)
-                        .getPO(getAD_Process_ID());
     }
 
     /**
@@ -97,8 +67,8 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Pers
      *
      * @return Process or Report
      */
-    public int getAD_Process_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_AD_Process_ID);
+    public int getProcessId() {
+        Integer ii = (Integer) getValue(COLUMNNAME_AD_Process_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -108,20 +78,9 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Pers
      *
      * @param AD_Process_ID Process or Report
      */
-    public void setAD_Process_ID(int AD_Process_ID) {
+    public void setProcessId(int AD_Process_ID) {
         if (AD_Process_ID < 1) set_Value(COLUMNNAME_AD_Process_ID, null);
         else set_Value(COLUMNNAME_AD_Process_ID, AD_Process_ID);
-    }
-
-    /**
-     * Get User/Contact.
-     *
-     * @return User within the system - Internal or Business Partner Contact
-     */
-    public int getAD_User_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_AD_User_ID);
-        if (ii == null) return 0;
-        return ii;
     }
 
     /**
@@ -129,7 +88,7 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Pers
      *
      * @param AD_User_ID User within the system - Internal or Business Partner Contact
      */
-    public void setAD_User_ID(int AD_User_ID) {
+    public void setUserId(int AD_User_ID) {
         if (AD_User_ID < 1) set_Value(COLUMNNAME_AD_User_ID, null);
         else set_Value(COLUMNNAME_AD_User_ID, AD_User_ID);
     }
@@ -140,7 +99,7 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Pers
      * @return Error Msg
      */
     public String getErrorMsg() {
-        return (String) get_Value(COLUMNNAME_ErrorMsg);
+        return (String) getValue(COLUMNNAME_ErrorMsg);
     }
 
     /**
@@ -167,21 +126,7 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Pers
      * @return Processing
      */
     public boolean isProcessing() {
-        Object oo = get_Value(COLUMNNAME_IsProcessing);
-        if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
-            return "Y".equals(oo);
-        }
-        return false;
-    }
-
-    /**
-     * Get Summary Level.
-     *
-     * @return This is a summary entity
-     */
-    public boolean isSummary() {
-        Object oo = get_Value(COLUMNNAME_IsSummary);
+        Object oo = getValue(COLUMNNAME_IsProcessing);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -194,18 +139,9 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Pers
      *
      * @param Record_ID Direct internal record ID
      */
-    public void setRecord_ID(int Record_ID) {
+    public void setRecordId(int Record_ID) {
         if (Record_ID < 0) set_ValueNoCheck(COLUMNNAME_Record_ID, null);
         else set_ValueNoCheck(COLUMNNAME_Record_ID, Integer.valueOf(Record_ID));
-    }
-
-    /**
-     * Get Report Type.
-     *
-     * @return Report Type
-     */
-    public String getReportType() {
-        return (String) get_Value(COLUMNNAME_ReportType);
     }
 
     /**
@@ -214,7 +150,7 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance, I_Pers
      * @return Result of the action taken
      */
     public int getResult() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_Result);
+        Integer ii = (Integer) getValue(COLUMNNAME_Result);
         if (ii == null) return 0;
         return ii;
     }

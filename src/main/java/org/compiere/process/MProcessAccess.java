@@ -30,7 +30,7 @@ public class MProcessAccess extends X_AD_Process_Access {
         if (ignored != 0) throw new IllegalArgumentException("Multi-Key");
         else {
             //	setAD_Process_ID (0);
-            //	setAD_Role_ID (0);
+            //	setRoleId (0);
             setIsReadWrite(true);
         }
     } //	MProcessAccess
@@ -56,7 +56,7 @@ public class MProcessAccess extends X_AD_Process_Access {
         super(parent.getCtx(), 0);
         MRole role = MRole.get(parent.getCtx(), AD_Role_ID);
         setClientOrg(role);
-        setAD_Process_ID(parent.getAD_Process_ID());
-        setAD_Role_ID(AD_Role_ID);
+        setProcessId(parent.getProcessId());
+        setRoleId(AD_Role_ID);
     } //	MProcessAccess
 } //	MProcessAccess

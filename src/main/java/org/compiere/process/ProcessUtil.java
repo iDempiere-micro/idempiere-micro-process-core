@@ -74,20 +74,18 @@ public final class ProcessUtil {
             return false;
         }
 
-        return startJavaProcess(ctx, pi, managedTrx, processMonitor, process);
+        return startJavaProcess(ctx, pi, processMonitor, process);
     }
 
     /**
+     * @param trx
      * @param ctx
      * @param pi
-     * @param trx
-     * @param managedTrx false if trx is managed by caller
      * @return boolean
      */
     public static boolean startJavaProcess(
             Properties ctx,
             IProcessInfo pi,
-            boolean managedTrx,
             IProcessUI processMonitor,
             ProcessCall process) {
 

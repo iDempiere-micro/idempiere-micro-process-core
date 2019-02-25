@@ -20,7 +20,6 @@ public class DefaultProcessFactory implements IProcessFactory {
     /* (non-Javadoc)
      * @see org.idempiere.app.IProcessFactory#newProcessInstance(java.lang.String)
      */
-    @Override
     public ProcessCall newProcessInstance(String className) {
         ProcessCall process = null;
         if (process == null) {

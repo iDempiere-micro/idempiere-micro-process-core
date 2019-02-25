@@ -65,7 +65,6 @@ interface DocAction<T> : IBasePO {
      * @return Document Action
      */
     val docAction: String
-    val _Logger: CLogger
 
     /*************************************************************************
      * Process document

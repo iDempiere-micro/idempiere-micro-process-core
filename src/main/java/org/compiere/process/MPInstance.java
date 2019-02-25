@@ -60,7 +60,7 @@ public class MPInstance extends X_AD_PInstance {
         //	New Process
         if (AD_PInstance_ID == 0) {
             //	setAD_Process_ID (0);	//	parent
-            //	setRecord_ID (0);
+            //	setRecordId (0);
             setIsProcessing(false);
         }
     } //	MPInstance
@@ -84,9 +84,9 @@ public class MPInstance extends X_AD_PInstance {
      */
     public MPInstance(MProcess process, int Record_ID) {
         this(process.getCtx(), 0, null);
-        setAD_Process_ID(process.getAD_Process_ID());
-        setRecord_ID(Record_ID);
-        setAD_User_ID(Env.getAD_User_ID(process.getCtx()));
+        setProcessId(process.getProcessId());
+        setRecordId(Record_ID);
+        setUserId(Env.getAD_User_ID(process.getCtx()));
         if (!save()) //	need to save for parameters
             throw new IllegalArgumentException("Cannot Save");
         //	Set Parameter Base Info
@@ -108,9 +108,9 @@ public class MPInstance extends X_AD_PInstance {
      */
     public MPInstance(Properties ctx, int AD_Process_ID, int Record_ID) {
         this(ctx, 0, null);
-        setAD_Process_ID(AD_Process_ID);
-        setRecord_ID(Record_ID);
-        setAD_User_ID(Env.getAD_User_ID(ctx));
+        setProcessId(AD_Process_ID);
+        setRecordId(Record_ID);
+        setUserId(Env.getAD_User_ID(ctx));
         setIsProcessing(false);
     } //	MPInstance
 
@@ -129,7 +129,7 @@ public class MPInstance extends X_AD_PInstance {
                         I_AD_PInstance_Para.Table_Name,
                         whereClause
                 ) // @TODO: Review implications of using transaction
-                        .setParameters(getAD_PInstance_ID())
+                        .setParameters(getPInstanceId())
                         .setOrderBy("SeqNo, ParameterName")
                         .list();
 
@@ -152,7 +152,7 @@ public class MPInstance extends X_AD_PInstance {
         ResultSet rs = null;
         try {
             pstmt = prepareStatement(sql);
-            pstmt.setInt(1, getAD_PInstance_ID());
+            pstmt.setInt(1, getPInstanceId());
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 m_log.add(new MPInstanceLog(rs));
@@ -173,7 +173,7 @@ public class MPInstance extends X_AD_PInstance {
      *
      * @param AD_Process_ID process
      */
-    public void setAD_Process_ID(int AD_Process_ID) {
+    public void setProcessId(int AD_Process_ID) {
         int AD_Role_ID = Env.getAD_Role_ID(getCtx());
         if (AD_Role_ID != 0) {
             MRole role = MRole.get(getCtx(), AD_Role_ID);
@@ -192,7 +192,7 @@ public class MPInstance extends X_AD_PInstance {
                                 new Object[]{procMsg.toString(), role.getName()}));
             }
         }
-        super.setAD_Process_ID(AD_Process_ID);
+        super.setProcessId(AD_Process_ID);
     } //	setAD_Process_ID
 
     /**
@@ -200,13 +200,13 @@ public class MPInstance extends X_AD_PInstance {
      *
      * @param Record_ID record
      */
-    public void setRecord_ID(int Record_ID) {
+    public void setRecordId(int Record_ID) {
         if (Record_ID < 0) {
             if (log.isLoggable(Level.INFO)) log.info("Set to 0 from " + Record_ID);
             Record_ID = 0;
         }
         set_ValueNoCheck("Record_ID", new Integer(Record_ID));
-    } //	setRecord_ID
+    } //	setRecordId
 
     /**
      * String Representation
@@ -221,17 +221,6 @@ public class MPInstance extends X_AD_PInstance {
         sb.append("]");
         return sb.toString();
     } //	toString
-
-    /**
-     * Dump Log
-     */
-    public void log() {
-        if (log.isLoggable(Level.INFO)) {
-            log.info(toString());
-            MPInstanceLog[] pil = getLog();
-            for (int i = 0; i < pil.length; i++) log.info(i + "=" + pil[i]);
-        }
-    } //	log
 
     /**
      * Is it OK
@@ -269,7 +258,7 @@ public class MPInstance extends X_AD_PInstance {
                     "UPDATE AD_Process SET Statistic_Count=Statistic_Count+1, Statistic_Seconds=Statistic_Seconds+? WHERE AD_Process_ID=?";
             int no =
                     executeUpdate(
-                            updsql, new Object[]{seconds, getAD_Process_ID()}); // out of trx
+                            updsql, new Object[]{seconds, getProcessId()}); // out of trx
             if (no == 1) {
                 if (log.isLoggable(Level.FINE))
                     log.fine("afterSave - Process Statistics updated Sec=" + seconds);
