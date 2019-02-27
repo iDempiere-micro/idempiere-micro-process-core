@@ -57,8 +57,8 @@ public class X_AD_Process_Access extends PO implements I_AD_Process_Access {
      * @param AD_Process_ID Process or Report
      */
     public void setProcessId(int AD_Process_ID) {
-        if (AD_Process_ID < 1) set_ValueNoCheck(COLUMNNAME_AD_Process_ID, null);
-        else set_ValueNoCheck(COLUMNNAME_AD_Process_ID, Integer.valueOf(AD_Process_ID));
+        if (AD_Process_ID < 1) setValueNoCheck(COLUMNNAME_AD_Process_ID, null);
+        else setValueNoCheck(COLUMNNAME_AD_Process_ID, Integer.valueOf(AD_Process_ID));
     }
 
     /**
@@ -67,8 +67,8 @@ public class X_AD_Process_Access extends PO implements I_AD_Process_Access {
      * @param AD_Role_ID Responsibility Role
      */
     public void setRoleId(int AD_Role_ID) {
-        if (AD_Role_ID < 0) set_ValueNoCheck(COLUMNNAME_AD_Role_ID, null);
-        else set_ValueNoCheck(COLUMNNAME_AD_Role_ID, Integer.valueOf(AD_Role_ID));
+        if (AD_Role_ID < 0) setValueNoCheck(COLUMNNAME_AD_Role_ID, null);
+        else setValueNoCheck(COLUMNNAME_AD_Role_ID, Integer.valueOf(AD_Role_ID));
     }
 
     /**
@@ -77,7 +77,7 @@ public class X_AD_Process_Access extends PO implements I_AD_Process_Access {
      * @param IsReadWrite Field is read / write
      */
     public void setIsReadWrite(boolean IsReadWrite) {
-        set_Value(COLUMNNAME_IsReadWrite, Boolean.valueOf(IsReadWrite));
+        setValue(COLUMNNAME_IsReadWrite, Boolean.valueOf(IsReadWrite));
     }
 
     @Override

@@ -146,7 +146,7 @@ public class ProcessInfoUtil {
                 list.add(new ProcessInfoParameter(ParameterName, Parameter, Parameter_To, Info, Info_To));
                 //
                 if (pi.getClientId() == null) pi.setADClientID(rs.getInt(10));
-                if (pi.getAD_User_ID() == null) pi.setAD_User_ID(rs.getInt(12));
+                if (pi.getUserId() == null) pi.setUserId(rs.getInt(12));
             }
         } catch (SQLException e) {
             s_log.log(Level.SEVERE, sql, e);

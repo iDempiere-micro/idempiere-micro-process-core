@@ -86,7 +86,7 @@ public class MPInstance extends X_AD_PInstance {
         this(process.getCtx(), 0, null);
         setProcessId(process.getProcessId());
         setRecordId(Record_ID);
-        setUserId(Env.getAD_User_ID(process.getCtx()));
+        setUserId(Env.getUserId(process.getCtx()));
         if (!save()) //	need to save for parameters
             throw new IllegalArgumentException("Cannot Save");
         //	Set Parameter Base Info
@@ -110,7 +110,7 @@ public class MPInstance extends X_AD_PInstance {
         this(ctx, 0, null);
         setProcessId(AD_Process_ID);
         setRecordId(Record_ID);
-        setUserId(Env.getAD_User_ID(ctx));
+        setUserId(Env.getUserId(ctx));
         setIsProcessing(false);
     } //	MPInstance
 
@@ -205,7 +205,7 @@ public class MPInstance extends X_AD_PInstance {
             if (log.isLoggable(Level.INFO)) log.info("Set to 0 from " + Record_ID);
             Record_ID = 0;
         }
-        set_ValueNoCheck("Record_ID", new Integer(Record_ID));
+        setValueNoCheck("Record_ID", new Integer(Record_ID));
     } //	setRecordId
 
     /**

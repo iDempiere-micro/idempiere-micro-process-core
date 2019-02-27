@@ -256,8 +256,8 @@ public abstract class SvrProcess implements ProcessCall {
      *
      * @return AD_User_ID of Process owner or -1 if not found
      */
-    protected int getAD_User_ID() {
-        if (m_pi.getAD_User_ID() == null || m_pi.getClientId() == null) {
+    protected int getUserId() {
+        if (m_pi.getUserId() == null || m_pi.getClientId() == null) {
             String sql = "SELECT AD_User_ID, AD_Client_ID FROM AD_PInstance WHERE AD_PInstance_ID=?";
             PreparedStatement pstmt = null;
             ResultSet rs = null;
@@ -266,7 +266,7 @@ public abstract class SvrProcess implements ProcessCall {
                 pstmt.setInt(1, m_pi.getAD_PInstance_ID());
                 rs = pstmt.executeQuery();
                 if (rs.next()) {
-                    m_pi.setAD_User_ID(rs.getInt(1));
+                    m_pi.setUserId(rs.getInt(1));
                     m_pi.setADClientID(rs.getInt(2));
                 }
             } catch (SQLException e) {
@@ -276,8 +276,8 @@ public abstract class SvrProcess implements ProcessCall {
                 pstmt = null;
             }
         }
-        if (m_pi.getAD_User_ID() == null) return -1;
-        return m_pi.getAD_User_ID();
+        if (m_pi.getUserId() == null) return -1;
+        return m_pi.getUserId();
     } //  getUserId
 
     /**
@@ -287,7 +287,7 @@ public abstract class SvrProcess implements ProcessCall {
      */
     protected int getClientId() {
         if (m_pi.getClientId() == null) {
-            getAD_User_ID(); //	sets also Client
+            getUserId(); //	sets also Client
             if (m_pi.getClientId() == null) return 0;
         }
         return m_pi.getClientId();

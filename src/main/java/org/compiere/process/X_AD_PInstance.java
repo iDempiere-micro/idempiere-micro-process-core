@@ -79,8 +79,8 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance {
      * @param AD_Process_ID Process or Report
      */
     public void setProcessId(int AD_Process_ID) {
-        if (AD_Process_ID < 1) set_Value(COLUMNNAME_AD_Process_ID, null);
-        else set_Value(COLUMNNAME_AD_Process_ID, AD_Process_ID);
+        if (AD_Process_ID < 1) setValue(COLUMNNAME_AD_Process_ID, null);
+        else setValue(COLUMNNAME_AD_Process_ID, AD_Process_ID);
     }
 
     /**
@@ -89,8 +89,8 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance {
      * @param AD_User_ID User within the system - Internal or Business Partner Contact
      */
     public void setUserId(int AD_User_ID) {
-        if (AD_User_ID < 1) set_Value(COLUMNNAME_AD_User_ID, null);
-        else set_Value(COLUMNNAME_AD_User_ID, AD_User_ID);
+        if (AD_User_ID < 1) setValue(COLUMNNAME_AD_User_ID, null);
+        else setValue(COLUMNNAME_AD_User_ID, AD_User_ID);
     }
 
     /**
@@ -108,7 +108,7 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance {
      * @param ErrorMsg Error Msg
      */
     public void setErrorMsg(String ErrorMsg) {
-        set_Value(COLUMNNAME_ErrorMsg, ErrorMsg);
+        setValue(COLUMNNAME_ErrorMsg, ErrorMsg);
     }
 
     /**
@@ -117,7 +117,7 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance {
      * @param IsProcessing Processing
      */
     public void setIsProcessing(boolean IsProcessing) {
-        set_Value(COLUMNNAME_IsProcessing, Boolean.valueOf(IsProcessing));
+        setValue(COLUMNNAME_IsProcessing, Boolean.valueOf(IsProcessing));
     }
 
     /**
@@ -140,8 +140,8 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance {
      * @param Record_ID Direct internal record ID
      */
     public void setRecordId(int Record_ID) {
-        if (Record_ID < 0) set_ValueNoCheck(COLUMNNAME_Record_ID, null);
-        else set_ValueNoCheck(COLUMNNAME_Record_ID, Integer.valueOf(Record_ID));
+        if (Record_ID < 0) setValueNoCheck(COLUMNNAME_Record_ID, null);
+        else setValueNoCheck(COLUMNNAME_Record_ID, Integer.valueOf(Record_ID));
     }
 
     /**
@@ -161,7 +161,7 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance {
      * @param Result Result of the action taken
      */
     public void setResult(int Result) {
-        set_Value(COLUMNNAME_Result, Integer.valueOf(Result));
+        setValue(COLUMNNAME_Result, Integer.valueOf(Result));
     }
 
     @Override

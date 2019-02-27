@@ -52,7 +52,7 @@ interface DocAction<T> : IBasePO {
      * Get Document Currency
      * @return C_Currency_ID
      */
-    val c_Currency_ID: Int
+    val currencyId: Int
 
     /**
      * Get Document Approval Amount

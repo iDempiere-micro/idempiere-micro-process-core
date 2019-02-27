@@ -73,8 +73,8 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      *                      help.
      */
     public void setElementId(int AD_Element_ID) {
-        if (AD_Element_ID < 1) set_Value(COLUMNNAME_AD_Element_ID, null);
-        else set_Value(COLUMNNAME_AD_Element_ID, Integer.valueOf(AD_Element_ID));
+        if (AD_Element_ID < 1) setValue(COLUMNNAME_AD_Element_ID, null);
+        else setValue(COLUMNNAME_AD_Element_ID, Integer.valueOf(AD_Element_ID));
     }
 
     /**
@@ -83,8 +83,8 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param AD_Process_ID Process or Report
      */
     public void setProcessId(int AD_Process_ID) {
-        if (AD_Process_ID < 1) set_ValueNoCheck(COLUMNNAME_AD_Process_ID, null);
-        else set_ValueNoCheck(COLUMNNAME_AD_Process_ID, Integer.valueOf(AD_Process_ID));
+        if (AD_Process_ID < 1) setValueNoCheck(COLUMNNAME_AD_Process_ID, null);
+        else setValueNoCheck(COLUMNNAME_AD_Process_ID, Integer.valueOf(AD_Process_ID));
     }
 
     /**
@@ -104,8 +104,8 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param AD_Reference_ID System Reference and Validation
      */
     public void setReferenceId(int AD_Reference_ID) {
-        if (AD_Reference_ID < 1) set_Value(COLUMNNAME_AD_Reference_ID, null);
-        else set_Value(COLUMNNAME_AD_Reference_ID, Integer.valueOf(AD_Reference_ID));
+        if (AD_Reference_ID < 1) setValue(COLUMNNAME_AD_Reference_ID, null);
+        else setValue(COLUMNNAME_AD_Reference_ID, Integer.valueOf(AD_Reference_ID));
     }
 
     /**
@@ -136,8 +136,8 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param AD_Reference_Value_ID Required to specify, if data type is Table or List
      */
     public void setReferenceValueId(int AD_Reference_Value_ID) {
-        if (AD_Reference_Value_ID < 1) set_Value(COLUMNNAME_AD_Reference_Value_ID, null);
-        else set_Value(COLUMNNAME_AD_Reference_Value_ID, Integer.valueOf(AD_Reference_Value_ID));
+        if (AD_Reference_Value_ID < 1) setValue(COLUMNNAME_AD_Reference_Value_ID, null);
+        else setValue(COLUMNNAME_AD_Reference_Value_ID, Integer.valueOf(AD_Reference_Value_ID));
     }
 
     /**
@@ -146,8 +146,8 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param AD_Val_Rule_ID Dynamic Validation Rule
      */
     public void setAdValRuleId(int AD_Val_Rule_ID) {
-        if (AD_Val_Rule_ID < 1) set_Value(COLUMNNAME_AD_Val_Rule_ID, null);
-        else set_Value(COLUMNNAME_AD_Val_Rule_ID, Integer.valueOf(AD_Val_Rule_ID));
+        if (AD_Val_Rule_ID < 1) setValue(COLUMNNAME_AD_Val_Rule_ID, null);
+        else setValue(COLUMNNAME_AD_Val_Rule_ID, Integer.valueOf(AD_Val_Rule_ID));
     }
 
     /**
@@ -176,7 +176,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param ColumnName Name of the column in the database
      */
     public void setColumnName(String ColumnName) {
-        set_Value(COLUMNNAME_ColumnName, ColumnName);
+        setValue(COLUMNNAME_ColumnName, ColumnName);
     }
 
     /**
@@ -194,7 +194,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param DefaultValue Default value hierarchy, separated by ;
      */
     public void setDefaultValue(String DefaultValue) {
-        set_Value(COLUMNNAME_DefaultValue, DefaultValue);
+        setValue(COLUMNNAME_DefaultValue, DefaultValue);
     }
 
     /**
@@ -212,7 +212,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param DefaultValue2 Default value hierarchy, separated by ;
      */
     public void setDefaultValue2(String DefaultValue2) {
-        set_Value(COLUMNNAME_DefaultValue2, DefaultValue2);
+        setValue(COLUMNNAME_DefaultValue2, DefaultValue2);
     }
 
     /**
@@ -230,7 +230,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param Description Optional short description of the record
      */
     public void setDescription(String Description) {
-        set_Value(COLUMNNAME_Description, Description);
+        setValue(COLUMNNAME_Description, Description);
     }
 
     /**
@@ -249,7 +249,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      *                     displayed
      */
     public void setDisplayLogic(String DisplayLogic) {
-        set_Value(COLUMNNAME_DisplayLogic, DisplayLogic);
+        setValue(COLUMNNAME_DisplayLogic, DisplayLogic);
     }
 
     /**
@@ -259,7 +259,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      */
     public void setEntityType(String EntityType) {
 
-        set_Value(COLUMNNAME_EntityType, EntityType);
+        setValue(COLUMNNAME_EntityType, EntityType);
     }
 
     /**
@@ -279,7 +279,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param FieldLength Length of the column in the database
      */
     public void setFieldLength(int FieldLength) {
-        set_Value(COLUMNNAME_FieldLength, Integer.valueOf(FieldLength));
+        setValue(COLUMNNAME_FieldLength, Integer.valueOf(FieldLength));
     }
 
     /**
@@ -297,7 +297,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param Help Comment or Hint
      */
     public void setHelp(String Help) {
-        set_Value(COLUMNNAME_Help, Help);
+        setValue(COLUMNNAME_Help, Help);
     }
 
     /**
@@ -306,7 +306,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param IsCentrallyMaintained Information maintained in System Element table
      */
     public void setIsCentrallyMaintained(boolean IsCentrallyMaintained) {
-        set_Value(COLUMNNAME_IsCentrallyMaintained, Boolean.valueOf(IsCentrallyMaintained));
+        setValue(COLUMNNAME_IsCentrallyMaintained, Boolean.valueOf(IsCentrallyMaintained));
     }
 
     /**
@@ -329,7 +329,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param IsMandatory Data entry is required in this column
      */
     public void setIsMandatory(boolean IsMandatory) {
-        set_Value(COLUMNNAME_IsMandatory, Boolean.valueOf(IsMandatory));
+        setValue(COLUMNNAME_IsMandatory, Boolean.valueOf(IsMandatory));
     }
 
     /**
@@ -352,7 +352,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param IsRange The parameter is a range of values
      */
     public void setIsRange(boolean IsRange) {
-        set_Value(COLUMNNAME_IsRange, Boolean.valueOf(IsRange));
+        setValue(COLUMNNAME_IsRange, Boolean.valueOf(IsRange));
     }
 
     /**
@@ -385,7 +385,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      *                      read-write)
      */
     public void setReadOnlyLogic(String ReadOnlyLogic) {
-        set_Value(COLUMNNAME_ReadOnlyLogic, ReadOnlyLogic);
+        setValue(COLUMNNAME_ReadOnlyLogic, ReadOnlyLogic);
     }
 
     /**
@@ -405,7 +405,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param SeqNo Method of ordering records; lowest number comes first
      */
     public void setSeqNo(int SeqNo) {
-        set_Value(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
+        setValue(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
     }
 
     /**
@@ -423,7 +423,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param ValueMax Maximum Value for a field
      */
     public void setValueMax(String ValueMax) {
-        set_Value(COLUMNNAME_ValueMax, ValueMax);
+        setValue(COLUMNNAME_ValueMax, ValueMax);
     }
 
     /**
@@ -441,7 +441,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      * @param ValueMin Minimum Value for a field
      */
     public void setValueMin(String ValueMin) {
-        set_Value(COLUMNNAME_ValueMin, ValueMin);
+        setValue(COLUMNNAME_ValueMin, ValueMin);
     }
 
     /**
@@ -460,7 +460,7 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
      *                "_lLoOaAcCa09"
      */
     public void setVFormat(String VFormat) {
-        set_Value(COLUMNNAME_VFormat, VFormat);
+        setValue(COLUMNNAME_VFormat, VFormat);
     }
 
     @Override

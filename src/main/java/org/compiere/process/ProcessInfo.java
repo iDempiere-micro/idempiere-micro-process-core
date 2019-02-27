@@ -398,7 +398,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      *
      * @return Integer
      */
-    public Integer getAD_User_ID() {
+    public Integer getUserId() {
         return m_AD_User_ID;
     }
 
@@ -407,7 +407,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      *
      * @param AD_User_ID int
      */
-    public void setAD_User_ID(int AD_User_ID) {
+    public void setUserId(int AD_User_ID) {
         m_AD_User_ID = new Integer(AD_User_ID);
     }
 

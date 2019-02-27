@@ -72,7 +72,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      */
     public void setProcessAccessLevel(String AccessLevel) {
 
-        set_Value(COLUMNNAME_AccessLevel, AccessLevel);
+        setValue(COLUMNNAME_AccessLevel, AccessLevel);
     }
 
     /**
@@ -92,8 +92,8 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param AD_Form_ID Special Form
      */
     public void setFormId(int AD_Form_ID) {
-        if (AD_Form_ID < 1) set_Value(COLUMNNAME_AD_Form_ID, null);
-        else set_Value(COLUMNNAME_AD_Form_ID, Integer.valueOf(AD_Form_ID));
+        if (AD_Form_ID < 1) setValue(COLUMNNAME_AD_Form_ID, null);
+        else setValue(COLUMNNAME_AD_Form_ID, Integer.valueOf(AD_Form_ID));
     }
 
     /**
@@ -113,8 +113,8 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param AD_PrintFormat_ID Data Print Format
      */
     public void setPrintFormatId(int AD_PrintFormat_ID) {
-        if (AD_PrintFormat_ID < 1) set_Value(COLUMNNAME_AD_PrintFormat_ID, null);
-        else set_Value(COLUMNNAME_AD_PrintFormat_ID, Integer.valueOf(AD_PrintFormat_ID));
+        if (AD_PrintFormat_ID < 1) setValue(COLUMNNAME_AD_PrintFormat_ID, null);
+        else setValue(COLUMNNAME_AD_PrintFormat_ID, Integer.valueOf(AD_PrintFormat_ID));
     }
 
     /**
@@ -145,8 +145,8 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param AD_ReportView_ID View used to generate this report
      */
     public void setReportViewId(int AD_ReportView_ID) {
-        if (AD_ReportView_ID < 1) set_Value(COLUMNNAME_AD_ReportView_ID, null);
-        else set_Value(COLUMNNAME_AD_ReportView_ID, AD_ReportView_ID);
+        if (AD_ReportView_ID < 1) setValue(COLUMNNAME_AD_ReportView_ID, null);
+        else setValue(COLUMNNAME_AD_ReportView_ID, AD_ReportView_ID);
     }
 
     /**
@@ -166,8 +166,8 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param AD_Workflow_ID Workflow or combination of tasks
      */
     public void setWorkflowId(int AD_Workflow_ID) {
-        if (AD_Workflow_ID < 1) set_Value(COLUMNNAME_AD_Workflow_ID, null);
-        else set_Value(COLUMNNAME_AD_Workflow_ID, Integer.valueOf(AD_Workflow_ID));
+        if (AD_Workflow_ID < 1) setValue(COLUMNNAME_AD_Workflow_ID, null);
+        else setValue(COLUMNNAME_AD_Workflow_ID, Integer.valueOf(AD_Workflow_ID));
     }
 
     /**
@@ -185,7 +185,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param Classname Java Classname
      */
     public void setClassname(String Classname) {
-        set_Value(COLUMNNAME_Classname, Classname);
+        setValue(COLUMNNAME_Classname, Classname);
     }
 
     /**
@@ -203,7 +203,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param Description Optional short description of the record
      */
     public void setDescription(String Description) {
-        set_Value(COLUMNNAME_Description, Description);
+        setValue(COLUMNNAME_Description, Description);
     }
 
     /**
@@ -222,7 +222,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      */
     public void setEntityType(String EntityType) {
 
-        set_Value(COLUMNNAME_EntityType, EntityType);
+        setValue(COLUMNNAME_EntityType, EntityType);
     }
 
     /**
@@ -240,7 +240,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param Help Comment or Hint
      */
     public void setHelp(String Help) {
-        set_Value(COLUMNNAME_Help, Help);
+        setValue(COLUMNNAME_Help, Help);
     }
 
     /**
@@ -249,7 +249,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param IsBetaFunctionality This functionality is considered Beta
      */
     public void setIsBetaFunctionality(boolean IsBetaFunctionality) {
-        set_Value(COLUMNNAME_IsBetaFunctionality, Boolean.valueOf(IsBetaFunctionality));
+        setValue(COLUMNNAME_IsBetaFunctionality, Boolean.valueOf(IsBetaFunctionality));
     }
 
     /**
@@ -272,7 +272,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param IsDirectPrint Print without dialog
      */
     public void setIsDirectPrint(boolean IsDirectPrint) {
-        set_Value(COLUMNNAME_IsDirectPrint, Boolean.valueOf(IsDirectPrint));
+        setValue(COLUMNNAME_IsDirectPrint, Boolean.valueOf(IsDirectPrint));
     }
 
     /**
@@ -295,7 +295,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param IsReport Indicates a Report record
      */
     public void setIsReport(boolean IsReport) {
-        set_Value(COLUMNNAME_IsReport, Boolean.valueOf(IsReport));
+        setValue(COLUMNNAME_IsReport, Boolean.valueOf(IsReport));
     }
 
     /**
@@ -318,7 +318,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param IsServerProcess Run this Process on Server only
      */
     public void setIsServerProcess(boolean IsServerProcess) {
-        set_Value(COLUMNNAME_IsServerProcess, Boolean.valueOf(IsServerProcess));
+        setValue(COLUMNNAME_IsServerProcess, Boolean.valueOf(IsServerProcess));
     }
 
     /**
@@ -350,7 +350,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param JasperReport Jasper Report
      */
     public void setJasperReport(String JasperReport) {
-        set_Value(COLUMNNAME_JasperReport, JasperReport);
+        setValue(COLUMNNAME_JasperReport, JasperReport);
     }
 
     /**
@@ -368,7 +368,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param ProcedureName Name of the Database Procedure
      */
     public void setProcedureName(String ProcedureName) {
-        set_Value(COLUMNNAME_ProcedureName, ProcedureName);
+        setValue(COLUMNNAME_ProcedureName, ProcedureName);
     }
 
     /**
@@ -387,7 +387,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      */
     public void setShowHelp(String ShowHelp) {
 
-        set_Value(COLUMNNAME_ShowHelp, ShowHelp);
+        setValue(COLUMNNAME_ShowHelp, ShowHelp);
     }
 
     /**
@@ -407,7 +407,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param Statistic_Count Internal statistics how often the entity was used
      */
     public void setStatisticCount(int Statistic_Count) {
-        set_Value(COLUMNNAME_Statistic_Count, Integer.valueOf(Statistic_Count));
+        setValue(COLUMNNAME_Statistic_Count, Integer.valueOf(Statistic_Count));
     }
 
     /**
@@ -427,7 +427,7 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
      * @param Statistic_Seconds Internal statistics how many seconds a process took
      */
     public void setStatisticSeconds(int Statistic_Seconds) {
-        set_Value(COLUMNNAME_Statistic_Seconds, Integer.valueOf(Statistic_Seconds));
+        setValue(COLUMNNAME_Statistic_Seconds, Integer.valueOf(Statistic_Seconds));
     }
 
     @Override

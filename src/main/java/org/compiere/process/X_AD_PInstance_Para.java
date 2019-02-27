@@ -68,8 +68,8 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
      * @param AD_PInstance_ID Instance of the process
      */
     public void setPInstanceId(int AD_PInstance_ID) {
-        if (AD_PInstance_ID < 1) set_ValueNoCheck(COLUMNNAME_AD_PInstance_ID, null);
-        else set_ValueNoCheck(COLUMNNAME_AD_PInstance_ID, AD_PInstance_ID);
+        if (AD_PInstance_ID < 1) setValueNoCheck(COLUMNNAME_AD_PInstance_ID, null);
+        else setValueNoCheck(COLUMNNAME_AD_PInstance_ID, AD_PInstance_ID);
     }
 
     /**
@@ -78,7 +78,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
      * @param Info Information
      */
     public void setInfo(String Info) {
-        set_Value(COLUMNNAME_Info, Info);
+        setValue(COLUMNNAME_Info, Info);
     }
 
     /**
@@ -96,7 +96,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
      * @param ParameterName Parameter Name
      */
     public void setParameterName(String ParameterName) {
-        set_Value(COLUMNNAME_ParameterName, ParameterName);
+        setValue(COLUMNNAME_ParameterName, ParameterName);
     }
 
     /**
@@ -114,7 +114,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
      * @param P_Date Process Parameter
      */
     public void setProcessDate(Timestamp P_Date) {
-        set_Value(COLUMNNAME_P_Date, P_Date);
+        setValue(COLUMNNAME_P_Date, P_Date);
     }
 
     /**
@@ -132,7 +132,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
      * @param P_Date_To Process Parameter
      */
     public void setProcessDateTo(Timestamp P_Date_To) {
-        set_Value(COLUMNNAME_P_Date_To, P_Date_To);
+        setValue(COLUMNNAME_P_Date_To, P_Date_To);
     }
 
     /**
@@ -152,7 +152,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
      * @param P_Number Process Parameter
      */
     public void setProcessNumber(BigDecimal P_Number) {
-        set_Value(COLUMNNAME_P_Number, P_Number);
+        setValue(COLUMNNAME_P_Number, P_Number);
     }
 
     /**
@@ -172,7 +172,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
      * @param P_Number_To Process Parameter
      */
     public void setProcessNumberTo(BigDecimal P_Number_To) {
-        set_Value(COLUMNNAME_P_Number_To, P_Number_To);
+        setValue(COLUMNNAME_P_Number_To, P_Number_To);
     }
 
     /**
@@ -190,7 +190,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
      * @param P_String Process Parameter
      */
     public void setProcessString(String P_String) {
-        set_Value(COLUMNNAME_P_String, P_String);
+        setValue(COLUMNNAME_P_String, P_String);
     }
 
     /**
@@ -208,7 +208,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
      * @param P_String_To Process Parameter
      */
     public void setProcessStringTo(String P_String_To) {
-        set_Value(COLUMNNAME_P_String_To, P_String_To);
+        setValue(COLUMNNAME_P_String_To, P_String_To);
     }
 
     /**
@@ -217,7 +217,7 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
      * @param SeqNo Method of ordering records; lowest number comes first
      */
     public void setSeqNo(int SeqNo) {
-        set_ValueNoCheck(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
+        setValueNoCheck(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
     }
 
     @Override
