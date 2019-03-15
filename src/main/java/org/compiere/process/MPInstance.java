@@ -1,5 +1,6 @@
 package org.compiere.process;
 
+import kotliquery.Row;
 import org.compiere.model.I_AD_PInstance_Para;
 import org.compiere.orm.MRole;
 import org.compiere.orm.Query;
@@ -69,11 +70,10 @@ public class MPInstance extends X_AD_PInstance {
      * Load Constructor
      *
      * @param ctx     context
-     * @param rs      result set
      * @param ignored no transaction support
      */
-    public MPInstance(Properties ctx, ResultSet rs, String ignored) {
-        super(ctx, rs);
+    public MPInstance(Properties ctx, Row row, String ignored) {
+        super(ctx, row);
     } //	MPInstance
 
     /**

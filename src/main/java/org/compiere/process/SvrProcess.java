@@ -2,7 +2,6 @@ package org.compiere.process;
 
 import org.compiere.model.IProcessInfo;
 import org.compiere.model.IProcessInfoParameter;
-import org.compiere.orm.PO;
 import org.compiere.util.Msg;
 import org.idempiere.common.util.CLogger;
 import org.idempiere.common.util.Env;

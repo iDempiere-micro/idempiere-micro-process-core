@@ -24,6 +24,7 @@ public class ProcessInfoParameter implements Serializable, IProcessInfoParameter
     private Object m_Parameter_To;
     private String m_Info = "";
     private String m_Info_To = "";
+
     /**
      * Construct Parameter
      *

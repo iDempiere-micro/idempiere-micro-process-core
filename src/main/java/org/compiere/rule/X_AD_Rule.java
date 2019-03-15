@@ -1,9 +1,9 @@
 package org.compiere.rule;
 
+import kotliquery.Row;
 import org.compiere.model.I_AD_Rule;
 import org.compiere.orm.BasePONameValue;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -38,6 +38,7 @@ public class X_AD_Rule extends BasePONameValue implements I_AD_Rule {
      *
      */
     private static final long serialVersionUID = 20171031L;
+
     /**
      * Standard Constructor
      */
@@ -49,11 +50,12 @@ public class X_AD_Rule extends BasePONameValue implements I_AD_Rule {
          * setRuleType (null); setValue (null); }
          */
     }
+
     /**
      * Load Constructor
      */
-    public X_AD_Rule(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_AD_Rule(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**

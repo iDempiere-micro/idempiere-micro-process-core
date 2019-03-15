@@ -1,9 +1,9 @@
 package org.compiere.process;
 
+import kotliquery.Row;
 import org.compiere.model.I_AD_Process_Para;
 import org.compiere.orm.BasePOName;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -37,8 +37,8 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
     /**
      * Load Constructor
      */
-    public X_AD_Process_Para(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_AD_Process_Para(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**
@@ -99,16 +99,6 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
     }
 
     /**
-     * Set Reference.
-     *
-     * @param AD_Reference_ID System Reference and Validation
-     */
-    public void setReferenceId(int AD_Reference_ID) {
-        if (AD_Reference_ID < 1) setValue(COLUMNNAME_AD_Reference_ID, null);
-        else setValue(COLUMNNAME_AD_Reference_ID, Integer.valueOf(AD_Reference_ID));
-    }
-
-    /**
      * Get Reference.
      *
      * @return System Reference and Validation
@@ -117,6 +107,16 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
         Integer ii = (Integer) getValue(COLUMNNAME_AD_Reference_ID);
         if (ii == null) return 0;
         return ii;
+    }
+
+    /**
+     * Set Reference.
+     *
+     * @param AD_Reference_ID System Reference and Validation
+     */
+    public void setReferenceId(int AD_Reference_ID) {
+        if (AD_Reference_ID < 1) setValue(COLUMNNAME_AD_Reference_ID, null);
+        else setValue(COLUMNNAME_AD_Reference_ID, Integer.valueOf(AD_Reference_ID));
     }
 
     /**

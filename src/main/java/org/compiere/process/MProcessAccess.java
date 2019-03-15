@@ -1,8 +1,8 @@
 package org.compiere.process;
 
+import kotliquery.Row;
 import org.compiere.orm.MRole;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -42,8 +42,8 @@ public class MProcessAccess extends X_AD_Process_Access {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MProcessAccess(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MProcessAccess(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MProcessAccess
 
     /**

@@ -1,11 +1,11 @@
 package org.compiere.process;
 
+import kotliquery.Row;
 import org.compiere.model.I_AD_PInstance_Para;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
 
@@ -33,8 +33,8 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
     /**
      * Load Constructor
      */
-    public X_AD_PInstance_Para(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_AD_PInstance_Para(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**

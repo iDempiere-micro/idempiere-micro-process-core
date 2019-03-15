@@ -1,9 +1,9 @@
 package org.compiere.process;
 
+import kotliquery.Row;
 import org.compiere.model.I_AD_Process;
 import org.compiere.orm.BasePONameValue;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -38,8 +38,8 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
     /**
      * Load Constructor
      */
-    public X_AD_Process(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_AD_Process(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**

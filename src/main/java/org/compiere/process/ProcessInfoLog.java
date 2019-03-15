@@ -25,6 +25,7 @@ public class ProcessInfoLog implements Serializable, IProcessInfoLog {
     private String m_P_Msg;
     private int m_AD_Table_ID;
     private int m_Record_ID;
+
     /**
      * Create Process Info Log.
      *
@@ -49,6 +50,7 @@ public class ProcessInfoLog implements Serializable, IProcessInfoLog {
         setAD_Table_ID(AD_Table_ID);
         setRecord_ID(Record_ID);
     } //	ProcessInfoLog
+
     public ProcessInfoLog(
             int P_ID,
             Timestamp P_Date,
@@ -58,6 +60,7 @@ public class ProcessInfoLog implements Serializable, IProcessInfoLog {
             int Record_ID) {
         this(s_Log_ID++, P_ID, P_Date, P_Number, P_Msg, AD_Table_ID, Record_ID);
     }
+
     /**
      * Create Process Info Log.
      *

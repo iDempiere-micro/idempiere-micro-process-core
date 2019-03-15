@@ -1,7 +1,8 @@
 package org.compiere.process;
 
+import kotliquery.Row;
+
 import java.math.BigDecimal;
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -22,7 +23,6 @@ public class MPInstancePara extends X_AD_PInstance_Para {
      *
      * @param ctx     context
      * @param ignored ignored
-     * @param trxName transaction
      */
     public MPInstancePara(Properties ctx, int ignored) {
         super(ctx, 0);
@@ -57,12 +57,10 @@ public class MPInstancePara extends X_AD_PInstance_Para {
     /**
      * Load Constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MPInstancePara(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MPInstancePara(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MPInstance_Para
 
     /**

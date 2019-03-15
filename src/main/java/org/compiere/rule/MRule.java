@@ -1,5 +1,6 @@
 package org.compiere.rule;
 
+import kotliquery.Row;
 import org.compiere.model.I_AD_Rule;
 import org.compiere.orm.Query;
 import org.compiere.util.Msg;
@@ -8,7 +9,6 @@ import org.idempiere.common.util.CLogger;
 import org.idempiere.common.util.Util;
 
 import javax.script.ScriptEngine;
-import java.sql.ResultSet;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Properties;
@@ -66,8 +66,8 @@ public class MRule extends X_AD_Rule {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MRule(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MRule(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MRule
 
     /**
@@ -79,7 +79,7 @@ public class MRule extends X_AD_Rule {
      */
     public static MRule get(Properties ctx, int AD_Rule_ID) {
         Integer key = AD_Rule_ID;
-        MRule retValue = (MRule) s_cache.get(key);
+        MRule retValue = s_cache.get(key);
         if (retValue != null) return retValue;
         retValue = new MRule(ctx, AD_Rule_ID);
         if (retValue.getId() != 0) s_cache.put(key, retValue);
@@ -97,7 +97,7 @@ public class MRule extends X_AD_Rule {
         if (ruleValue == null) return null;
         Iterator<MRule> it = s_cache.values().iterator();
         while (it.hasNext()) {
-            MRule retValue = (MRule) it.next();
+            MRule retValue = it.next();
             if (ruleValue.equals(retValue.getSearchKey())) return retValue;
         }
         //

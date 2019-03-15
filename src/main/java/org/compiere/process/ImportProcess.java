@@ -12,9 +12,9 @@ package org.compiere.process;
  */
 public interface ImportProcess {
     /** @return The Name of Import Table (e.g. I_BPartner) */
-    public String getImportTableName();
+    String getImportTableName();
 
     /** @return SQL WHERE clause to filter records that are candidates for import */
-    public String getWhereClause();
+    String getWhereClause();
 
 }

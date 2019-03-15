@@ -10,6 +10,6 @@ public interface IProcessUI {
      *
      * @param message
      */
-    public void statusUpdate(String message);
+    void statusUpdate(String message);
 
 }

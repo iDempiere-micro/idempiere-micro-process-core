@@ -25,10 +25,10 @@ public interface ProcessCall {
      * @param trx transaction
      * @return true if the next process should be performed
      */
-    public boolean startProcess(Properties ctx, IProcessInfo pi);
+    boolean startProcess(Properties ctx, IProcessInfo pi);
 
     /**
      * @param processMonitor
      */
-    public void setProcessUI(IProcessUI processUI);
+    void setProcessUI(IProcessUI processUI);
 } //  ProcessCall

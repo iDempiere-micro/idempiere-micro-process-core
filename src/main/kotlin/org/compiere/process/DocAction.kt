@@ -141,12 +141,6 @@ interface DocAction<T> : IBasePO {
     fun reActivateIt(): Boolean
 
     /**
-     * Save Document
-     * @return true if saved
-     */
-    fun save(): Boolean
-
-    /**
      * Save throwing exception
      * @throws AdempiereException
      * @see .save

@@ -1,11 +1,11 @@
 package org.compiere.process;
 
+import kotliquery.Row;
 import org.compiere.model.I_AD_Process_Para;
 import org.compiere.orm.M_Element;
 import org.idempiere.common.util.CCache;
 import org.idempiere.orm.PO;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 import java.util.logging.Level;
 
@@ -59,8 +59,8 @@ public class MProcessPara extends X_AD_Process_Para {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MProcessPara(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MProcessPara(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MProcessPara
 
     /**
@@ -85,7 +85,7 @@ public class MProcessPara extends X_AD_Process_Para {
      */
     public static MProcessPara get(Properties ctx, int AD_Process_Para_ID) {
         Integer key = new Integer(AD_Process_Para_ID);
-        MProcessPara retValue = (MProcessPara) s_cache.get(key);
+        MProcessPara retValue = s_cache.get(key);
         if (retValue != null) return retValue;
         retValue = new MProcessPara(ctx, AD_Process_Para_ID);
         if (retValue.getId() != 0) s_cache.put(key, retValue);

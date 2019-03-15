@@ -17,6 +17,7 @@ public class MPInstanceLog {
     private int m_P_ID;
     private BigDecimal m_P_Number;
     private String m_P_Msg;
+
     /**
      * Full Constructor
      *
@@ -41,6 +42,7 @@ public class MPInstanceLog {
         setP_Number(P_Number);
         setP_Msg(P_Msg);
     } //	MPInstance_Log
+
     /**
      * Load Constructor
      *

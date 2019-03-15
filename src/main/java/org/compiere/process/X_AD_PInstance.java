@@ -1,9 +1,9 @@
 package org.compiere.process;
 
+import kotliquery.Row;
 import org.compiere.model.I_AD_PInstance;
 import org.compiere.orm.BasePOName;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -33,8 +33,8 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance {
     /**
      * Load Constructor
      */
-    public X_AD_PInstance(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_AD_PInstance(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**
