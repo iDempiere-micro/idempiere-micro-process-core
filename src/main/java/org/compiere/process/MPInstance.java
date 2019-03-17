@@ -174,7 +174,7 @@ public class MPInstance extends X_AD_PInstance {
      * @param AD_Process_ID process
      */
     public void setProcessId(int AD_Process_ID) {
-        int AD_Role_ID = Env.getAD_Role_ID(getCtx());
+        int AD_Role_ID = Env.getRoleId(getCtx());
         if (AD_Role_ID != 0) {
             MRole role = MRole.get(getCtx(), AD_Role_ID);
             Boolean access = role.getProcessAccess(AD_Process_ID);
@@ -250,7 +250,7 @@ public class MPInstance extends X_AD_PInstance {
     protected boolean afterSave(boolean newRecord, boolean success) {
         if (!success) return success;
         //	Update Statistics
-        if (!newRecord && !isProcessing() && is_ValueChanged("IsProcessing")) {
+        if (!newRecord && !isProcessing() && isValueChanged("IsProcessing")) {
             long ms = System.currentTimeMillis() - getCreated().getTime();
             int seconds = (int) (ms / 1000);
             if (seconds < 1) seconds = 1;

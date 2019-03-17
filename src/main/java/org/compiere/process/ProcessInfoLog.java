@@ -42,13 +42,13 @@ public class ProcessInfoLog implements Serializable, IProcessInfoLog {
             String P_Msg,
             int AD_Table_ID,
             int Record_ID) {
-        setLog_ID(Log_ID);
-        setP_ID(P_ID);
+        setLogId(Log_ID);
+        setPId(P_ID);
         setP_Date(P_Date);
         setP_Number(P_Number);
         setP_Msg(P_Msg);
-        setAD_Table_ID(AD_Table_ID);
-        setRecord_ID(Record_ID);
+        setRowTableId(AD_Table_ID);
+        setRecordId(Record_ID);
     } //	ProcessInfoLog
 
     public ProcessInfoLog(
@@ -73,19 +73,19 @@ public class ProcessInfoLog implements Serializable, IProcessInfoLog {
         this(s_Log_ID++, P_ID, P_Date, P_Number, P_Msg, 0, 0);
     } //	ProcessInfoLog
 
-    public int getAD_Table_ID() {
+    public int getPTableId() {
         return m_AD_Table_ID;
     }
 
-    public void setAD_Table_ID(int tableId) {
+    public void setRowTableId(int tableId) {
         this.m_AD_Table_ID = tableId;
     }
 
-    public int getRecord_ID() {
+    public int getRecordId() {
         return m_Record_ID;
     }
 
-    public void setRecord_ID(int recordId) {
+    public void setRecordId(int recordId) {
         this.m_Record_ID = recordId;
     }
 
@@ -94,7 +94,7 @@ public class ProcessInfoLog implements Serializable, IProcessInfoLog {
      *
      * @return id
      */
-    public int getLog_ID() {
+    public int getLogId() {
         return m_Log_ID;
     }
 
@@ -103,7 +103,7 @@ public class ProcessInfoLog implements Serializable, IProcessInfoLog {
      *
      * @param Log_ID id
      */
-    public void setLog_ID(int Log_ID) {
+    public void setLogId(int Log_ID) {
         m_Log_ID = Log_ID;
     }
 
@@ -112,7 +112,7 @@ public class ProcessInfoLog implements Serializable, IProcessInfoLog {
      *
      * @return int
      */
-    public int getP_ID() {
+    public int getPId() {
         return m_P_ID;
     }
 
@@ -121,7 +121,7 @@ public class ProcessInfoLog implements Serializable, IProcessInfoLog {
      *
      * @param P_ID int
      */
-    public void setP_ID(int P_ID) {
+    public void setPId(int P_ID) {
         m_P_ID = P_ID;
     }
 
@@ -130,7 +130,7 @@ public class ProcessInfoLog implements Serializable, IProcessInfoLog {
      *
      * @return Timestamp
      */
-    public Timestamp getP_Date() {
+    public Timestamp getPDate() {
         return m_P_Date;
     }
 
@@ -148,7 +148,7 @@ public class ProcessInfoLog implements Serializable, IProcessInfoLog {
      *
      * @return BigDecimal
      */
-    public BigDecimal getP_Number() {
+    public BigDecimal getPNumber() {
         return m_P_Number;
     }
 
@@ -166,7 +166,7 @@ public class ProcessInfoLog implements Serializable, IProcessInfoLog {
      *
      * @return String
      */
-    public String getP_Msg() {
+    public String getPMsg() {
         return m_P_Msg;
     }
 

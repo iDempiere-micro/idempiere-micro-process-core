@@ -121,8 +121,8 @@ public class MProcess extends X_AD_Process {
      * @return true if OK
      */
     public boolean processIt(ProcessInfo pi, boolean managedTrx) {
-        if (pi.getAD_PInstance_ID() == 0) {
-            MPInstance pInstance = new MPInstance(this, pi.getRecord_ID());
+        if (pi.getPInstanceId() == 0) {
+            MPInstance pInstance = new MPInstance(this, pi.getRecordId());
             //	Lock
             pInstance.setIsProcessing(true);
             pInstance.saveEx();

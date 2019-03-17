@@ -167,7 +167,7 @@ public class MProcessPara extends X_AD_Process_Para {
                     false); // IDEMPIERE 109 - param without element can't be centrally maintained
 
         //	Sync Terminology
-        if ((newRecord || is_ValueChanged("AD_Element_ID"))
+        if ((newRecord || isValueChanged("AD_Element_ID"))
                 && getElementId() != 0
                 && isCentrallyMaintained()) {
             M_Element element = new M_Element(getCtx(), getElementId());

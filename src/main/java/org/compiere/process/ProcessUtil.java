@@ -62,7 +62,7 @@ public final class ProcessUtil {
             Properties ctx, IProcessInfo pi, boolean managedTrx, IProcessUI processMonitor) {
         String className = pi.getClassName();
         if (className == null) {
-            MProcess proc = new MProcess(ctx, pi.getAD_Process_ID());
+            MProcess proc = new MProcess(ctx, pi.getProcessId());
             if (proc.getJasperReport() != null) className = JASPER_STARTER_CLASS;
         }
 
@@ -138,11 +138,11 @@ public final class ProcessUtil {
             MRule.setContext(engine, ctx, 0); // no window
             // now add the method arguments to the engine
             engine.put(MRule.ARGUMENTS_PREFIX + "Ctx", ctx);
-            engine.put(MRule.ARGUMENTS_PREFIX + "Record_ID", pi.getRecord_ID());
+            engine.put(MRule.ARGUMENTS_PREFIX + "Record_ID", pi.getRecordId());
             engine.put(MRule.ARGUMENTS_PREFIX + "AD_Client_ID", pi.getClientId());
             engine.put(MRule.ARGUMENTS_PREFIX + "AD_User_ID", pi.getUserId());
-            engine.put(MRule.ARGUMENTS_PREFIX + "AD_PInstance_ID", pi.getAD_PInstance_ID());
-            engine.put(MRule.ARGUMENTS_PREFIX + "Table_ID", pi.getTable_ID());
+            engine.put(MRule.ARGUMENTS_PREFIX + "AD_PInstance_ID", pi.getPInstanceId());
+            engine.put(MRule.ARGUMENTS_PREFIX + "Table_ID", pi.getPInfoTableId());
             // Add process parameters
             IProcessInfoParameter[] para = pi.getParameter();
             if (para == null) {
@@ -153,14 +153,14 @@ public final class ProcessUtil {
                 engine.put(MRule.ARGUMENTS_PREFIX + "Parameter", pi.getParameter());
                 for (int i = 0; i < para.length; i++) {
                     String name = para[i].getParameterName();
-                    if (para[i].getParameter_To() == null) {
+                    if (para[i].getParameterTo() == null) {
                         Object value = para[i].getParameter();
                         if (name.endsWith("_ID") && (value instanceof BigDecimal))
                             engine.put(MRule.PARAMETERS_PREFIX + name, ((BigDecimal) value).intValue());
                         else engine.put(MRule.PARAMETERS_PREFIX + name, value);
                     } else {
                         Object value1 = para[i].getParameter();
-                        Object value2 = para[i].getParameter_To();
+                        Object value2 = para[i].getParameterTo();
                         if (name.endsWith("_ID") && (value1 instanceof BigDecimal))
                             engine.put(MRule.PARAMETERS_PREFIX + name + "1", ((BigDecimal) value1).intValue());
                         else engine.put(MRule.PARAMETERS_PREFIX + name + "1", value1);

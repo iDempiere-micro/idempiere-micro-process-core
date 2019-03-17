@@ -3,6 +3,7 @@ package org.compiere.process;
 import org.compiere.model.IProcessInfo;
 import org.compiere.model.IProcessInfoLog;
 import org.idempiere.common.util.CLogger;
+import software.hsharp.core.util.DBKt;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,8 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
-import static software.hsharp.core.util.DBKt.TO_DATE;
-import static software.hsharp.core.util.DBKt.TO_STRING;
 import static software.hsharp.core.util.DBKt.executeUpdate;
 import static software.hsharp.core.util.DBKt.prepareStatement;
 
@@ -33,7 +32,7 @@ public class ProcessInfoUtil {
      * @param pi process info
      */
     public static void setLogFromDB(ProcessInfo pi) {
-        //	s_log.fine("setLogFromDB - AD_PInstance_ID=" + pi.getAD_PInstance_ID());
+        //	s_log.fine("setLogFromDB - AD_PInstance_ID=" + pi.getAD_PInstanceId());
         String sql =
                 "SELECT Log_ID, P_ID, P_Date, P_Number, P_Msg, AD_Table_ID,Record_ID "
                         + "FROM AD_PInstance_Log "
@@ -43,7 +42,7 @@ public class ProcessInfoUtil {
         ResultSet rs = null;
         try {
             pstmt = prepareStatement(sql);
-            pstmt.setInt(1, pi.getAD_PInstance_ID());
+            pstmt.setInt(1, pi.getPInstanceId());
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 // int Log_ID, int P_ID, Timestamp P_Date, BigDecimal P_Number, String P_Msg, AD_Table_ID,
@@ -76,7 +75,7 @@ public class ProcessInfoUtil {
             //		s_log.fine("saveLogToDB - No Log");
             return;
         }
-        if (pi.getAD_PInstance_ID() == 0) {
+        if (pi.getPInstanceId() == 0) {
             //		s_log.log(Level.WARNING,"saveLogToDB - not saved - AD_PInstance_ID==0");
             return;
         }
@@ -86,19 +85,19 @@ public class ProcessInfoUtil {
                             "INSERT INTO AD_PInstance_Log "
                                     + "(AD_PInstance_ID, Log_ID, P_Date, P_ID, P_Number, P_Msg, AD_Table_ID,Record_ID)"
                                     + " VALUES (");
-            sql.append(pi.getAD_PInstance_ID()).append(",").append(logs[i].getLog_ID()).append(",");
-            if (logs[i].getP_Date() == null) sql.append("NULL,");
-            else sql.append(TO_DATE(logs[i].getP_Date(), false)).append(",");
-            if (logs[i].getP_ID() == 0) sql.append("NULL,");
-            else sql.append(logs[i].getP_ID()).append(",");
-            if (logs[i].getP_Number() == null) sql.append("NULL,");
-            else sql.append(logs[i].getP_Number()).append(",");
-            if (logs[i].getP_Msg() == null) sql.append("NULL,");
-            else sql.append(TO_STRING(logs[i].getP_Msg(), 2000)).append(",");
-            if (logs[i].getAD_Table_ID() == 0) sql.append("NULL,");
-            else sql.append(logs[i].getAD_Table_ID()).append(",");
-            if (logs[i].getRecord_ID() == 0) sql.append("NULL)");
-            else sql.append(logs[i].getRecord_ID()).append(")");
+            sql.append(pi.getPInstanceId()).append(",").append(logs[i].getLogId()).append(",");
+            if (logs[i].getPDate() == null) sql.append("NULL,");
+            else sql.append(DBKt.convertDate(logs[i].getPDate(), false)).append(",");
+            if (logs[i].getPId() == 0) sql.append("NULL,");
+            else sql.append(logs[i].getPId()).append(",");
+            if (logs[i].getPNumber() == null) sql.append("NULL,");
+            else sql.append(logs[i].getPNumber()).append(",");
+            if (logs[i].getPMsg() == null) sql.append("NULL,");
+            else sql.append(DBKt.convertString(logs[i].getPMsg(), 2000)).append(",");
+            if (logs[i].getPTableId() == 0) sql.append("NULL,");
+            else sql.append(logs[i].getPTableId()).append(",");
+            if (logs[i].getRecordId() == 0) sql.append("NULL)");
+            else sql.append(logs[i].getRecordId()).append(")");
             //
             executeUpdate(sql.toString());
         }
@@ -125,7 +124,7 @@ public class ProcessInfoUtil {
         ResultSet rs = null;
         try {
             pstmt = prepareStatement(sql);
-            pstmt.setInt(1, pi.getAD_PInstance_ID());
+            pstmt.setInt(1, pi.getPInstanceId());
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 String ParameterName = rs.getString(1);

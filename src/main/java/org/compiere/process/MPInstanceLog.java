@@ -35,10 +35,10 @@ public class MPInstanceLog {
             int P_ID,
             BigDecimal P_Number,
             String P_Msg) {
-        setAD_PInstance_ID(AD_PInstance_ID);
-        setLog_ID(Log_ID);
+        setAD_PInstanceId(AD_PInstance_ID);
+        setLogId(Log_ID);
         setP_Date(P_Date);
-        setP_ID(P_ID);
+        setPId(P_ID);
         setP_Number(P_Number);
         setP_Msg(P_Msg);
     } //	MPInstance_Log
@@ -50,10 +50,10 @@ public class MPInstanceLog {
      * @throws SQLException
      */
     public MPInstanceLog(ResultSet rs) throws SQLException {
-        setAD_PInstance_ID(rs.getInt("AD_PInstance_ID"));
-        setLog_ID(rs.getInt("Log_ID"));
+        setAD_PInstanceId(rs.getInt("AD_PInstance_ID"));
+        setLogId(rs.getInt("Log_ID"));
         setP_Date(rs.getTimestamp("P_Date"));
-        setP_ID(rs.getInt("P_ID"));
+        setPId(rs.getInt("P_ID"));
         setP_Number(rs.getBigDecimal("P_Number"));
         setP_Msg(rs.getString("P_Msg"));
     } //	MPInstance_Log
@@ -79,7 +79,7 @@ public class MPInstanceLog {
      *
      * @param AD_PInstance_ID instance id
      */
-    public void setAD_PInstance_ID(int AD_PInstance_ID) {
+    public void setAD_PInstanceId(int AD_PInstance_ID) {
     }
 
     /**
@@ -87,7 +87,7 @@ public class MPInstanceLog {
      *
      * @param Log_ID log id
      */
-    public void setLog_ID(int Log_ID) {
+    public void setLogId(int Log_ID) {
         m_Log_ID = Log_ID;
     }
 
@@ -105,7 +105,7 @@ public class MPInstanceLog {
      *
      * @param P_ID id
      */
-    public void setP_ID(int P_ID) {
+    public void setPId(int P_ID) {
         m_P_ID = P_ID;
     }
 

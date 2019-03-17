@@ -123,11 +123,11 @@ public class ProcessInfoParameter implements Serializable, IProcessInfoParameter
     }
 
     /**
-     * Method getParameter_To
+     * Method getParameterTo
      *
      * @return Object
      */
-    public Object getParameter_To() {
+    public Object getParameterTo() {
         return m_Parameter_To;
     }
 

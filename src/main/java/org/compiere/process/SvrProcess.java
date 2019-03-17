@@ -228,8 +228,8 @@ public abstract class SvrProcess implements ProcessCall {
      *
      * @return Process Instance
      */
-    protected int getAD_PInstance_ID() {
-        return m_pi.getAD_PInstance_ID();
+    protected int getAD_PInstanceId() {
+        return m_pi.getPInstanceId();
     } //  getAD_PInstance_ID
 
     /**
@@ -237,8 +237,8 @@ public abstract class SvrProcess implements ProcessCall {
      *
      * @return AD_Table_ID
      */
-    protected int getTable_ID() {
-        return m_pi.getTable_ID();
+    protected int getTableId() {
+        return m_pi.getPInfoTableId();
     } //  getRecordId
 
     /**
@@ -246,8 +246,8 @@ public abstract class SvrProcess implements ProcessCall {
      *
      * @return Record_ID
      */
-    protected int getRecord_ID() {
-        return m_pi.getRecord_ID();
+    protected int getRecordId() {
+        return m_pi.getRecordId();
     } //  getRecordId
 
     /**
@@ -262,7 +262,7 @@ public abstract class SvrProcess implements ProcessCall {
             ResultSet rs = null;
             try {
                 pstmt = prepareStatement(sql);
-                pstmt.setInt(1, m_pi.getAD_PInstance_ID());
+                pstmt.setInt(1, m_pi.getPInstanceId());
                 rs = pstmt.executeQuery();
                 if (rs.next()) {
                     m_pi.setUserId(rs.getInt(1));
@@ -351,17 +351,17 @@ public abstract class SvrProcess implements ProcessCall {
             if (m_pi != null) m_pi.addLog(entryLog);
             if (log.isLoggable(Level.INFO))
                 log.info(
-                        entryLog.getP_ID()
+                        entryLog.getPId()
                                 + " - "
-                                + entryLog.getP_Date()
+                                + entryLog.getPDate()
                                 + " - "
-                                + entryLog.getP_Number()
+                                + entryLog.getPNumber()
                                 + " - "
-                                + entryLog.getP_Msg()
+                                + entryLog.getPMsg()
                                 + " - "
-                                + entryLog.getAD_Table_ID()
+                                + entryLog.getPTableId()
                                 + " - "
-                                + entryLog.getRecord_ID());
+                                + entryLog.getRecordId());
         }
     }
 
@@ -369,11 +369,11 @@ public abstract class SvrProcess implements ProcessCall {
      * ************************************************************************ Lock Process Instance
      */
     private void lock() {
-        if (log.isLoggable(Level.FINE)) log.fine("AD_PInstance_ID=" + m_pi.getAD_PInstance_ID());
+        if (log.isLoggable(Level.FINE)) log.fine("AD_PInstance_ID=" + m_pi.getPInstanceId());
         try {
             executeUpdate(
                     "UPDATE AD_PInstance SET IsProcessing='Y' WHERE AD_PInstance_ID="
-                            + m_pi.getAD_PInstance_ID()
+                            + m_pi.getPInstanceId()
             ); //	outside trx
         } catch (Exception e) {
             log.severe("lock() - " + e.getLocalizedMessage());
@@ -389,9 +389,9 @@ public abstract class SvrProcess implements ProcessCall {
             // save logging info even if context is lost
             if (noContext) Env.getCtx().put("#AD_Client_ID", m_pi.getClientId());
 
-            MPInstance mpi = new MPInstance(getCtx(), m_pi.getAD_PInstance_ID(), null);
+            MPInstance mpi = new MPInstance(getCtx(), m_pi.getPInstanceId(), null);
             if (mpi.getId() == 0) {
-                log.log(Level.SEVERE, "Did not find PInstance " + m_pi.getAD_PInstance_ID());
+                log.log(Level.SEVERE, "Did not find PInstance " + m_pi.getPInstanceId());
                 return;
             }
             mpi.setIsProcessing(false);

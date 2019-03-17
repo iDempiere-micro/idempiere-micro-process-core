@@ -107,9 +107,9 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      */
     public ProcessInfo(String Title, int AD_Process_ID, int Table_ID, int Record_ID) {
         setTitle(Title);
-        setAD_Process_ID(AD_Process_ID);
-        setTable_ID(Table_ID);
-        setRecord_ID(Record_ID);
+        setProcessId(AD_Process_ID);
+        setTableId(Table_ID);
+        setRecordId(Record_ID);
     } //  ProcessInfo
 
     /**
@@ -226,21 +226,21 @@ public class ProcessInfo implements Serializable, IProcessInfo {
             //
             IProcessInfoLog log = m_logs.get(i);
             /**
-             * if (log.getP_ID() != 0) sb.append(html ? "<td>" : "") .append(log.getP_ID()) .append(html ?
+             * if (log.getPId() != 0) sb.append(html ? "<td>" : "") .append(log.getPId()) .append(html ?
              * "</td>" : " \t"); *
              */
             //
-            if (log.getP_Date() != null)
+            if (log.getPDate() != null)
                 sb.append(html ? "<td>" : "")
-                        .append(dateFormat.format(log.getP_Date()))
+                        .append(dateFormat.format(log.getPDate()))
                         .append(html ? "</td>" : " \t");
             //
-            if (log.getP_Number() != null)
-                sb.append(html ? "<td>" : "").append(log.getP_Number()).append(html ? "</td>" : " \t");
+            if (log.getPNumber() != null)
+                sb.append(html ? "<td>" : "").append(log.getPNumber()).append(html ? "</td>" : " \t");
             //
-            if (log.getP_Msg() != null)
+            if (log.getPMsg() != null)
                 sb.append(html ? "<td>" : "")
-                        .append(Msg.parseTranslation(Env.getCtx(), log.getP_Msg()))
+                        .append(Msg.parseTranslation(Env.getCtx(), log.getPMsg()))
                         .append(html ? "</td>" : "");
             //
             if (html) sb.append("</tr>");
@@ -263,7 +263,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      *
      * @return int
      */
-    public int getAD_PInstance_ID() {
+    public int getPInstanceId() {
         return m_AD_PInstance_ID;
     }
 
@@ -272,7 +272,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      *
      * @param AD_PInstance_ID int
      */
-    public void setAD_PInstance_ID(int AD_PInstance_ID) {
+    public void setAD_PInstanceId(int AD_PInstance_ID) {
         m_AD_PInstance_ID = AD_PInstance_ID;
     }
 
@@ -281,7 +281,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      *
      * @return int
      */
-    public int getAD_Process_ID() {
+    public int getProcessId() {
         return m_AD_Process_ID;
     }
 
@@ -290,7 +290,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      *
      * @param AD_Process_ID int
      */
-    public void setAD_Process_ID(int AD_Process_ID) {
+    public void setProcessId(int AD_Process_ID) {
         m_AD_Process_ID = AD_Process_ID;
     }
 
@@ -326,7 +326,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      *
      * @return int
      */
-    public int getTable_ID() {
+    public int getPInfoTableId() {
         return m_Table_ID;
     }
 
@@ -335,7 +335,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      *
      * @param AD_Table_ID int
      */
-    public void setTable_ID(int AD_Table_ID) {
+    public void setTableId(int AD_Table_ID) {
         m_Table_ID = AD_Table_ID;
     }
 
@@ -344,7 +344,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      *
      * @return int
      */
-    public int getRecord_ID() {
+    public int getRecordId() {
         return m_Record_ID;
     }
 
@@ -353,7 +353,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      *
      * @param Record_ID int
      */
-    public void setRecord_ID(int Record_ID) {
+    public void setRecordId(int Record_ID) {
         m_Record_ID = Record_ID;
     }
 
