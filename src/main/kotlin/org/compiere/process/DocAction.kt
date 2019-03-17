@@ -45,7 +45,7 @@ interface DocAction<T> : IBasePO {
      * Get Document Owner
      * @return AD_User_ID
      */
-    val doc_UserId: Int
+    val documentUserId: Int
 
     /**
      * Get Document Currency
