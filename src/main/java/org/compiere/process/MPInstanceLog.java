@@ -35,7 +35,7 @@ public class MPInstanceLog {
             int P_ID,
             BigDecimal P_Number,
             String P_Msg) {
-        setAD_PInstanceId(AD_PInstance_ID);
+        setProcessInstanceId(AD_PInstance_ID);
         setLogId(Log_ID);
         setP_Date(P_Date);
         setPId(P_ID);
@@ -50,7 +50,7 @@ public class MPInstanceLog {
      * @throws SQLException
      */
     public MPInstanceLog(ResultSet rs) throws SQLException {
-        setAD_PInstanceId(rs.getInt("AD_PInstance_ID"));
+        setProcessInstanceId(rs.getInt("AD_PInstance_ID"));
         setLogId(rs.getInt("Log_ID"));
         setP_Date(rs.getTimestamp("P_Date"));
         setPId(rs.getInt("P_ID"));
@@ -79,7 +79,7 @@ public class MPInstanceLog {
      *
      * @param AD_PInstance_ID instance id
      */
-    public void setAD_PInstanceId(int AD_PInstance_ID) {
+    public void setProcessInstanceId(int AD_PInstance_ID) {
     }
 
     /**

@@ -259,7 +259,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     } //	getLogInfo
 
     /**
-     * Method getAD_PInstance_ID
+     * Method getProcessInstance_ID
      *
      * @return int
      */
@@ -272,7 +272,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      *
      * @param AD_PInstance_ID int
      */
-    public void setAD_PInstanceId(int AD_PInstance_ID) {
+    public void setProcessInstanceId(int AD_PInstance_ID) {
         m_AD_PInstance_ID = AD_PInstance_ID;
     }
 

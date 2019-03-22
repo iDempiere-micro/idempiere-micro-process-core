@@ -228,9 +228,9 @@ public abstract class SvrProcess implements ProcessCall {
      *
      * @return Process Instance
      */
-    protected int getAD_PInstanceId() {
+    protected int getProcessInstanceId() {
         return m_pi.getPInstanceId();
-    } //  getAD_PInstance_ID
+    } //  getProcessInstance_ID
 
     /**
      * Get Table_ID

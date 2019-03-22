@@ -32,7 +32,7 @@ public class ProcessInfoUtil {
      * @param pi process info
      */
     public static void setLogFromDB(ProcessInfo pi) {
-        //	s_log.fine("setLogFromDB - AD_PInstance_ID=" + pi.getAD_PInstanceId());
+        //	s_log.fine("setLogFromDB - AD_PInstance_ID=" + pi.getProcessInstanceId());
         String sql =
                 "SELECT Log_ID, P_ID, P_Date, P_Number, P_Msg, AD_Table_ID,Record_ID "
                         + "FROM AD_PInstance_Log "
