@@ -3,8 +3,6 @@ package org.compiere.process;
 import kotliquery.Row;
 import org.compiere.orm.MRole;
 
-import java.util.Properties;
-
 /**
  * Process Access Model
  *
@@ -23,10 +21,9 @@ public class MProcessAccess extends X_AD_Process_Access {
      *
      * @param ctx     context
      * @param ignored ignored
-     * @param trxName transaction
      */
-    public MProcessAccess(Properties ctx, int ignored) {
-        super(ctx, 0);
+    public MProcessAccess(int ignored) {
+        super(0);
         if (ignored != 0) throw new IllegalArgumentException("Multi-Key");
         else {
             //	setAD_Process_ID (0);
@@ -38,12 +35,10 @@ public class MProcessAccess extends X_AD_Process_Access {
     /**
      * Load Constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MProcessAccess(Properties ctx, Row row) {
-        super(ctx, row);
+    public MProcessAccess(Row row) {
+        super(row);
     } //	MProcessAccess
 
     /**
@@ -53,8 +48,8 @@ public class MProcessAccess extends X_AD_Process_Access {
      * @param AD_Role_ID role id
      */
     public MProcessAccess(MProcess parent, int AD_Role_ID) {
-        super(parent.getCtx(), 0);
-        MRole role = MRole.get(parent.getCtx(), AD_Role_ID);
+        super(0);
+        MRole role = MRole.get(AD_Role_ID);
         setClientOrg(role);
         setProcessId(parent.getProcessId());
         setRoleId(AD_Role_ID);

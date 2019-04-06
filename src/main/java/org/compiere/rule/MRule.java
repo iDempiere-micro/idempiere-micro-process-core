@@ -11,7 +11,6 @@ import org.idempiere.common.util.Util;
 import javax.script.ScriptEngine;
 import java.util.Enumeration;
 import java.util.Iterator;
-import java.util.Properties;
 
 /**
  * Persistent Rule Model
@@ -55,8 +54,8 @@ public class MRule extends X_AD_Rule {
      * @param AD_Rule_ID id
      * @param trxName    transaction
      */
-    public MRule(Properties ctx, int AD_Rule_ID) {
-        super(ctx, AD_Rule_ID);
+    public MRule(int AD_Rule_ID) {
+        super(AD_Rule_ID);
     } //	MRule
 
     /**
@@ -66,8 +65,8 @@ public class MRule extends X_AD_Rule {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MRule(Properties ctx, Row row) {
-        super(ctx, row);
+    public MRule(Row row) {
+        super(row);
     } //	MRule
 
     /**
@@ -77,11 +76,11 @@ public class MRule extends X_AD_Rule {
      * @param AD_Rule_ID id
      * @return MRule
      */
-    public static MRule get(Properties ctx, int AD_Rule_ID) {
+    public static MRule get(int AD_Rule_ID) {
         Integer key = AD_Rule_ID;
         MRule retValue = s_cache.get(key);
         if (retValue != null) return retValue;
-        retValue = new MRule(ctx, AD_Rule_ID);
+        retValue = new MRule(AD_Rule_ID);
         if (retValue.getId() != 0) s_cache.put(key, retValue);
         return retValue;
     } //	get
@@ -93,7 +92,7 @@ public class MRule extends X_AD_Rule {
      * @param ruleValue case sensitive rule Value
      * @return Rule
      */
-    public static MRule get(Properties ctx, String ruleValue) {
+    public static MRule get(String ruleValue) {
         if (ruleValue == null) return null;
         Iterator<MRule> it = s_cache.values().iterator();
         while (it.hasNext()) {
@@ -103,7 +102,7 @@ public class MRule extends X_AD_Rule {
         //
         final String whereClause = "Value=?";
         MRule retValue =
-                new Query(ctx, I_AD_Rule.Table_Name, whereClause)
+                new Query(I_AD_Rule.Table_Name, whereClause)
                         .setParameters(ruleValue)
                         .setOnlyActiveRecords(true)
                         .first();
@@ -123,9 +122,9 @@ public class MRule extends X_AD_Rule {
      * @param ctx      context
      * @param windowNo window number
      */
-    public static void setContext(ScriptEngine engine, Properties ctx, int windowNo) {
-        Enumeration<Object> en = ctx.keys();
-        while (en.hasMoreElements()) {
+    public static void setContext(ScriptEngine engine, int windowNo) {
+        Enumeration<Object> en = null;
+        while (en != null && en.hasMoreElements()) {
             String key = en.nextElement().toString();
             //  filter
             if (key == null
@@ -135,7 +134,7 @@ public class MRule extends X_AD_Rule {
                     && !key.startsWith(String.valueOf(windowNo))) //  other Window Settings
                     || (key.indexOf('|') != -1 && key.indexOf('|') != key.lastIndexOf('|')) // other tab
             ) continue;
-            Object value = ctx.get(key);
+            Object value = null;
             if (value != null) {
                 if (value instanceof Boolean)
                     engine.put(convertKey(key, windowNo), ((Boolean) value).booleanValue());
@@ -186,7 +185,7 @@ public class MRule extends X_AD_Rule {
                     || (!(engineName.equalsIgnoreCase("groovy")
                     || engineName.equalsIgnoreCase("jython")
                     || engineName.equalsIgnoreCase("beanshell")))) {
-                log.saveError("Error", Msg.getMsg(getCtx(), "WrongScriptValue"));
+                log.saveError("Error", Msg.getMsg("WrongScriptValue"));
                 return false;
             }
         }

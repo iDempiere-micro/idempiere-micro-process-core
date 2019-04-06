@@ -6,7 +6,6 @@ import org.compiere.orm.M_Element;
 import org.idempiere.common.util.CCache;
 import org.idempiere.orm.PO;
 
-import java.util.Properties;
 import java.util.logging.Level;
 
 import static software.hsharp.core.util.DBKt.executeUpdateEx;
@@ -26,25 +25,20 @@ public class MProcessPara extends X_AD_Process_Para {
      * Cache
      */
     private static CCache<Integer, MProcessPara> s_cache =
-            new CCache<Integer, MProcessPara>(I_AD_Process_Para.Table_Name, 20);
+            new CCache<>(I_AD_Process_Para.Table_Name, 20);
 
     /**
      * ************************************************************************ Constructor
      *
      * @param ctx                context
      * @param AD_Process_Para_ID id
-     * @param trxName            transaction
      */
-    public MProcessPara(Properties ctx, int AD_Process_Para_ID) {
-        super(ctx, AD_Process_Para_ID);
+    public MProcessPara(int AD_Process_Para_ID) {
+        super(AD_Process_Para_ID);
         if (AD_Process_Para_ID == 0) {
-            //	setAD_Process_ID (0);	Parent
-            //	setName (null);
-            //	setColumnName (null);
 
             setFieldLength(0);
             setSeqNo(0);
-            //	setAD_Reference_ID (0);
             setIsCentrallyMaintained(true);
             setIsRange(false);
             setIsMandatory(false);
@@ -55,12 +49,10 @@ public class MProcessPara extends X_AD_Process_Para {
     /**
      * Load Constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MProcessPara(Properties ctx, Row row) {
-        super(ctx, row);
+    public MProcessPara(Row row) {
+        super(row);
     } //	MProcessPara
 
     /**
@@ -70,7 +62,7 @@ public class MProcessPara extends X_AD_Process_Para {
      */
     public MProcessPara(MProcess parent) {
 
-        this(parent.getCtx(), 0);
+        this(0);
         setClientOrg(parent);
         setProcessId(parent.getProcessId());
         setEntityType(parent.getEntityType());
@@ -83,11 +75,11 @@ public class MProcessPara extends X_AD_Process_Para {
      * @param AD_Process_Para_ID id
      * @return MProcessPara
      */
-    public static MProcessPara get(Properties ctx, int AD_Process_Para_ID) {
+    public static MProcessPara get(int AD_Process_Para_ID) {
         Integer key = new Integer(AD_Process_Para_ID);
         MProcessPara retValue = s_cache.get(key);
         if (retValue != null) return retValue;
-        retValue = new MProcessPara(ctx, AD_Process_Para_ID);
+        retValue = new MProcessPara(AD_Process_Para_ID);
         if (retValue.getId() != 0) s_cache.put(key, retValue);
         return retValue;
     } //	get
@@ -170,7 +162,7 @@ public class MProcessPara extends X_AD_Process_Para {
         if ((newRecord || isValueChanged("AD_Element_ID"))
                 && getElementId() != 0
                 && isCentrallyMaintained()) {
-            M_Element element = new M_Element(getCtx(), getElementId());
+            M_Element element = new M_Element(getElementId());
             setColumnName(element.getColumnName());
             setName(element.getName());
             setDescription(element.getDescription());

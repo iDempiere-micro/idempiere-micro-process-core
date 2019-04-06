@@ -2,8 +2,6 @@ package org.compiere.process;
 
 import org.compiere.model.IProcessInfo;
 
-import java.util.Properties;
-
 /**
  * Interface for user started processes.
  *
@@ -25,7 +23,7 @@ public interface ProcessCall {
      * @param trx transaction
      * @return true if the next process should be performed
      */
-    boolean startProcess(Properties ctx, IProcessInfo pi);
+    boolean startProcess(IProcessInfo pi);
 
     /**
      * @param processMonitor

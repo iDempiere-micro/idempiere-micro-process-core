@@ -5,11 +5,9 @@ import org.compiere.model.IProcessInfoParameter;
 import org.compiere.rule.MRule;
 import org.compiere.util.Msg;
 import org.idempiere.common.util.CLogger;
-import org.idempiere.common.util.Env;
 
 import javax.script.ScriptEngine;
 import java.math.BigDecimal;
-import java.util.Properties;
 import java.util.logging.Level;
 
 /**
@@ -33,36 +31,32 @@ public final class ProcessUtil {
 
     @Deprecated
     public static boolean startJavaProcess(ProcessInfo pi) {
-        return startJavaProcess(Env.getCtx(), pi);
+        return startJavaProcess(pi);
     }
 
     /**
-     * @param ctx
      * @param pi
-     * @param trx
      * @return boolean
      */
-    public static boolean startJavaProcess(Properties ctx, IProcessInfo pi) {
-        return startJavaProcess(ctx, pi, true);
+    public static boolean startJavaProcess(IProcessInfo pi) {
+        return startJavaProcess(pi, true);
     }
 
     /**
-     * @param ctx
      * @param pi
-     * @param trx
      * @param managedTrx false if trx is managed by caller
      * @return boolean
      */
     public static boolean startJavaProcess(
-            Properties ctx, IProcessInfo pi, boolean managedTrx) {
-        return startJavaProcess(ctx, pi, managedTrx, null);
+            IProcessInfo pi, boolean managedTrx) {
+        return startJavaProcess(pi, managedTrx, null);
     }
 
     public static boolean startJavaProcess(
-            Properties ctx, IProcessInfo pi, boolean managedTrx, IProcessUI processMonitor) {
+            IProcessInfo pi, boolean managedTrx, IProcessUI processMonitor) {
         String className = pi.getClassName();
         if (className == null) {
-            MProcess proc = new MProcess(ctx, pi.getProcessId());
+            MProcess proc = new MProcess(pi.getProcessId());
             if (proc.getJasperReport() != null) className = JASPER_STARTER_CLASS;
         }
 
@@ -74,17 +68,15 @@ public final class ProcessUtil {
             return false;
         }
 
-        return startJavaProcess(ctx, pi, processMonitor, process);
+        return startJavaProcess(pi, processMonitor, process);
     }
 
     /**
-     * @param trx
-     * @param ctx
      * @param pi
      * @return boolean
      */
     public static boolean startJavaProcess(
-            Properties ctx,
+
             IProcessInfo pi,
             IProcessUI processMonitor,
             ProcessCall process) {
@@ -94,16 +86,15 @@ public final class ProcessUtil {
             return false;
         }
 
-        boolean success = false;
+        boolean success;
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
         try {
             Thread.currentThread().setContextClassLoader(process.getClass().getClassLoader());
             process.setProcessUI(processMonitor);
-            success = process.startProcess(ctx, pi);
+            success = process.startProcess(pi);
         } catch (Throwable e) {
-            pi.setSummary(Msg.getMsg(Env.getCtx(), "ProcessError") + " " + e.getLocalizedMessage(), true);
+            pi.setSummary(Msg.getMsg("ProcessError") + " " + e.getLocalizedMessage(), true);
             log.log(Level.SEVERE, pi.getClassName(), e);
-            success = false;
             return false;
         } finally {
             Thread.currentThread().setContextClassLoader(cl);
@@ -111,12 +102,13 @@ public final class ProcessUtil {
         return success;
     }
 
-    public static boolean startScriptProcess(Properties ctx, IProcessInfo pi) {
-        String msg = null;
+    public static boolean startScriptProcess(IProcessInfo pi) {
+
+        String msg;
         boolean success = true;
         try {
             String cmd = pi.getClassName();
-            MRule rule = MRule.get(ctx, cmd.substring(MRule.SCRIPT_PREFIX.length()));
+            MRule rule = MRule.get(cmd.substring(MRule.SCRIPT_PREFIX.length()));
             if (rule == null) {
                 log.log(Level.WARNING, cmd + " not found");
                 pi.setSummary("ScriptNotFound", true);
@@ -135,9 +127,8 @@ public final class ProcessUtil {
             // Login context  are    G_
             // Method arguments context are A_
             // Parameter context are P_
-            MRule.setContext(engine, ctx, 0); // no window
+            MRule.setContext(engine, 0); // no window
             // now add the method arguments to the engine
-            engine.put(MRule.ARGUMENTS_PREFIX + "Ctx", ctx);
             engine.put(MRule.ARGUMENTS_PREFIX + "Record_ID", pi.getRecordId());
             engine.put(MRule.ARGUMENTS_PREFIX + "AD_Client_ID", pi.getClientId());
             engine.put(MRule.ARGUMENTS_PREFIX + "AD_User_ID", pi.getUserId());
@@ -151,16 +142,16 @@ public final class ProcessUtil {
             }
             if (para != null) {
                 engine.put(MRule.ARGUMENTS_PREFIX + "Parameter", pi.getParameter());
-                for (int i = 0; i < para.length; i++) {
-                    String name = para[i].getParameterName();
-                    if (para[i].getParameterTo() == null) {
-                        Object value = para[i].getParameter();
+                for (IProcessInfoParameter iProcessInfoParameter : para) {
+                    String name = iProcessInfoParameter.getParameterName();
+                    if (iProcessInfoParameter.getParameterTo() == null) {
+                        Object value = iProcessInfoParameter.getParameter();
                         if (name.endsWith("_ID") && (value instanceof BigDecimal))
                             engine.put(MRule.PARAMETERS_PREFIX + name, ((BigDecimal) value).intValue());
                         else engine.put(MRule.PARAMETERS_PREFIX + name, value);
                     } else {
-                        Object value1 = para[i].getParameter();
-                        Object value2 = para[i].getParameterTo();
+                        Object value1 = iProcessInfoParameter.getParameter();
+                        Object value2 = iProcessInfoParameter.getParameterTo();
                         if (name.endsWith("_ID") && (value1 instanceof BigDecimal))
                             engine.put(MRule.PARAMETERS_PREFIX + name + "1", ((BigDecimal) value1).intValue());
                         else engine.put(MRule.PARAMETERS_PREFIX + name + "1", value1);
@@ -177,7 +168,7 @@ public final class ProcessUtil {
             if (msg != null && msg.startsWith("@Error@")) success = false;
 
             //	Parse Variables
-            msg = Msg.parseTranslation(ctx, msg);
+            msg = Msg.parseTranslation(msg);
             pi.setSummary(msg, !success);
 
         } catch (Exception e) {
@@ -185,8 +176,7 @@ public final class ProcessUtil {
             log.log(Level.SEVERE, pi.getClassName(), e);
             success = false;
         }
-        if (success) {
-        } else {
+        if (!success) {
             throw new Error("not success");
         }
         return success;

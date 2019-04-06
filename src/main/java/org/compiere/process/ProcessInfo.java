@@ -6,7 +6,6 @@ import org.compiere.model.IProcessInfoParameter;
 import org.compiere.orm.PO;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Msg;
-import org.idempiere.common.util.Env;
 import org.idempiere.common.util.Util;
 
 import java.io.File;
@@ -240,7 +239,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
             //
             if (log.getPMsg() != null)
                 sb.append(html ? "<td>" : "")
-                        .append(Msg.parseTranslation(Env.getCtx(), log.getPMsg()))
+                        .append(Msg.parseTranslation(log.getPMsg()))
                         .append(html ? "</td>" : "");
             //
             if (html) sb.append("</tr>");

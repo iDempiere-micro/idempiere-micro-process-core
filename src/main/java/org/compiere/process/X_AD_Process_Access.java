@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_AD_Process_Access;
 import org.compiere.orm.PO;
 
-import java.util.Properties;
-
 /**
  * Generated Model for AD_Process_Access
  *
@@ -22,8 +20,8 @@ public class X_AD_Process_Access extends PO implements I_AD_Process_Access {
     /**
      * Standard Constructor
      */
-    public X_AD_Process_Access(Properties ctx, int AD_Process_Access_ID) {
-        super(ctx, AD_Process_Access_ID);
+    public X_AD_Process_Access(int AD_Process_Access_ID) {
+        super(AD_Process_Access_ID);
         /**
          * if (AD_Process_Access_ID == 0) { setAD_Process_ID (0); setRoleId (0); setIsReadWrite
          * (false); }
@@ -33,8 +31,8 @@ public class X_AD_Process_Access extends PO implements I_AD_Process_Access {
     /**
      * Load Constructor
      */
-    public X_AD_Process_Access(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_AD_Process_Access(Row row) {
+        super(row);
     }
 
     /**

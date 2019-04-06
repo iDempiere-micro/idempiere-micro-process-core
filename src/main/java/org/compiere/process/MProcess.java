@@ -9,7 +9,6 @@ import org.idempiere.common.util.CCache;
 import org.idempiere.orm.PO;
 
 import java.util.List;
-import java.util.Properties;
 import java.util.logging.Level;
 
 /**
@@ -44,8 +43,8 @@ public class MProcess extends X_AD_Process {
      * @param AD_Process_ID process
      * @param trxName       transaction name
      */
-    public MProcess(Properties ctx, int AD_Process_ID) {
-        super(ctx, AD_Process_ID);
+    public MProcess(int AD_Process_ID) {
+        super(AD_Process_ID);
         if (AD_Process_ID == 0) {
             setIsReport(false);
             setIsServerProcess(false);
@@ -62,8 +61,8 @@ public class MProcess extends X_AD_Process {
      * @param rs      result set
      * @param trxName transaction name
      */
-    public MProcess(Properties ctx, Row row) {
-        super(ctx, row);
+    public MProcess(Row row) {
+        super(row);
     } //	MProcess
 
     /**
@@ -73,11 +72,11 @@ public class MProcess extends X_AD_Process {
      * @param AD_Process_ID id
      * @return MProcess
      */
-    public static MProcess get(Properties ctx, int AD_Process_ID) {
+    public static MProcess get(int AD_Process_ID) {
         Integer key = new Integer(AD_Process_ID);
         MProcess retValue = s_cache.get(key);
         if (retValue != null) return retValue;
-        retValue = new MProcess(ctx, AD_Process_ID);
+        retValue = new MProcess(AD_Process_ID);
         if (retValue.getId() != 0) s_cache.put(key, retValue);
         return retValue;
     } //	get
@@ -92,7 +91,7 @@ public class MProcess extends X_AD_Process {
         //
         final String whereClause = MProcessPara.COLUMNNAME_AD_Process_ID + "=?";
         List<MProcessPara> list =
-                new Query(getCtx(), I_AD_Process_Para.Table_Name, whereClause)
+                new Query(I_AD_Process_Para.Table_Name, whereClause)
                         .setParameters(getId())
                         .setOrderBy(MProcessPara.COLUMNNAME_SeqNo)
                         .list();
@@ -153,9 +152,7 @@ public class MProcess extends X_AD_Process {
      * class can be a Server/Client class (when in Package org adempiere.process or
      * org.compiere.model) or a client only class (e.g. in org.compiere.report)
      *
-     * @param Classname  name of the class to call
      * @param pi         process info
-     * @param trx        transaction
      * @param managedTrx false if trx is managed by caller
      * @return true if success see ProcessCtl.startClass
      */
@@ -163,9 +160,9 @@ public class MProcess extends X_AD_Process {
         if (log.isLoggable(Level.INFO)) log.info(pi.getClassName());
 
         if (pi.getClassName().toLowerCase().startsWith(SCRIPT_PREFIX)) {
-            return ProcessUtil.startScriptProcess(getCtx(), pi);
+            return ProcessUtil.startScriptProcess(pi);
         } else {
-            return ProcessUtil.startJavaProcess(getCtx(), pi, managedTrx);
+            return ProcessUtil.startJavaProcess(pi, managedTrx);
         }
     } //  startClass
 
@@ -191,7 +188,7 @@ public class MProcess extends X_AD_Process {
         if (!success) return success;
         if (newRecord) //	Add to all automatic roles
         {
-            List<MRole> roles = MRole.getOf(getCtx(), "IsManual='N'");
+            List<MRole> roles = MRole.getOf("IsManual='N'");
             for (MRole role : roles) {
                 MProcessAccess pa = new MProcessAccess(this, role.getRoleId());
                 pa.saveEx();

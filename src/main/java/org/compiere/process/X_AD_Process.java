@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_AD_Process;
 import org.compiere.orm.BasePONameValue;
 
-import java.util.Properties;
-
 /**
  * Generated Model for AD_Process
  *
@@ -26,8 +24,8 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
     /**
      * Standard Constructor
      */
-    public X_AD_Process(Properties ctx, int AD_Process_ID) {
-        super(ctx, AD_Process_ID);
+    public X_AD_Process(int AD_Process_ID) {
+        super(AD_Process_ID);
         /**
          * if (AD_Process_ID == 0) { setAccessLevel (null); setAD_Process_ID (0); setEntityType (null);
          * // @SQL=select get_sysconfig('DEFAULT_ENTITYTYPE','U',0,0) from dual setIsBetaFunctionality
@@ -38,8 +36,8 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
     /**
      * Load Constructor
      */
-    public X_AD_Process(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_AD_Process(Row row) {
+        super(row);
     }
 
     /**

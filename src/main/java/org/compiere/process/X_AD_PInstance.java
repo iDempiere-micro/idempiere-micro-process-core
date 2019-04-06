@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_AD_PInstance;
 import org.compiere.orm.BasePOName;
 
-import java.util.Properties;
-
 /**
  * Generated Model for AD_PInstance
  *
@@ -22,8 +20,8 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance {
     /**
      * Standard Constructor
      */
-    public X_AD_PInstance(Properties ctx, int AD_PInstance_ID) {
-        super(ctx, AD_PInstance_ID);
+    public X_AD_PInstance(int AD_PInstance_ID) {
+        super(AD_PInstance_ID);
         /**
          * if (AD_PInstance_ID == 0) { setAD_PInstance_ID (0); setAD_Process_ID (0); setIsProcessing
          * (false); setIsRunAsJob (false); // N setRecordId (0); }
@@ -33,8 +31,8 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance {
     /**
      * Load Constructor
      */
-    public X_AD_PInstance(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_AD_PInstance(Row row) {
+        super(row);
     }
 
     /**

@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.logging.Level;
 
 import static software.hsharp.core.util.DBKt.executeUpdate;
@@ -56,8 +55,8 @@ public class MPInstance extends X_AD_PInstance {
      * @param AD_PInstance_ID instance or 0
      * @param ignored         no transaction support
      */
-    public MPInstance(Properties ctx, int AD_PInstance_ID, String ignored) {
-        super(ctx, AD_PInstance_ID);
+    public MPInstance(int AD_PInstance_ID, String ignored) {
+        super(AD_PInstance_ID);
         //	New Process
         if (AD_PInstance_ID == 0) {
             //	setAD_Process_ID (0);	//	parent
@@ -72,8 +71,8 @@ public class MPInstance extends X_AD_PInstance {
      * @param ctx     context
      * @param ignored no transaction support
      */
-    public MPInstance(Properties ctx, Row row, String ignored) {
-        super(ctx, row);
+    public MPInstance(Row row, String ignored) {
+        super(row);
     } //	MPInstance
 
     /**
@@ -83,10 +82,10 @@ public class MPInstance extends X_AD_PInstance {
      * @param Record_ID Record
      */
     public MPInstance(MProcess process, int Record_ID) {
-        this(process.getCtx(), 0, null);
+        this(0, null);
         setProcessId(process.getProcessId());
         setRecordId(Record_ID);
-        setUserId(Env.getUserId(process.getCtx()));
+        setUserId(Env.getUserId());
         if (!save()) //	need to save for parameters
             throw new IllegalArgumentException("Cannot Save");
         //	Set Parameter Base Info
@@ -106,11 +105,11 @@ public class MPInstance extends X_AD_PInstance {
      * @param AD_Process_ID Process ID
      * @param Record_ID     record
      */
-    public MPInstance(Properties ctx, int AD_Process_ID, int Record_ID) {
-        this(ctx, 0, null);
+    public MPInstance(int AD_Process_ID, int Record_ID) {
+        this(0, null);
         setProcessId(AD_Process_ID);
         setRecordId(Record_ID);
-        setUserId(Env.getUserId(ctx));
+        setUserId(Env.getUserId());
         setIsProcessing(false);
     } //	MPInstance
 
@@ -125,7 +124,6 @@ public class MPInstance extends X_AD_PInstance {
         final String whereClause = "AD_PInstance_ID=?";
         List<MPInstancePara> list =
                 new Query(
-                        getCtx(),
                         I_AD_PInstance_Para.Table_Name,
                         whereClause
                 ) // @TODO: Review implications of using transaction
@@ -174,20 +172,19 @@ public class MPInstance extends X_AD_PInstance {
      * @param AD_Process_ID process
      */
     public void setProcessId(int AD_Process_ID) {
-        int AD_Role_ID = Env.getRoleId(getCtx());
+        int AD_Role_ID = Env.getRoleId();
         if (AD_Role_ID != 0) {
-            MRole role = MRole.get(getCtx(), AD_Role_ID);
+            MRole role = MRole.get(AD_Role_ID);
             Boolean access = role.getProcessAccess(AD_Process_ID);
             if (access == null || !access.booleanValue()) {
-                MProcess proc = MProcess.get(getCtx(), AD_Process_ID);
+                MProcess proc = MProcess.get(AD_Process_ID);
                 StringBuilder procMsg = new StringBuilder("[");
-                if (!Language.isBaseLanguage(Env.getADLanguage(getCtx()))) {
+                if (!Language.isBaseLanguage(Env.getADLanguage())) {
                     procMsg.append(proc.get_Translation("Name")).append(" / ");
                 }
                 procMsg.append(proc.getName()).append("]");
                 throw new IllegalStateException(
                         Msg.getMsg(
-                                getCtx(),
                                 "CannotAccessProcess",
                                 new Object[]{procMsg.toString(), role.getName()}));
             }
@@ -205,7 +202,7 @@ public class MPInstance extends X_AD_PInstance {
             if (log.isLoggable(Level.INFO)) log.info("Set to 0 from " + Record_ID);
             Record_ID = 0;
         }
-        setValueNoCheck("Record_ID", new Integer(Record_ID));
+        setValueNoCheck("Record_ID", Record_ID);
     } //	setRecordId
 
     /**
@@ -215,7 +212,7 @@ public class MPInstance extends X_AD_PInstance {
      * @see java.lang.Object#toString()
      */
     public String toString() {
-        StringBuffer sb = new StringBuffer("MPInstance[").append(getId()).append(",OK=").append(isOK());
+        StringBuilder sb = new StringBuilder("MPInstance[").append(getId()).append(",OK=").append(isOK());
         String msg = getErrorMsg();
         if (msg != null && msg.length() > 0) sb.append(msg);
         sb.append("]");

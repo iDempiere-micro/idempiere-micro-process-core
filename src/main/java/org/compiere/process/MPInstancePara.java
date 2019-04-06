@@ -3,7 +3,6 @@ package org.compiere.process;
 import kotliquery.Row;
 
 import java.math.BigDecimal;
-import java.util.Properties;
 
 /**
  * Process Instance Parameter Model
@@ -24,8 +23,8 @@ public class MPInstancePara extends X_AD_PInstance_Para {
      * @param ctx     context
      * @param ignored ignored
      */
-    public MPInstancePara(Properties ctx, int ignored) {
-        super(ctx, 0);
+    public MPInstancePara(int ignored) {
+        super(0);
         if (ignored != 0) throw new IllegalArgumentException("Multi-Key");
     } //	MPInstance_Para
 
@@ -36,8 +35,8 @@ public class MPInstancePara extends X_AD_PInstance_Para {
      * @param AD_PInstance_ID id
      * @param SeqNo           sequence
      */
-    public MPInstancePara(Properties ctx, int AD_PInstance_ID, int SeqNo) {
-        super(ctx, 0);
+    public MPInstancePara(int AD_PInstance_ID, int SeqNo) {
+        super(0);
         setPInstanceId(AD_PInstance_ID);
         setSeqNo(SeqNo);
     } //	MPInstance_Para
@@ -49,7 +48,7 @@ public class MPInstancePara extends X_AD_PInstance_Para {
      * @param SeqNo    sequence
      */
     public MPInstancePara(MPInstance instance, int SeqNo) {
-        super(instance.getCtx(), 0);
+        super(0);
         setPInstanceId(instance.getPInstanceId());
         setSeqNo(SeqNo);
     } //	MPInstance_Para
@@ -59,8 +58,8 @@ public class MPInstancePara extends X_AD_PInstance_Para {
      *
      * @param ctx context
      */
-    public MPInstancePara(Properties ctx, Row row) {
-        super(ctx, row);
+    public MPInstancePara(Row row) {
+        super(row);
     } //	MPInstance_Para
 
     /**
@@ -69,8 +68,8 @@ public class MPInstancePara extends X_AD_PInstance_Para {
      * @return info
      */
     public String toString() {
-        StringBuffer sb =
-                new StringBuffer("MPInstancePara[").append(getId()).append("-").append(getParameterName());
+        StringBuilder sb =
+                new StringBuilder("MPInstancePara[").append(getId()).append("-").append(getParameterName());
         if (getProcessString() != null) {
             sb.append("(s)=").append(getProcessString());
             if (getProcessStringTo() != null) sb.append(" - ").append(getProcessStringTo());

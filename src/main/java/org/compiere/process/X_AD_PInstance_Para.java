@@ -7,7 +7,6 @@ import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Properties;
 
 /**
  * Generated Model for AD_PInstance_Para
@@ -25,16 +24,16 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
     /**
      * Standard Constructor
      */
-    public X_AD_PInstance_Para(Properties ctx, int AD_PInstance_Para_ID) {
-        super(ctx, AD_PInstance_Para_ID);
+    public X_AD_PInstance_Para(int AD_PInstance_Para_ID) {
+        super(AD_PInstance_Para_ID);
         /** if (AD_PInstance_Para_ID == 0) { setAD_PInstance_ID (0); setSeqNo (0); } */
     }
 
     /**
      * Load Constructor
      */
-    public X_AD_PInstance_Para(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_AD_PInstance_Para(Row row) {
+        super(row);
     }
 
     /**

@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_AD_Process_Para;
 import org.compiere.orm.BasePOName;
 
-import java.util.Properties;
-
 /**
  * Generated Model for AD_Process_Para
  *
@@ -22,8 +20,8 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
     /**
      * Standard Constructor
      */
-    public X_AD_Process_Para(Properties ctx, int AD_Process_Para_ID) {
-        super(ctx, AD_Process_Para_ID);
+    public X_AD_Process_Para(int AD_Process_Para_ID) {
+        super(AD_Process_Para_ID);
         /**
          * if (AD_Process_Para_ID == 0) { setAD_Process_ID (0); setAD_Process_Para_ID (0);
          * setAD_Reference_ID (0); setColumnName (null); setEntityType (null); // @SQL=select
@@ -37,8 +35,8 @@ public class X_AD_Process_Para extends BasePOName implements I_AD_Process_Para {
     /**
      * Load Constructor
      */
-    public X_AD_Process_Para(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_AD_Process_Para(Row row) {
+        super(row);
     }
 
     /**

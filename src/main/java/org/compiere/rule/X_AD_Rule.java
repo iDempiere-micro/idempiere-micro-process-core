@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_AD_Rule;
 import org.compiere.orm.BasePONameValue;
 
-import java.util.Properties;
-
 /**
  * Generated Model for AD_Rule
  *
@@ -42,8 +40,8 @@ public class X_AD_Rule extends BasePONameValue implements I_AD_Rule {
     /**
      * Standard Constructor
      */
-    public X_AD_Rule(Properties ctx, int AD_Rule_ID) {
-        super(ctx, AD_Rule_ID);
+    public X_AD_Rule(int AD_Rule_ID) {
+        super(AD_Rule_ID);
         /**
          * if (AD_Rule_ID == 0) { setAD_Rule_ID (0); setEntityType (null); // @SQL=select
          * get_sysconfig('DEFAULT_ENTITYTYPE','U',0,0) from dual setEventType (null); setName (null);
@@ -54,8 +52,8 @@ public class X_AD_Rule extends BasePONameValue implements I_AD_Rule {
     /**
      * Load Constructor
      */
-    public X_AD_Rule(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_AD_Rule(Row row) {
+        super(row);
     }
 
     /**

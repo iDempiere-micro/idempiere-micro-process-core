@@ -79,14 +79,13 @@ public abstract class SvrProcess implements ProcessCall {
      * Start the process. Calls the abstract methods <code>process</code>. It should only return
      * false, if the function could not be performed as this causes the process to abort.
      *
-     * @param ctx Context
-     * @param pi  Process Info
+     * @param pi Process Info
      * @return true if the next process should be performed
      * @see org.compiere.process.ProcessCall#startProcess(Properties, ProcessInfo, Trx)
      */
-    public final boolean startProcess(Properties ctx, IProcessInfo pi) {
+    public final boolean startProcess(IProcessInfo pi) {
         //  Preparation
-        m_ctx = ctx == null ? Env.getCtx() : ctx;
+        m_ctx = Env.getCtx();
         m_pi = pi;
         // ***	Trx
         //
@@ -148,7 +147,7 @@ public abstract class SvrProcess implements ProcessCall {
         if (success) flushBufferLog();
 
         //	Parse Variables
-        msg = Msg.parseTranslation(m_ctx, msg);
+        msg = Msg.parseTranslation(msg);
         m_pi.setSummary(msg, !success);
 
         return success;
@@ -389,7 +388,7 @@ public abstract class SvrProcess implements ProcessCall {
             // save logging info even if context is lost
             if (noContext) Env.getCtx().put("#AD_Client_ID", m_pi.getClientId());
 
-            MPInstance mpi = new MPInstance(getCtx(), m_pi.getPInstanceId(), null);
+            MPInstance mpi = new MPInstance(m_pi.getPInstanceId(), null);
             if (mpi.getId() == 0) {
                 log.log(Level.SEVERE, "Did not find PInstance " + m_pi.getPInstanceId());
                 return;
