@@ -2,7 +2,7 @@ package org.compiere.process;
 
 import org.compiere.model.IProcessInfo;
 import org.compiere.model.IProcessInfoParameter;
-import org.compiere.util.Msg;
+import org.compiere.util.MsgKt;
 import org.idempiere.common.util.CLogger;
 import org.idempiere.common.util.Env;
 
@@ -147,7 +147,7 @@ public abstract class SvrProcess implements ProcessCall {
         if (success) flushBufferLog();
 
         //	Parse Variables
-        msg = Msg.parseTranslation(msg);
+        msg = MsgKt.parseTranslation(msg);
         m_pi.setSummary(msg, !success);
 
         return success;

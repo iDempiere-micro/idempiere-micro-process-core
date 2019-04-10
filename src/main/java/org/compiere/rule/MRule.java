@@ -3,7 +3,7 @@ package org.compiere.rule;
 import kotliquery.Row;
 import org.compiere.model.I_AD_Rule;
 import org.compiere.orm.Query;
-import org.compiere.util.Msg;
+import org.compiere.util.MsgKt;
 import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.CLogger;
 import org.idempiere.common.util.Util;
@@ -50,9 +50,7 @@ public class MRule extends X_AD_Rule {
     /**
      * ************************************************************************ Standard Constructor
      *
-     * @param ctx        context
      * @param AD_Rule_ID id
-     * @param trxName    transaction
      */
     public MRule(int AD_Rule_ID) {
         super(AD_Rule_ID);
@@ -60,10 +58,6 @@ public class MRule extends X_AD_Rule {
 
     /**
      * Load Constructor
-     *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
      */
     public MRule(Row row) {
         super(row);
@@ -72,7 +66,6 @@ public class MRule extends X_AD_Rule {
     /**
      * Get Rule from Cache
      *
-     * @param ctx        context
      * @param AD_Rule_ID id
      * @return MRule
      */
@@ -88,7 +81,6 @@ public class MRule extends X_AD_Rule {
     /**
      * Get Rule from Cache
      *
-     * @param ctx       context
      * @param ruleValue case sensitive rule Value
      * @return Rule
      */
@@ -119,31 +111,12 @@ public class MRule extends X_AD_Rule {
      * engine based on windowNo
      *
      * @param engine   ScriptEngine
-     * @param ctx      context
      * @param windowNo window number
      */
     public static void setContext(ScriptEngine engine, int windowNo) {
         Enumeration<Object> en = null;
-        while (en != null && en.hasMoreElements()) {
-            String key = en.nextElement().toString();
-            //  filter
-            if (key == null
-                    || key.length() == 0
-                    || key.startsWith("P") //  Preferences
-                    || (key.indexOf('|') != -1
-                    && !key.startsWith(String.valueOf(windowNo))) //  other Window Settings
-                    || (key.indexOf('|') != -1 && key.indexOf('|') != key.lastIndexOf('|')) // other tab
-            ) continue;
-            Object value = null;
-            if (value != null) {
-                if (value instanceof Boolean)
-                    engine.put(convertKey(key, windowNo), ((Boolean) value).booleanValue());
-                else if (value instanceof Integer)
-                    engine.put(convertKey(key, windowNo), ((Integer) value).intValue());
-                else if (value instanceof Double)
-                    engine.put(convertKey(key, windowNo), ((Double) value).doubleValue());
-                else engine.put(convertKey(key, windowNo), value);
-            }
+        if (en != null) {
+            en.hasMoreElements();
         }
     }
 
@@ -185,7 +158,7 @@ public class MRule extends X_AD_Rule {
                     || (!(engineName.equalsIgnoreCase("groovy")
                     || engineName.equalsIgnoreCase("jython")
                     || engineName.equalsIgnoreCase("beanshell")))) {
-                log.saveError("Error", Msg.getMsg("WrongScriptValue"));
+                log.saveError("Error", MsgKt.getMsg("WrongScriptValue"));
                 return false;
             }
         }

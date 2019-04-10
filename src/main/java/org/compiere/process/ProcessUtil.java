@@ -3,7 +3,7 @@ package org.compiere.process;
 import org.compiere.model.IProcessInfo;
 import org.compiere.model.IProcessInfoParameter;
 import org.compiere.rule.MRule;
-import org.compiere.util.Msg;
+import org.compiere.util.MsgKt;
 import org.idempiere.common.util.CLogger;
 
 import javax.script.ScriptEngine;
@@ -29,11 +29,6 @@ public final class ProcessUtil {
     private ProcessUtil() {
     }
 
-    @Deprecated
-    public static boolean startJavaProcess(ProcessInfo pi) {
-        return startJavaProcess(pi);
-    }
-
     /**
      * @param pi
      * @return boolean
@@ -49,11 +44,11 @@ public final class ProcessUtil {
      */
     public static boolean startJavaProcess(
             IProcessInfo pi, boolean managedTrx) {
-        return startJavaProcess(pi, managedTrx, null);
+        return startJavaProcess(pi, null);
     }
 
     public static boolean startJavaProcess(
-            IProcessInfo pi, boolean managedTrx, IProcessUI processMonitor) {
+            IProcessInfo pi, IProcessUI processMonitor) {
         String className = pi.getClassName();
         if (className == null) {
             MProcess proc = new MProcess(pi.getProcessId());
@@ -93,7 +88,7 @@ public final class ProcessUtil {
             process.setProcessUI(processMonitor);
             success = process.startProcess(pi);
         } catch (Throwable e) {
-            pi.setSummary(Msg.getMsg("ProcessError") + " " + e.getLocalizedMessage(), true);
+            pi.setSummary(MsgKt.getMsg("ProcessError") + " " + e.getLocalizedMessage(), true);
             log.log(Level.SEVERE, pi.getClassName(), e);
             return false;
         } finally {
@@ -127,7 +122,6 @@ public final class ProcessUtil {
             // Login context  are    G_
             // Method arguments context are A_
             // Parameter context are P_
-            MRule.setContext(engine, 0); // no window
             // now add the method arguments to the engine
             engine.put(MRule.ARGUMENTS_PREFIX + "Record_ID", pi.getRecordId());
             engine.put(MRule.ARGUMENTS_PREFIX + "AD_Client_ID", pi.getClientId());
@@ -168,7 +162,7 @@ public final class ProcessUtil {
             if (msg != null && msg.startsWith("@Error@")) success = false;
 
             //	Parse Variables
-            msg = Msg.parseTranslation(msg);
+            msg = MsgKt.parseTranslation(msg);
             pi.setSummary(msg, !success);
 
         } catch (Exception e) {

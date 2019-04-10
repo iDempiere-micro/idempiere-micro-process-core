@@ -4,7 +4,7 @@ import kotliquery.Row;
 import org.compiere.model.I_AD_PInstance_Para;
 import org.compiere.orm.MRole;
 import org.compiere.orm.Query;
-import org.compiere.util.Msg;
+import org.compiere.util.MsgKt;
 import org.idempiere.common.util.Env;
 import org.idempiere.common.util.Language;
 
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
+import static org.compiere.orm.MRoleKt.getRole;
 import static software.hsharp.core.util.DBKt.executeUpdate;
 import static software.hsharp.core.util.DBKt.prepareStatement;
 
@@ -46,12 +47,11 @@ public class MPInstance extends X_AD_PInstance {
     /**
      * Log Entries
      */
-    private ArrayList<MPInstanceLog> m_log = new ArrayList<MPInstanceLog>();
+    private ArrayList<MPInstanceLog> m_log = new ArrayList<>();
 
     /**
      * Standard Constructor
      *
-     * @param ctx             context
      * @param AD_PInstance_ID instance or 0
      * @param ignored         no transaction support
      */
@@ -59,8 +59,6 @@ public class MPInstance extends X_AD_PInstance {
         super(AD_PInstance_ID);
         //	New Process
         if (AD_PInstance_ID == 0) {
-            //	setAD_Process_ID (0);	//	parent
-            //	setRecordId (0);
             setIsProcessing(false);
         }
     } //	MPInstance
@@ -68,7 +66,6 @@ public class MPInstance extends X_AD_PInstance {
     /**
      * Load Constructor
      *
-     * @param ctx     context
      * @param ignored no transaction support
      */
     public MPInstance(Row row, String ignored) {
@@ -90,10 +87,10 @@ public class MPInstance extends X_AD_PInstance {
             throw new IllegalArgumentException("Cannot Save");
         //	Set Parameter Base Info
         MProcessPara[] para = process.getParameters();
-        for (int i = 0; i < para.length; i++) {
-            MPInstancePara pip = new MPInstancePara(this, para[i].getSeqNo());
-            pip.setParameterName(para[i].getColumnName());
-            pip.setInfo(para[i].getName());
+        for (MProcessPara mProcessPara : para) {
+            MPInstancePara pip = new MPInstancePara(this, mProcessPara.getSeqNo());
+            pip.setParameterName(mProcessPara.getColumnName());
+            pip.setInfo(mProcessPara.getName());
             pip.saveEx();
         }
     } //	MPInstance
@@ -101,7 +98,6 @@ public class MPInstance extends X_AD_PInstance {
     /**
      * New Constructor
      *
-     * @param ctx           context
      * @param AD_Process_ID Process ID
      * @param Record_ID     record
      */
@@ -146,8 +142,8 @@ public class MPInstance extends X_AD_PInstance {
         //	load it from DB
         m_log.clear();
         String sql = "SELECT * FROM AD_PInstance_Log WHERE AD_PInstance_ID=? ORDER BY Log_ID";
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
+        PreparedStatement pstmt;
+        ResultSet rs;
         try {
             pstmt = prepareStatement(sql);
             pstmt.setInt(1, getPInstanceId());
@@ -157,9 +153,6 @@ public class MPInstance extends X_AD_PInstance {
             }
         } catch (Exception e) {
             log.log(Level.SEVERE, sql, e);
-        } finally {
-            rs = null;
-            pstmt = null;
         }
         MPInstanceLog[] retValue = new MPInstanceLog[m_log.size()];
         m_log.toArray(retValue);
@@ -174,9 +167,9 @@ public class MPInstance extends X_AD_PInstance {
     public void setProcessId(int AD_Process_ID) {
         int AD_Role_ID = Env.getRoleId();
         if (AD_Role_ID != 0) {
-            MRole role = MRole.get(AD_Role_ID);
+            MRole role = getRole(AD_Role_ID);
             Boolean access = role.getProcessAccess(AD_Process_ID);
-            if (access == null || !access.booleanValue()) {
+            if (access == null || !access) {
                 MProcess proc = MProcess.get(AD_Process_ID);
                 StringBuilder procMsg = new StringBuilder("[");
                 if (!Language.isBaseLanguage(Env.getADLanguage())) {
@@ -184,7 +177,7 @@ public class MPInstance extends X_AD_PInstance {
                 }
                 procMsg.append(proc.getName()).append("]");
                 throw new IllegalStateException(
-                        Msg.getMsg(
+                        MsgKt.getMsg(
                                 "CannotAccessProcess",
                                 new Object[]{procMsg.toString(), role.getName()}));
             }

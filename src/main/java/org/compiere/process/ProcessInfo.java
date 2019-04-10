@@ -5,7 +5,7 @@ import org.compiere.model.IProcessInfoLog;
 import org.compiere.model.IProcessInfoParameter;
 import org.compiere.orm.PO;
 import org.compiere.util.DisplayType;
-import org.compiere.util.Msg;
+import org.compiere.util.MsgKt;
 import org.idempiere.common.util.Util;
 
 import java.io.File;
@@ -239,7 +239,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
             //
             if (log.getPMsg() != null)
                 sb.append(html ? "<td>" : "")
-                        .append(Msg.parseTranslation(log.getPMsg()))
+                        .append(MsgKt.parseTranslation(log.getPMsg()))
                         .append(html ? "</td>" : "");
             //
             if (html) sb.append("</tr>");
@@ -516,8 +516,6 @@ public class ProcessInfo implements Serializable, IProcessInfo {
 
     /**
      * Get PDF file generate to Jasper Report
-     *
-     * @param f
      */
     public File getPDFReport() {
         return m_pdf_report;

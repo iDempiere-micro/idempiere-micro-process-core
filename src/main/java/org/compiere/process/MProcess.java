@@ -11,6 +11,8 @@ import org.idempiere.orm.PO;
 import java.util.List;
 import java.util.logging.Level;
 
+import static org.compiere.orm.MRoleKt.getFilteredRoles;
+
 /**
  * Process Model
  *
@@ -30,7 +32,7 @@ public class MProcess extends X_AD_Process {
      * Cache
      */
     private static CCache<Integer, MProcess> s_cache =
-            new CCache<Integer, MProcess>(I_AD_Process.Table_Name, 20);
+            new CCache<>(I_AD_Process.Table_Name, 20);
     /**
      * Parameters
      */
@@ -39,9 +41,7 @@ public class MProcess extends X_AD_Process {
     /**
      * ************************************************************************ Standard Constructor
      *
-     * @param ctx           context
      * @param AD_Process_ID process
-     * @param trxName       transaction name
      */
     public MProcess(int AD_Process_ID) {
         super(AD_Process_ID);
@@ -56,10 +56,6 @@ public class MProcess extends X_AD_Process {
 
     /**
      * Load Constructor
-     *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction name
      */
     public MProcess(Row row) {
         super(row);
@@ -68,12 +64,11 @@ public class MProcess extends X_AD_Process {
     /**
      * Get MProcess from Cache
      *
-     * @param ctx           context
      * @param AD_Process_ID id
      * @return MProcess
      */
     public static MProcess get(int AD_Process_ID) {
-        Integer key = new Integer(AD_Process_ID);
+        Integer key = AD_Process_ID;
         MProcess retValue = s_cache.get(key);
         if (retValue != null) return retValue;
         retValue = new MProcess(AD_Process_ID);
@@ -107,16 +102,13 @@ public class MProcess extends X_AD_Process {
      * @return info
      */
     public String toString() {
-        StringBuffer sb =
-                new StringBuffer("MProcess[").append(getId()).append("-").append(getName()).append("]");
-        return sb.toString();
+        return "MProcess[" + getId() + "-" + getName() + "]";
     } //	toString
 
     /**
      * Process It (sync)
      *
-     * @param pi  Process Info
-     * @param trx transaction
+     * @param pi Process Info
      * @return true if OK
      */
     public boolean processIt(ProcessInfo pi, boolean managedTrx) {
@@ -188,7 +180,7 @@ public class MProcess extends X_AD_Process {
         if (!success) return success;
         if (newRecord) //	Add to all automatic roles
         {
-            List<MRole> roles = MRole.getOf("IsManual='N'");
+            List<MRole> roles = getFilteredRoles("IsManual='N'");
             for (MRole role : roles) {
                 MProcessAccess pa = new MProcessAccess(this, role.getRoleId());
                 pa.saveEx();
@@ -236,8 +228,7 @@ public class MProcess extends X_AD_Process {
     /**
      * Process It without closing the given transaction - used from workflow engine.
      *
-     * @param pi  Process Info
-     * @param trx transaction
+     * @param pi Process Info
      * @return true if OK
      */
     public boolean processItWithoutTrxClose(ProcessInfo pi) {
