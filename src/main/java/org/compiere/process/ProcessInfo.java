@@ -7,6 +7,7 @@ import org.compiere.orm.PO;
 import org.compiere.util.DisplayType;
 import org.compiere.util.MsgKt;
 import org.idempiere.common.util.Util;
+import org.idempiere.icommon.model.IPO;
 
 import java.io.File;
 import java.io.Serializable;
@@ -94,7 +95,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      * Export File
      */
     private File m_exportFile = null;
-    private transient PO m_po = null;
+    private transient IPO m_po = null;
 
     /**
      * Constructor
@@ -375,7 +376,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
     } //	setTitle
 
     /**
-     * Method setADClientID
+     * Method setClientId
      *
      * @param AD_Client_ID int
      */
@@ -539,11 +540,11 @@ public class ProcessInfo implements Serializable, IProcessInfo {
         return m_exportFile;
     }
 
-    public PO getPO() {
+    public IPO getPO() {
         return m_po;
     }
 
-    public void setPO(PO po) {
+    public void setPO(IPO po) {
         m_po = po;
     }
 

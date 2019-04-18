@@ -37,8 +37,8 @@ public class MRule extends X_AD_Rule {
     /**
      * Cache
      */
-    private static CCache<Integer, MRule> s_cache =
-            new CCache<Integer, MRule>(I_AD_Rule.Table_Name, 20);
+    private static CCache<Integer, I_AD_Rule> s_cache =
+            new CCache<>(I_AD_Rule.Table_Name, 20);
     /**
      * Static Logger
      */
@@ -69,9 +69,9 @@ public class MRule extends X_AD_Rule {
      * @param AD_Rule_ID id
      * @return MRule
      */
-    public static MRule get(int AD_Rule_ID) {
+    public static I_AD_Rule get(int AD_Rule_ID) {
         Integer key = AD_Rule_ID;
-        MRule retValue = s_cache.get(key);
+        I_AD_Rule retValue = s_cache.get(key);
         if (retValue != null) return retValue;
         retValue = new MRule(AD_Rule_ID);
         if (retValue.getId() != 0) s_cache.put(key, retValue);
@@ -84,41 +84,25 @@ public class MRule extends X_AD_Rule {
      * @param ruleValue case sensitive rule Value
      * @return Rule
      */
-    public static MRule get(String ruleValue) {
+    public static I_AD_Rule get(String ruleValue) {
         if (ruleValue == null) return null;
-        Iterator<MRule> it = s_cache.values().iterator();
-        while (it.hasNext()) {
-            MRule retValue = it.next();
+        for (I_AD_Rule retValue : s_cache.values()) {
             if (ruleValue.equals(retValue.getSearchKey())) return retValue;
         }
         //
         final String whereClause = "Value=?";
-        MRule retValue =
-                new Query(I_AD_Rule.Table_Name, whereClause)
+        I_AD_Rule retValue =
+                new Query<I_AD_Rule>(I_AD_Rule.Table_Name, whereClause)
                         .setParameters(ruleValue)
                         .setOnlyActiveRecords(true)
                         .first();
 
         if (retValue != null) {
-            Integer key = new Integer(retValue.getRuleId());
+            Integer key = retValue.getRuleId();
             s_cache.put(key, retValue);
         }
         return retValue;
     } //	get
-
-    /**
-     * ************************************************************************ Set Context ctx to the
-     * engine based on windowNo
-     *
-     * @param engine   ScriptEngine
-     * @param windowNo window number
-     */
-    public static void setContext(ScriptEngine engine, int windowNo) {
-        Enumeration<Object> en = null;
-        if (en != null) {
-            en.hasMoreElements();
-        }
-    }
 
     /**
      * Convert Key # -> _

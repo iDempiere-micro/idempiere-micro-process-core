@@ -46,7 +46,6 @@ public abstract class SvrProcess implements ProcessCall {
     protected CLogger log = CLogger.getCLogger(getClass());
     protected IProcessUI processUI;
     private List<ProcessInfoLog> listEntryLog;
-    private Properties m_ctx;
     private IProcessInfo m_pi;
 
     /**
@@ -85,7 +84,6 @@ public abstract class SvrProcess implements ProcessCall {
      */
     public final boolean startProcess(IProcessInfo pi) {
         //  Preparation
-        m_ctx = Env.getCtx();
         m_pi = pi;
         // ***	Trx
         //
@@ -98,13 +96,8 @@ public abstract class SvrProcess implements ProcessCall {
             lock();
 
             try {
-                m_ctx.put(PROCESS_INFO_CTX_KEY, m_pi);
-                if (processUI != null) m_ctx.put(PROCESS_UI_CTX_KEY, processUI);
                 process();
             } finally {
-                m_ctx.remove(PROCESS_INFO_CTX_KEY);
-                m_ctx.remove(PROCESS_UI_CTX_KEY);
-
                 unlock();
 
                 // outside transaction processing [ teo_sarca, 1646891 ]
@@ -203,15 +196,6 @@ public abstract class SvrProcess implements ProcessCall {
     public IProcessInfo getProcessInfo() {
         return m_pi;
     } //  getProcessInfo
-
-    /**
-     * Get Properties
-     *
-     * @return Properties
-     */
-    public Properties getCtx() {
-        return m_ctx;
-    } //  getCtx
 
     /**
      * Get Name/Title

@@ -10,7 +10,7 @@ import org.compiere.orm.BasePONameValue;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_AD_Rule extends BasePONameValue implements I_AD_Rule {
+public abstract class X_AD_Rule extends BasePONameValue implements I_AD_Rule {
 
     /**
      * Process = P
@@ -42,11 +42,6 @@ public class X_AD_Rule extends BasePONameValue implements I_AD_Rule {
      */
     public X_AD_Rule(int AD_Rule_ID) {
         super(AD_Rule_ID);
-        /**
-         * if (AD_Rule_ID == 0) { setAD_Rule_ID (0); setEntityType (null); // @SQL=select
-         * get_sysconfig('DEFAULT_ENTITYTYPE','U',0,0) from dual setEventType (null); setName (null);
-         * setRuleType (null); setValue (null); }
-         */
     }
 
     /**
