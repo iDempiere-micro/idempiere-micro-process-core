@@ -1,7 +1,7 @@
 package org.compiere.process;
 
 import kotliquery.Row;
-import org.compiere.model.I_AD_PInstance_Para;
+import org.compiere.model.ProcessInstanceParameter;
 import org.compiere.orm.MRole;
 import org.compiere.orm.Query;
 import org.compiere.util.MsgKt;
@@ -120,7 +120,7 @@ public class MPInstance extends X_AD_PInstance {
         final String whereClause = "AD_PInstance_ID=?";
         List<MPInstancePara> list =
                 new Query(
-                        I_AD_PInstance_Para.Table_Name,
+                        ProcessInstanceParameter.Table_Name,
                         whereClause
                 ) // @TODO: Review implications of using transaction
                         .setParameters(getPInstanceId())

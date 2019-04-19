@@ -1,7 +1,7 @@
 package org.compiere.process;
 
 import kotliquery.Row;
-import org.compiere.model.I_AD_PInstance;
+import org.compiere.model.ProcessInstance;
 import org.compiere.orm.BasePOName;
 
 /**
@@ -10,7 +10,7 @@ import org.compiere.orm.BasePOName;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_AD_PInstance extends BasePOName implements I_AD_PInstance {
+public class X_AD_PInstance extends BasePOName implements ProcessInstance {
 
     /**
      *
@@ -164,6 +164,6 @@ public class X_AD_PInstance extends BasePOName implements I_AD_PInstance {
 
     @Override
     public int getTableId() {
-        return I_AD_PInstance.Table_ID;
+        return ProcessInstance.Table_ID;
     }
 }

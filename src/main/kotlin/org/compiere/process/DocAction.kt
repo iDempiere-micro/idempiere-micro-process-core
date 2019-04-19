@@ -2,10 +2,10 @@ package org.compiere.process
 
 import org.compiere.util.SystemIDs
 import org.idempiere.common.exceptions.AdempiereException
-import org.idempiere.icommon.model.IBasePO
+import org.idempiere.icommon.model.BasePersistentObject
 import java.math.BigDecimal
 
-interface DocAction<T> : IBasePO {
+interface DocAction<T> : BasePersistentObject {
 
     /**
      * Get Doc Status

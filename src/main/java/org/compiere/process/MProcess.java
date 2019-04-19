@@ -1,8 +1,8 @@
 package org.compiere.process;
 
 import kotliquery.Row;
-import org.compiere.model.I_AD_Process;
-import org.compiere.model.I_AD_Process_Para;
+import org.compiere.model.Process;
+import org.compiere.model.ProcessParameter;
 import org.compiere.orm.MRole;
 import org.compiere.orm.Query;
 import org.idempiere.common.util.CCache;
@@ -32,7 +32,7 @@ public class MProcess extends X_AD_Process {
      * Cache
      */
     private static CCache<Integer, MProcess> s_cache =
-            new CCache<>(I_AD_Process.Table_Name, 20);
+            new CCache<>(Process.Table_Name, 20);
     /**
      * Parameters
      */
@@ -86,7 +86,7 @@ public class MProcess extends X_AD_Process {
         //
         final String whereClause = MProcessPara.COLUMNNAME_AD_Process_ID + "=?";
         List<MProcessPara> list =
-                new Query(I_AD_Process_Para.Table_Name, whereClause)
+                new Query(ProcessParameter.Table_Name, whereClause)
                         .setParameters(getId())
                         .setOrderBy(MProcessPara.COLUMNNAME_SeqNo)
                         .list();

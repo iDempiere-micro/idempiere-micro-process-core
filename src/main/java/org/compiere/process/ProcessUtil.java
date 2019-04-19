@@ -2,7 +2,7 @@ package org.compiere.process;
 
 import org.compiere.model.IProcessInfo;
 import org.compiere.model.IProcessInfoParameter;
-import org.compiere.model.I_AD_Rule;
+import org.compiere.model.Rule;
 import org.compiere.rule.MRule;
 import org.compiere.util.MsgKt;
 import org.idempiere.common.util.CLogger;
@@ -104,7 +104,7 @@ public final class ProcessUtil {
         boolean success = true;
         try {
             String cmd = pi.getClassName();
-            I_AD_Rule rule = MRule.get(cmd.substring(MRule.SCRIPT_PREFIX.length()));
+            Rule rule = MRule.get(cmd.substring(MRule.SCRIPT_PREFIX.length()));
             if (rule == null) {
                 log.log(Level.WARNING, cmd + " not found");
                 pi.setSummary("ScriptNotFound", true);

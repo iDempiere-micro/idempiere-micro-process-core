@@ -3,11 +3,10 @@ package org.compiere.process;
 import org.compiere.model.IProcessInfo;
 import org.compiere.model.IProcessInfoLog;
 import org.compiere.model.IProcessInfoParameter;
-import org.compiere.orm.PO;
 import org.compiere.util.DisplayType;
 import org.compiere.util.MsgKt;
 import org.idempiere.common.util.Util;
-import org.idempiere.icommon.model.IPO;
+import org.idempiere.icommon.model.PersistentObject;
 
 import java.io.File;
 import java.io.Serializable;
@@ -95,7 +94,7 @@ public class ProcessInfo implements Serializable, IProcessInfo {
      * Export File
      */
     private File m_exportFile = null;
-    private transient IPO m_po = null;
+    private transient PersistentObject m_po = null;
 
     /**
      * Constructor
@@ -540,11 +539,11 @@ public class ProcessInfo implements Serializable, IProcessInfo {
         return m_exportFile;
     }
 
-    public IPO getPO() {
+    public PersistentObject getPO() {
         return m_po;
     }
 
-    public void setPO(IPO po) {
+    public void setPO(PersistentObject po) {
         m_po = po;
     }
 

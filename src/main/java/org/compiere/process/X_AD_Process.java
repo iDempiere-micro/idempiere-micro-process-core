@@ -1,7 +1,7 @@
 package org.compiere.process;
 
 import kotliquery.Row;
-import org.compiere.model.I_AD_Process;
+import org.compiere.model.Process;
 import org.compiere.orm.BasePONameValue;
 
 /**
@@ -10,7 +10,7 @@ import org.compiere.orm.BasePONameValue;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_AD_Process extends BasePONameValue implements I_AD_Process {
+public class X_AD_Process extends BasePONameValue implements Process {
 
     /**
      * All = 7
@@ -430,6 +430,6 @@ public class X_AD_Process extends BasePONameValue implements I_AD_Process {
 
     @Override
     public int getTableId() {
-        return I_AD_Process.Table_ID;
+        return Process.Table_ID;
     }
 }

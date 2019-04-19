@@ -1,7 +1,7 @@
 package org.compiere.process;
 
 import kotliquery.Row;
-import org.compiere.model.I_AD_PInstance_Para;
+import org.compiere.model.ProcessInstanceParameter;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 
@@ -14,7 +14,7 @@ import java.sql.Timestamp;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
+public class X_AD_PInstance_Para extends PO implements ProcessInstanceParameter {
 
     /**
      *
@@ -221,6 +221,6 @@ public class X_AD_PInstance_Para extends PO implements I_AD_PInstance_Para {
 
     @Override
     public int getTableId() {
-        return I_AD_PInstance_Para.Table_ID;
+        return ProcessInstanceParameter.Table_ID;
     }
 }

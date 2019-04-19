@@ -1,7 +1,7 @@
 package org.compiere.process;
 
 import kotliquery.Row;
-import org.compiere.model.I_AD_Process_Access;
+import org.compiere.model.ProcessAccess;
 import org.compiere.orm.PO;
 
 /**
@@ -10,7 +10,7 @@ import org.compiere.orm.PO;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_AD_Process_Access extends PO implements I_AD_Process_Access {
+public class X_AD_Process_Access extends PO implements ProcessAccess {
 
     /**
      *
@@ -80,6 +80,6 @@ public class X_AD_Process_Access extends PO implements I_AD_Process_Access {
 
     @Override
     public int getTableId() {
-        return I_AD_Process_Access.Table_ID;
+        return ProcessAccess.Table_ID;
     }
 }

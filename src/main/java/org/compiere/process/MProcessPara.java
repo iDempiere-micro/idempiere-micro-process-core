@@ -1,7 +1,7 @@
 package org.compiere.process;
 
 import kotliquery.Row;
-import org.compiere.model.I_AD_Process_Para;
+import org.compiere.model.ProcessParameter;
 import org.compiere.orm.M_Element;
 import org.idempiere.common.util.CCache;
 import org.idempiere.orm.PO;
@@ -25,7 +25,7 @@ public class MProcessPara extends X_AD_Process_Para {
      * Cache
      */
     private static CCache<Integer, MProcessPara> s_cache =
-            new CCache<>(I_AD_Process_Para.Table_Name, 20);
+            new CCache<>(ProcessParameter.Table_Name, 20);
 
     /**
      * ************************************************************************ Constructor

@@ -1,7 +1,7 @@
 package org.compiere.rule;
 
 import kotliquery.Row;
-import org.compiere.model.I_AD_Rule;
+import org.compiere.model.Rule;
 import org.compiere.orm.BasePONameValue;
 
 /**
@@ -10,7 +10,7 @@ import org.compiere.orm.BasePONameValue;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public abstract class X_AD_Rule extends BasePONameValue implements I_AD_Rule {
+public abstract class X_AD_Rule extends BasePONameValue implements Rule {
 
     /**
      * Process = P
@@ -57,7 +57,7 @@ public abstract class X_AD_Rule extends BasePONameValue implements I_AD_Rule {
      * @return 4 - System
      */
     protected int getAccessLevel() {
-        return I_AD_Rule.accessLevel.intValue();
+        return Rule.accessLevel.intValue();
     }
 
     public String toString() {
@@ -71,7 +71,7 @@ public abstract class X_AD_Rule extends BasePONameValue implements I_AD_Rule {
      * @return Rule
      */
     public int getRuleId() {
-        Integer ii = (Integer) getValue(I_AD_Rule.COLUMNNAME_AD_Rule_ID);
+        Integer ii = (Integer) getValue(Rule.COLUMNNAME_AD_Rule_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -82,7 +82,7 @@ public abstract class X_AD_Rule extends BasePONameValue implements I_AD_Rule {
      * @return Type of Event
      */
     public String getEventType() {
-        return (String) getValue(I_AD_Rule.COLUMNNAME_EventType);
+        return (String) getValue(Rule.COLUMNNAME_EventType);
     }
 
     /**
@@ -91,7 +91,7 @@ public abstract class X_AD_Rule extends BasePONameValue implements I_AD_Rule {
      * @return Rule Type
      */
     public String getRuleType() {
-        return (String) getValue(I_AD_Rule.COLUMNNAME_RuleType);
+        return (String) getValue(Rule.COLUMNNAME_RuleType);
     }
 
     /**
@@ -100,11 +100,11 @@ public abstract class X_AD_Rule extends BasePONameValue implements I_AD_Rule {
      * @return Dynamic Java Language Script to calculate result
      */
     public String getScript() {
-        return (String) getValue(I_AD_Rule.COLUMNNAME_Script);
+        return (String) getValue(Rule.COLUMNNAME_Script);
     }
 
     @Override
     public int getTableId() {
-        return I_AD_Rule.Table_ID;
+        return Rule.Table_ID;
     }
 }

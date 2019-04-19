@@ -1,7 +1,7 @@
 package org.compiere.rule;
 
 import kotliquery.Row;
-import org.compiere.model.I_AD_Rule;
+import org.compiere.model.Rule;
 import org.compiere.orm.Query;
 import org.compiere.util.MsgKt;
 import org.idempiere.common.util.CCache;
@@ -9,8 +9,6 @@ import org.idempiere.common.util.CLogger;
 import org.idempiere.common.util.Util;
 
 import javax.script.ScriptEngine;
-import java.util.Enumeration;
-import java.util.Iterator;
 
 /**
  * Persistent Rule Model
@@ -37,8 +35,8 @@ public class MRule extends X_AD_Rule {
     /**
      * Cache
      */
-    private static CCache<Integer, I_AD_Rule> s_cache =
-            new CCache<>(I_AD_Rule.Table_Name, 20);
+    private static CCache<Integer, Rule> s_cache =
+            new CCache<>(Rule.Table_Name, 20);
     /**
      * Static Logger
      */
@@ -69,9 +67,9 @@ public class MRule extends X_AD_Rule {
      * @param AD_Rule_ID id
      * @return MRule
      */
-    public static I_AD_Rule get(int AD_Rule_ID) {
+    public static Rule get(int AD_Rule_ID) {
         Integer key = AD_Rule_ID;
-        I_AD_Rule retValue = s_cache.get(key);
+        Rule retValue = s_cache.get(key);
         if (retValue != null) return retValue;
         retValue = new MRule(AD_Rule_ID);
         if (retValue.getId() != 0) s_cache.put(key, retValue);
@@ -84,15 +82,15 @@ public class MRule extends X_AD_Rule {
      * @param ruleValue case sensitive rule Value
      * @return Rule
      */
-    public static I_AD_Rule get(String ruleValue) {
+    public static Rule get(String ruleValue) {
         if (ruleValue == null) return null;
-        for (I_AD_Rule retValue : s_cache.values()) {
+        for (Rule retValue : s_cache.values()) {
             if (ruleValue.equals(retValue.getSearchKey())) return retValue;
         }
         //
         final String whereClause = "Value=?";
-        I_AD_Rule retValue =
-                new Query<I_AD_Rule>(I_AD_Rule.Table_Name, whereClause)
+        Rule retValue =
+                new Query<Rule>(Rule.Table_Name, whereClause)
                         .setParameters(ruleValue)
                         .setOnlyActiveRecords(true)
                         .first();
