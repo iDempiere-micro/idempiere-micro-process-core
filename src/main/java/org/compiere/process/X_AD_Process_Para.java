@@ -59,7 +59,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return System Element enables the central maintenance of column description and help.
      */
     public int getElementId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_AD_Element_ID);
+        Integer ii = getValue(COLUMNNAME_AD_Element_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -91,7 +91,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return Process Parameter
      */
     public int getProcessParameterId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_AD_Process_Para_ID);
+        Integer ii = getValue(COLUMNNAME_AD_Process_Para_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -102,7 +102,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return System Reference and Validation
      */
     public int getReferenceId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_AD_Reference_ID);
+        Integer ii = getValue(COLUMNNAME_AD_Reference_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -123,7 +123,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return Required to specify, if data type is Table or List
      */
     public int getReferenceValueId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_AD_Reference_Value_ID);
+        Integer ii = getValue(COLUMNNAME_AD_Reference_Value_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -154,7 +154,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return Dynamic Validation Rule
      */
     public int getValRuleId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_AD_Val_Rule_ID);
+        Integer ii = getValue(COLUMNNAME_AD_Val_Rule_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -165,7 +165,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return Name of the column in the database
      */
     public String getColumnName() {
-        return (String) getValue(COLUMNNAME_ColumnName);
+        return getValue(COLUMNNAME_ColumnName);
     }
 
     /**
@@ -183,7 +183,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return Default value hierarchy, separated by ;
      */
     public String getDefaultValue() {
-        return (String) getValue(COLUMNNAME_DefaultValue);
+        return getValue(COLUMNNAME_DefaultValue);
     }
 
     /**
@@ -201,7 +201,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return Default value hierarchy, separated by ;
      */
     public String getDefaultValue2() {
-        return (String) getValue(COLUMNNAME_DefaultValue2);
+        return getValue(COLUMNNAME_DefaultValue2);
     }
 
     /**
@@ -219,7 +219,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) getValue(COLUMNNAME_Description);
+        return getValue(COLUMNNAME_Description);
     }
 
     /**
@@ -237,7 +237,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return If the Field is displayed, the result determines if the field is actually displayed
      */
     public String getDisplayLogic() {
-        return (String) getValue(COLUMNNAME_DisplayLogic);
+        return getValue(COLUMNNAME_DisplayLogic);
     }
 
     /**
@@ -266,7 +266,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return Length of the column in the database
      */
     public int getFieldLength() {
-        Integer ii = (Integer) getValue(COLUMNNAME_FieldLength);
+        Integer ii = getValue(COLUMNNAME_FieldLength);
         if (ii == null) return 0;
         return ii;
     }
@@ -286,7 +286,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return Comment or Hint
      */
     public String getHelp() {
-        return (String) getValue(COLUMNNAME_Help);
+        return getValue(COLUMNNAME_Help);
     }
 
     /**
@@ -373,7 +373,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return Logic to determine if field is read only (applies only when field is read-write)
      */
     public String getReadOnlyLogic() {
-        return (String) getValue(COLUMNNAME_ReadOnlyLogic);
+        return getValue(COLUMNNAME_ReadOnlyLogic);
     }
 
     /**
@@ -392,7 +392,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return Method of ordering records; lowest number comes first
      */
     public int getSeqNo() {
-        Integer ii = (Integer) getValue(COLUMNNAME_SeqNo);
+        Integer ii = getValue(COLUMNNAME_SeqNo);
         if (ii == null) return 0;
         return ii;
     }
@@ -412,7 +412,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return Maximum Value for a field
      */
     public String getValueMax() {
-        return (String) getValue(COLUMNNAME_ValueMax);
+        return getValue(COLUMNNAME_ValueMax);
     }
 
     /**
@@ -430,7 +430,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return Minimum Value for a field
      */
     public String getValueMin() {
-        return (String) getValue(COLUMNNAME_ValueMin);
+        return getValue(COLUMNNAME_ValueMin);
     }
 
     /**
@@ -448,7 +448,7 @@ public class X_AD_Process_Para extends BasePOName implements ProcessParameter {
      * @return Format of the value; Can contain fixed format elements, Variables: "_lLoOaAcCa09"
      */
     public String getVFormat() {
-        return (String) getValue(COLUMNNAME_VFormat);
+        return getValue(COLUMNNAME_VFormat);
     }
 
     /**

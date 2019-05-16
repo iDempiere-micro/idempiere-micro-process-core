@@ -173,7 +173,7 @@ public class MPInstance extends X_AD_PInstance {
                 MProcess proc = MProcess.get(AD_Process_ID);
                 StringBuilder procMsg = new StringBuilder("[");
                 if (!Language.isBaseLanguage(Env.getADLanguage())) {
-                    procMsg.append(proc.get_Translation("Name")).append(" / ");
+                    procMsg.append(proc.getTranslation("Name")).append(" / ");
                 }
                 procMsg.append(proc.getName()).append("]");
                 throw new IllegalStateException(

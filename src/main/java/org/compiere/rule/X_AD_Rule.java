@@ -71,7 +71,7 @@ public abstract class X_AD_Rule extends BasePONameValue implements Rule {
      * @return Rule
      */
     public int getRuleId() {
-        Integer ii = (Integer) getValue(Rule.COLUMNNAME_AD_Rule_ID);
+        Integer ii = getValue(Rule.COLUMNNAME_AD_Rule_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -82,7 +82,7 @@ public abstract class X_AD_Rule extends BasePONameValue implements Rule {
      * @return Type of Event
      */
     public String getEventType() {
-        return (String) getValue(Rule.COLUMNNAME_EventType);
+        return getValue(Rule.COLUMNNAME_EventType);
     }
 
     /**
@@ -91,7 +91,7 @@ public abstract class X_AD_Rule extends BasePONameValue implements Rule {
      * @return Rule Type
      */
     public String getRuleType() {
-        return (String) getValue(Rule.COLUMNNAME_RuleType);
+        return getValue(Rule.COLUMNNAME_RuleType);
     }
 
     /**
@@ -100,7 +100,7 @@ public abstract class X_AD_Rule extends BasePONameValue implements Rule {
      * @return Dynamic Java Language Script to calculate result
      */
     public String getScript() {
-        return (String) getValue(Rule.COLUMNNAME_Script);
+        return getValue(Rule.COLUMNNAME_Script);
     }
 
     @Override

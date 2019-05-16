@@ -74,10 +74,10 @@ public class MPInstancePara extends X_AD_PInstance_Para {
             sb.append("(s)=").append(getProcessString());
             if (getProcessStringTo() != null) sb.append(" - ").append(getProcessStringTo());
         }
-        BigDecimal bd = (BigDecimal) getValue("P_Number");
+        BigDecimal bd = getValue("P_Number");
         if (bd != null) {
             sb.append("(n)=").append(bd);
-            BigDecimal bd2 = (BigDecimal) getValue("P_Number_To");
+            BigDecimal bd2 = getValue("P_Number_To");
             if (bd2 != null) sb.append(" - ").append(bd2);
         }
         if (getProcessDate() != null) {

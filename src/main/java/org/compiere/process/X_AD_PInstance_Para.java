@@ -56,7 +56,7 @@ public class X_AD_PInstance_Para extends PO implements ProcessInstanceParameter 
      * @return Instance of the process
      */
     public int getPInstanceId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_AD_PInstance_ID);
+        Integer ii = getValue(COLUMNNAME_AD_PInstance_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -86,7 +86,7 @@ public class X_AD_PInstance_Para extends PO implements ProcessInstanceParameter 
      * @return Parameter Name
      */
     public String getParameterName() {
-        return (String) getValue(COLUMNNAME_ParameterName);
+        return getValue(COLUMNNAME_ParameterName);
     }
 
     /**
@@ -140,7 +140,7 @@ public class X_AD_PInstance_Para extends PO implements ProcessInstanceParameter 
      * @return Process Parameter
      */
     public BigDecimal getProcessNumber() {
-        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_P_Number);
+        BigDecimal bd = getValue(COLUMNNAME_P_Number);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -160,7 +160,7 @@ public class X_AD_PInstance_Para extends PO implements ProcessInstanceParameter 
      * @return Process Parameter
      */
     public BigDecimal getProcessNumberTo() {
-        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_P_Number_To);
+        BigDecimal bd = getValue(COLUMNNAME_P_Number_To);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -180,7 +180,7 @@ public class X_AD_PInstance_Para extends PO implements ProcessInstanceParameter 
      * @return Process Parameter
      */
     public String getProcessString() {
-        return (String) getValue(COLUMNNAME_P_String);
+        return getValue(COLUMNNAME_P_String);
     }
 
     /**
@@ -198,7 +198,7 @@ public class X_AD_PInstance_Para extends PO implements ProcessInstanceParameter 
      * @return Process Parameter
      */
     public String getProcessStringTo() {
-        return (String) getValue(COLUMNNAME_P_String_To);
+        return getValue(COLUMNNAME_P_String_To);
     }
 
     /**

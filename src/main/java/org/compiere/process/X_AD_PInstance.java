@@ -55,7 +55,7 @@ public class X_AD_PInstance extends BasePOName implements ProcessInstance {
      * @return Instance of the process
      */
     public int getPInstanceId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_AD_PInstance_ID);
+        Integer ii = getValue(COLUMNNAME_AD_PInstance_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -66,7 +66,7 @@ public class X_AD_PInstance extends BasePOName implements ProcessInstance {
      * @return Process or Report
      */
     public int getProcessId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_AD_Process_ID);
+        Integer ii = getValue(COLUMNNAME_AD_Process_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -97,7 +97,7 @@ public class X_AD_PInstance extends BasePOName implements ProcessInstance {
      * @return Error Msg
      */
     public String getErrorMsg() {
-        return (String) getValue(COLUMNNAME_ErrorMsg);
+        return getValue(COLUMNNAME_ErrorMsg);
     }
 
     /**
@@ -148,7 +148,7 @@ public class X_AD_PInstance extends BasePOName implements ProcessInstance {
      * @return Result of the action taken
      */
     public int getResult() {
-        Integer ii = (Integer) getValue(COLUMNNAME_Result);
+        Integer ii = getValue(COLUMNNAME_Result);
         if (ii == null) return 0;
         return ii;
     }

@@ -60,7 +60,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return Access Level required
      */
     public String getProcessAccessLevel() {
-        return (String) getValue(COLUMNNAME_AccessLevel);
+        return getValue(COLUMNNAME_AccessLevel);
     }
 
     /**
@@ -79,7 +79,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return Special Form
      */
     public int getFormId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_AD_Form_ID);
+        Integer ii = getValue(COLUMNNAME_AD_Form_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -100,7 +100,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return Data Print Format
      */
     public int getPrintFormatId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_AD_PrintFormat_ID);
+        Integer ii = getValue(COLUMNNAME_AD_PrintFormat_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -121,7 +121,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return Process or Report
      */
     public int getProcessId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_AD_Process_ID);
+        Integer ii = getValue(COLUMNNAME_AD_Process_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -132,7 +132,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return View used to generate this report
      */
     public int getReportViewId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_AD_ReportView_ID);
+        Integer ii = getValue(COLUMNNAME_AD_ReportView_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -153,7 +153,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return Workflow or combination of tasks
      */
     public int getWorkflowId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_AD_Workflow_ID);
+        Integer ii = getValue(COLUMNNAME_AD_Workflow_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -174,7 +174,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return Java Classname
      */
     public String getClassname() {
-        return (String) getValue(COLUMNNAME_Classname);
+        return getValue(COLUMNNAME_Classname);
     }
 
     /**
@@ -192,7 +192,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) getValue(COLUMNNAME_Description);
+        return getValue(COLUMNNAME_Description);
     }
 
     /**
@@ -210,7 +210,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return Dictionary Entity Type; Determines ownership and synchronization
      */
     public String getEntityType() {
-        return (String) getValue(COLUMNNAME_EntityType);
+        return getValue(COLUMNNAME_EntityType);
     }
 
     /**
@@ -229,7 +229,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return Comment or Hint
      */
     public String getHelp() {
-        return (String) getValue(COLUMNNAME_Help);
+        return getValue(COLUMNNAME_Help);
     }
 
     /**
@@ -339,7 +339,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return Jasper Report
      */
     public String getJasperReport() {
-        return (String) getValue(COLUMNNAME_JasperReport);
+        return getValue(COLUMNNAME_JasperReport);
     }
 
     /**
@@ -357,7 +357,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return Name of the Database Procedure
      */
     public String getProcedureName() {
-        return (String) getValue(COLUMNNAME_ProcedureName);
+        return getValue(COLUMNNAME_ProcedureName);
     }
 
     /**
@@ -375,7 +375,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return Show Help
      */
     public String getShowHelp() {
-        return (String) getValue(COLUMNNAME_ShowHelp);
+        return getValue(COLUMNNAME_ShowHelp);
     }
 
     /**
@@ -394,7 +394,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return Internal statistics how often the entity was used
      */
     public int getStatisticCount() {
-        Integer ii = (Integer) getValue(COLUMNNAME_Statistic_Count);
+        Integer ii = getValue(COLUMNNAME_Statistic_Count);
         if (ii == null) return 0;
         return ii;
     }
@@ -414,7 +414,7 @@ public class X_AD_Process extends BasePONameValue implements Process {
      * @return Internal statistics how many seconds a process took
      */
     public int getStatisticSeconds() {
-        Integer ii = (Integer) getValue(COLUMNNAME_Statistic_Seconds);
+        Integer ii = getValue(COLUMNNAME_Statistic_Seconds);
         if (ii == null) return 0;
         return ii;
     }
